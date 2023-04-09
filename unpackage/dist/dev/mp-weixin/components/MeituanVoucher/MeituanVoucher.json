@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "uni-section": "/uni_modules/uni-section/components/uni-section/uni-section",
+    "u-button": "/node-modules/uview-ui/components/u-button/u-button"
+  },
+  "component": true
+}

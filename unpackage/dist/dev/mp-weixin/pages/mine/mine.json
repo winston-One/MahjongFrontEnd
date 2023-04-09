@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "个人中心",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "default",
+  "navigationBarBackgroundColor": "#fff",
+  "usingComponents": {
+    "my-login": "/components/MyLogin/MyLogin",
+    "u-avatar": "/node-modules/uview-ui/components/u-avatar/u-avatar",
+    "u-icon": "/node-modules/uview-ui/components/u-icon/u-icon",
+    "u-popup": "/node-modules/uview-ui/components/u-popup/u-popup",
+    "uni-popup": "/uni_modules/uni-popup/components/uni-popup/uni-popup",
+    "uni-popup-dialog": "/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog"
+  }
+}

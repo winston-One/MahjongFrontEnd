@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "我的券包",
+  "enablePullDownRefresh": false,
+  "navigationBarBackgroundColor": "#fff",
+  "usingComponents": {
+    "u-subsection": "/node-modules/uview-ui/components/u-subsection/u-subsection",
+    "meituan-coupon": "/components/MeituanCoupon/MeituanCoupon",
+    "u-empty": "/node-modules/uview-ui/components/u-empty/u-empty",
+    "my-voucher": "/page_mine/components/MyVoucher"
+  }
+}

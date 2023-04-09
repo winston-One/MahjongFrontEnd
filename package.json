@@ -1,0 +1,16 @@
+{
+  "name": "mahjongfrontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^7.0.3",
+    "sass-loader": "^13.1.0",
+    "uview-ui": "^2.0.35"
+  }
+}

@@ -1,0 +1,1 @@
+<view class="login-container"><view class="avatar"><uni-icons vue-id="e6d19df4-1" type="contact-filled" size="100" color="#AFAFAF" bind:__l="__l"></uni-icons></view><view>您还未登录账号！</view><button class="btn-login" type="primary" data-event-opts="{{[['tap',[['login',['$event']]]]]}}" bindtap="__e">一键登录</button><view class="tips-text">登录后尽享更多权益</view></view>

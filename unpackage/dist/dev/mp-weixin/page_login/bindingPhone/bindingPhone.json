@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "绑定手机",
+  "enablePullDownRefresh": false,
+  "navigationBarBackgroundColor": "#fff",
+  "usingComponents": {
+    "u-image": "/node-modules/uview-ui/components/u-image/u-image"
+  }
+}

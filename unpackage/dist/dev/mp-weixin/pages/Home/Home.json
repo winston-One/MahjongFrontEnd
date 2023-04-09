@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "首页",
+  "enablePullDownRefresh": true,
+  "navigationBarBackgroundColor": "#fff",
+  "navigationStyle": "default",
+  "usingComponents": {
+    "u-swiper": "/node-modules/uview-ui/components/u-swiper/u-swiper",
+    "u-icon": "/node-modules/uview-ui/components/u-icon/u-icon",
+    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons",
+    "u-button": "/node-modules/uview-ui/components/u-button/u-button",
+    "uni-section": "/uni_modules/uni-section/components/uni-section/uni-section",
+    "u-steps": "/node-modules/uview-ui/components/u-steps/u-steps",
+    "u-popup": "/node-modules/uview-ui/components/u-popup/u-popup"
+  }
+}

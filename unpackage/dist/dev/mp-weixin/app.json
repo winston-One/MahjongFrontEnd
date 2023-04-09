@@ -1,0 +1,78 @@
+{
+  "pages": [
+    "pages/Home/Home",
+    "pages/CardVoucher/CardVoucher",
+    "pages/mine/mine",
+    "pages/myOrder/myOrder"
+  ],
+  "subPackages": [
+    {
+      "root": "page_login",
+      "pages": [
+        "login/login",
+        "agreement/agreement",
+        "bindingPhone/bindingPhone"
+      ]
+    },
+    {
+      "root": "page_subscribe",
+      "pages": [
+        "subscribeMain/subscribeMain",
+        "orderDetals/orderDetals",
+        "submitOrder/submitOrder",
+        "continueOrder/continueOrder"
+      ]
+    },
+    {
+      "root": "page_mine",
+      "pages": [
+        "shareSmallProject/shareSmallProject",
+        "commonSolution/commonSolution",
+        "myCoupon/myCoupon"
+      ]
+    },
+    {
+      "root": "page_coupon",
+      "pages": [
+        "purchaseCoupon/purchaseCoupon"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#8A8A8A",
+    "selectedColor": "#5db4f4",
+    "list": [
+      {
+        "pagePath": "pages/Home/Home",
+        "text": "首 页",
+        "iconPath": "static/icon/main.png",
+        "selectedIconPath": "./static/icon/main_selected.png"
+      },
+      {
+        "pagePath": "pages/CardVoucher/CardVoucher",
+        "text": "卡券套餐",
+        "iconPath": "static/icon/quan.png",
+        "selectedIconPath": "static/icon/quan_selected.png"
+      },
+      {
+        "pagePath": "pages/myOrder/myOrder",
+        "text": "我的订单",
+        "iconPath": "static/icon/dingdan.png",
+        "selectedIconPath": "static/icon/dingdan_selected.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我 的",
+        "iconPath": "static/icon/my.png",
+        "selectedIconPath": "static/icon/my_selected.png"
+      }
+    ]
+  },
+  "usingComponents": {}
+}

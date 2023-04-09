@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "我的订单",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "default",
+  "navigationBarBackgroundColor": "#fff",
+  "usingComponents": {
+    "my-login": "/components/MyLogin/MyLogin",
+    "u-dropdown": "/node-modules/uview-ui/components/u-dropdown/u-dropdown",
+    "u-dropdown-item": "/node-modules/uview-ui/components/u-dropdown-item/u-dropdown-item",
+    "u-empty": "/node-modules/uview-ui/components/u-empty/u-empty",
+    "u-button": "/node-modules/uview-ui/components/u-button/u-button",
+    "u-icon": "/node-modules/uview-ui/components/u-icon/u-icon",
+    "order-card": "/components/OrderCard/OrderCard"
+  }
+}
