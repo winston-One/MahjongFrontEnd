@@ -53,22 +53,18 @@ page {
   display: flex;
   flex-direction: column;
 }
-.profily .base .right .refresh {
-  position: absolute;
-  height: 50rpx;
-  width: 50rpx;
-  right: 10px;
-  top: 10px;
-}
 .profily .base .right .myHomePage {
   position: absolute;
-  top: 130rpx;
+  top: 58rpx;
   left: 560rpx;
   display: flex;
   justify-content: flex-start;
 }
-.profily .base:active {
-  background: #f8f8f8;
+.profily .base .right .myHomePage .text {
+  margin-right: 15rpx;
+}
+.profily .base .right:active {
+  background: #f6f6f6;
 }
 .profily .order_status {
   width: 90%;

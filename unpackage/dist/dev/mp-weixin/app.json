@@ -7,6 +7,12 @@
   ],
   "subPackages": [
     {
+      "root": "page_business",
+      "pages": [
+        "BusinessMain/BusinessMain"
+      ]
+    },
+    {
       "root": "page_login",
       "pages": [
         "login/login",
@@ -20,7 +26,8 @@
         "subscribeMain/subscribeMain",
         "orderDetals/orderDetals",
         "submitOrder/submitOrder",
-        "continueOrder/continueOrder"
+        "continueOrder/continueOrder",
+        "Chat/Chat"
       ]
     },
     {

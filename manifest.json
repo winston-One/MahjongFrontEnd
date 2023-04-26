@@ -1,5 +1,5 @@
 {
-    "name" : "马上到国粹交流中心",
+    "name" : "雀神国粹",
     "appid" : "__UNI__B282352",
     "description" : "",
     "versionName" : "1.0.0",
@@ -49,7 +49,7 @@
                 "payment" : {
                     "weixin" : {
                         "__platform__" : [ "ios", "android" ],
-                        "appid" : "wx9643514640a291dc",
+                        "appid" : "wx4902e060f847197f",
                         "UniversalLinks" : ""
                     }
                 }
@@ -60,9 +60,9 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "wx9643514640a291dc",
+        "appid" : "wx4902e060f847197f",
         "setting" : {
-            "urlCheck" : false,
+            "urlCheck" : true,
             "postcss" : true
         },
         "usingComponents" : true

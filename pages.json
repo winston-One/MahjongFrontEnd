@@ -47,6 +47,16 @@
 		}
   ],
   "subPackages": [{
+  	"root": "page_business",
+  	"pages": [{
+  			"path": "BusinessMain/BusinessMain",
+  			"style": {
+  				"navigationBarTitleText": "我的店铺",
+  				"enablePullDownRefresh": false,
+  	      "navigationBarBackgroundColor": "#fff"
+  			}
+      }
+    ]},{
   	"root": "page_login",
   	"pages": [{
   			"path": "login/login",
@@ -100,7 +110,15 @@
           "navigationBarBackgroundColor": "#fff",
           "enablePullDownRefresh": false
         }
-    }]
+    }    ,{
+            "path" : "Chat/Chat",
+            "style":{
+              "navigationBarTitleText": "聊天",
+              "navigationStyle": "custom",
+              "enablePullDownRefresh": false
+            }
+          }
+    ]
   },
   {
   	"root": "page_mine",

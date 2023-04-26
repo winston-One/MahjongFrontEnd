@@ -88,6 +88,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "page_subscribe/Chat/Chat",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

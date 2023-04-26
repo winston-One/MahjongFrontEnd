@@ -11,15 +11,14 @@
             </text>
             <!-- <text>ID:{{idAuth}}</text> -->
           </view>
-      		<!-- <view class="right">
-      			<image class="refresh" src="../../static/icon/refresh.png" @click.stop="refreshUserInfo"/> -->
-      			<!-- <view class="myHomePage">
+      		<view class="right">
+      			<view class="myHomePage" @click="gotoMyBusiness">
       				<view class="text">
-      					我的主页
+      					我的店铺
       				</view>
-      				<u-icon size="30" name="arrow-right"></u-icon>
-      			</view> -->
-      		<!-- </view> -->
+      				<u-icon size="30" name="arrow-right" color="#7fabf7"></u-icon>
+      			</view>
+      		</view>
       	</view>
       	<view class="order_status">
           <view class="order_num">
@@ -218,6 +217,11 @@
       }
     },
     methods: {
+      gotoMyBusiness() {
+        uni.navigateTo({
+          url:"/page_business/BusinessMain/BusinessMain"
+        })
+      },
       avatarPreview(avatarUrl){
         uni.previewImage({
         	current: 0,
@@ -313,26 +317,24 @@ page{
   	.right {
   		display: flex;
   		flex-direction: column;
-  		.refresh {
-  			position: absolute;
-  			height: 50rpx;
-  			width: 50rpx;
-  			right: 10px;
-  			top: 10px;
-  		}
   		.myHomePage {
   			position: absolute;
-  			top: 130rpx;
+  			top: 58rpx;
   			left: 560rpx;
   			display: flex;
   			justify-content: flex-start;
-  			
+        .text {
+          margin-right: 15rpx;
+        }
   		}
   	}
+    .right:active {
+    	background: #f6f6f6;
+    }
   }
-  .base:active {
-  	background: #f8f8f8;
-  }
+  // .base:active {
+  // 	background: #f8f8f8;
+  // }
   .order_status{
     width: 90%;
     position: absolute;

@@ -66,12 +66,11 @@
 </template>
 
 <script>
-  //import ReserveTime from "../components/ReserveTime/ReserveTime.vue"
   import ReserveRoom from "../components/ReserveRoom/ReserveRoom.vue"
   import parseData from "../lib/parseData.js"
   export default {
     components: {
-      ReserveRoom,//ReserveTime
+      ReserveRoom,
     },
     data() {
       return {
@@ -100,12 +99,12 @@
     async onLoad() {
       this.store = getApp().globalData.store
       this.DataList = parseData.getDate()
-      this.localTime = this.DataList[0].year+'-'+this.DataList[0].data
-      
+      this.localTime = this.DataList[0].year + '-' + this.DataList[0].data
       let body = new Object()
       body.storeId = getApp().globalData.storeId
       body.date = this.localTime
       let data = await getApp().UniRequest("/reservation/getAll", "GET", body, "",1)
+      console.log("预约房间：" + data)
       if (data.code !== 20000) {
         return uni.showToast({
           title: '数据请求失败！',

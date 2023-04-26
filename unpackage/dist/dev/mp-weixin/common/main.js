@@ -110,6 +110,12 @@ var _default = {
     // 头部的自定义的高度
     statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
     openid: 'o2eui5ZuZQt2eEsO7lyq0psWFXYg',
+    userInfo: {
+      openid: 'o2eui5ZuZQt2eEsO7lyq0psWFXYg',
+      avatarUrl: '',
+      nickName: '',
+      gender: ''
+    },
     store: '安鸿店',
     storeId: '97901',
     header: {
@@ -126,7 +132,7 @@ var _default = {
     pageHeight: 0,
     //页面高度
     menuWidth: 0
-  }, (0, _defineProperty2.default)(_globalData, "statusBarHeight", 0), (0, _defineProperty2.default)(_globalData, "screenWidth", 0), (0, _defineProperty2.default)(_globalData, "isLogin", false), (0, _defineProperty2.default)(_globalData, "newPerson", false), (0, _defineProperty2.default)(_globalData, "firstIn", true), (0, _defineProperty2.default)(_globalData, "haveLoading", false), (0, _defineProperty2.default)(_globalData, "userInfo", ''), _globalData),
+  }, (0, _defineProperty2.default)(_globalData, "statusBarHeight", 0), (0, _defineProperty2.default)(_globalData, "screenWidth", 0), (0, _defineProperty2.default)(_globalData, "isLogin", false), (0, _defineProperty2.default)(_globalData, "newPerson", false), (0, _defineProperty2.default)(_globalData, "firstIn", true), (0, _defineProperty2.default)(_globalData, "haveLoading", false), (0, _defineProperty2.default)(_globalData, "userInfo", ''), (0, _defineProperty2.default)(_globalData, "webSocketIsOpen", true), (0, _defineProperty2.default)(_globalData, "unreadCount", 0), (0, _defineProperty2.default)(_globalData, "socketTask", ''), _globalData),
   onLaunch: function onLaunch() {
     var _this = this;
     return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
@@ -179,11 +185,50 @@ var _default = {
   onShow: function onShow() {
     this.setNavBarInfo();
     this.getPagesHeight();
+    if (this.globalData.webSocketIsOpen) {
+      this.connectWebSocket();
+      this.globalData.webSocketIsOpen = false;
+    }
   },
   onHide: function onHide() {
     console.log('App Hide');
+    this.globalData.webSocketIsOpen = true;
   },
   methods: {
+    //连接websocket,实现即时通讯，主要是统计好当前在线人数
+    connectWebSocket: function connectWebSocket() {
+      var vm = this;
+      var socketTask = uni.connectSocket({
+        url: 'ws://localhost:9790/IM/online/' + vm.globalData.userInfo.openid,
+        complete: function complete() {}
+      });
+      socketTask.onOpen(function (callback) {
+        console.log("AppWebSocket连接成功：" + callback.data);
+      });
+      socketTask.onError(function (callback) {
+        console.log("AppWebSocket发送错误：" + callback.errMsg);
+      });
+      socketTask.onClose(function (callback) {
+        console.log("App连接关闭");
+        vm.globalData.unreadCount = 0;
+      });
+      socketTask.onMessage(function (callback) {
+        // callback.data保证消息不会重复
+        vm.globalData.unreadCount += new Number(callback.data);
+        if (vm.globalData.unreadCount > 0) {
+          // 展示从左边数第四个tabbar显示红点，代表有消息未读
+          uni.showTabBarRedDot({
+            index: 4
+          });
+        } else {
+          uni.hideTabBarRedDot({
+            index: 4
+          });
+        }
+      });
+      vm.globalData.socketTask = socketTask;
+    },
+    // 全局的ajax调用，前端直接使用这个封装好的方法，配置好参数，就能直接调用后端接口
     UniRequest: function UniRequest(path, method, body, header, isDev) {
       var _this2 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
@@ -194,7 +239,7 @@ var _default = {
               case 0:
                 request = new Object(); //禁止使用前缀
                 if (isDev === 1) {
-                  request.url = "http://localhost:7777" + path;
+                  request.url = "http://localhost:9790" + path;
                 } else {
                   request.url = "https://".concat(_mahjongConfig.default.domain) + path;
                 }
@@ -211,18 +256,15 @@ var _default = {
                 if (_this2.globalData.openid) {
                   request.header.Openid = _this2.globalData.openid;
                 }
-                if (_this2.globalData.delId) {
-                  request.header.DelId = _this2.globalData.delId;
-                }
-                _context2.next = 9;
+                _context2.next = 8;
                 return uni.request(request).then(function (res) {
                   data = res;
                 }).catch(function (err) {
                   console.log('调用失败', err);
                 });
-              case 9:
+              case 8:
                 return _context2.abrupt("return", data[1].data);
-              case 10:
+              case 9:
               case "end":
                 return _context2.stop();
             }

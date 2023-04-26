@@ -1,3 +1,3 @@
 export default{
-	domain: 'https://queshen.club',// http://43.143.88.250
+	domain: 'https://winston.com',// 域名（后端部署之后，将服务器ip映射一个域名）
 }
