@@ -2,7 +2,7 @@
   <view class="submit-order">
       <view class="top">
         <view>所属门店</view>
-        <view class="top_store">马上到国粹交流中心-{{store}}</view>
+        <view class="top_store">国粹娱乐中心-{{store}}</view>
       </view>
       <view class="room">
         <image :src="imgUrl"></image>
@@ -100,7 +100,7 @@
         price: 90.00,
         orderStatus: '',
         roomName: '',
-        imgUrl: 'http://43.143.88.250:22000/group1/M00/00/00/CgAEC2ObG8aAJX5pABJGXzfrx7w832.png',
+        imgUrl: '../../static/applogo/intro1.png',
         isVoucher: '',
         voucherId: '',
         createTime: '',

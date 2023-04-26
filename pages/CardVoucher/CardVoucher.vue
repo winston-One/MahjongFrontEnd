@@ -67,6 +67,7 @@
       this.cardType = uni.getStorageSync('couponType')
     },
     async onLoad() {
+      // 如果将登录功能打开，就需要通过token，后续判断登录了才能消券
       //this.token = uni.getStorageSync('Authority')
       let data = await getApp().UniRequest("/voucher/allvoucher", "POST", "", "",1)
       if (data.code !== 20000) {
@@ -82,6 +83,7 @@
       cancel() {
         this.popshow = false
       },
+      // 消券
       async eliminate(receiptCode) {
         let obj = new Object()
         obj.userId = getApp().globalData.openid
@@ -126,6 +128,7 @@
       sectionChange(index) {
         this.cardType = index
       },
+      // 输入美团大众券码，进行验券
       async exchangeCode() {
         this.meituanMsg = ''
         if (this.token === '') {
@@ -172,19 +175,22 @@
         this.meituanMsg = meituan
         this.popshow = true
       },
+      // 扫码验券，查券
       async scanCode() {
         this.meituanMsg = ''
         var that = this
+        // 调用uniapp扫描二维码的接口
         uni.scanCode({
-          scanType: ['qrCode'],
+          scanType: ['qrCode'],// 指定扫描的类型是二维码
         	success: async function(res){
             console.log('条码内容：' + res.result);
             let qrObj = new Object()
             qrObj.userId = getApp().globalData.openid
             qrObj.receiptCode = res.result
             qrObj.count = 1
+            // 请求验券接口
             let data = await getApp().UniRequest("/DianPing/verificationByQRCode", "POST", qrObj, "",1)
-            console.log(data);
+            // 验券成功
             if (data.code === 1008) {
               return uni.showToast({
                 title: '该券已销',
@@ -199,6 +205,7 @@
                 icon: 'none',
               })
             }
+            // 验券或者查券成功之后将券的信息封装到实体meituanMsg中，在弹窗中展示
             let meituan = new Object()
             meituan.receiptCode = data.data.receiptCode
             meituan.duration = data.data.dianPingVoucherOrder.duration
@@ -208,17 +215,21 @@
             meituan.price = data.data.dianPingVoucherOrder.price
             uni.setStorageSync('count', data.data.count)
             that.meituanMsg = meituan
+            // 打开弹窗
             that.popshow = true
         	}
         });
       },
+      // 购买卡券
       purchase(couponMsg) {
+        // 如果未登录会自动跳转到登录接口
         if (this.token === '') {
           uni.navigateTo({
             url:"/page_login/login/login"
           })
           return;
         }
+        // 传输数组时候，需要使用encodeURICompone进行编码压缩
         uni.navigateTo({
           url:'/page_coupon/purchaseCoupon/purchaseCoupon?coupon=' + encodeURIComponent(JSON.stringify(couponMsg))
         })

@@ -96,7 +96,27 @@ module.exports = _toPropertyKey, module.exports.__esModule = true, module.export
 
 /***/ }),
 
-/***/ 125:
+/***/ 13:
+/*!*******************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(obj);
+}
+module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 133:
 /*!***************************************************************!*\
   !*** F:/Hi雀神/MahjongFrontEnd/page_subscribe/lib/parseData.js ***!
   \***************************************************************/
@@ -214,26 +234,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ 13:
-/*!*******************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _typeof(obj) {
-  "@babel/helpers - typeof";
-
-  return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
-    return typeof obj;
-  } : function (obj) {
-    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(obj);
-}
-module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
 /***/ 14:
 /*!************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/toPrimitive.js ***!
@@ -299,6 +299,467 @@ function _setPrototypeOf(o, p) {
   return _setPrototypeOf(o, p);
 }
 module.exports = _setPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 164:
+/*!************************************************************!*\
+  !*** F:/Hi雀神/MahjongFrontEnd/page_subscribe/lib/commen.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var commen = {};
+commen.emojiList = [[{
+  "url": "100.gif",
+  alt: "[微笑]"
+}, {
+  "url": "101.gif",
+  alt: "[伤心]"
+}, {
+  "url": "102.gif",
+  alt: "[美女]"
+}, {
+  "url": "103.gif",
+  alt: "[发呆]"
+}, {
+  "url": "104.gif",
+  alt: "[墨镜]"
+}, {
+  "url": "105.gif",
+  alt: "[哭]"
+}, {
+  "url": "106.gif",
+  alt: "[羞]"
+}, {
+  "url": "107.gif",
+  alt: "[哑]"
+}, {
+  "url": "108.gif",
+  alt: "[睡]"
+}, {
+  "url": "109.gif",
+  alt: "[哭]"
+}, {
+  "url": "110.gif",
+  alt: "[囧]"
+}, {
+  "url": "111.gif",
+  alt: "[怒]"
+}, {
+  "url": "112.gif",
+  alt: "[调皮]"
+}, {
+  "url": "113.gif",
+  alt: "[笑]"
+}, {
+  "url": "114.gif",
+  alt: "[惊讶]"
+}, {
+  "url": "115.gif",
+  alt: "[难过]"
+}, {
+  "url": "116.gif",
+  alt: "[酷]"
+}, {
+  "url": "117.gif",
+  alt: "[汗]"
+}, {
+  "url": "118.gif",
+  alt: "[抓狂]"
+}, {
+  "url": "119.gif",
+  alt: "[吐]"
+}, {
+  "url": "120.gif",
+  alt: "[笑]"
+}, {
+  "url": "121.gif",
+  alt: "[快乐]"
+}, {
+  "url": "122.gif",
+  alt: "[奇]"
+}, {
+  "url": "123.gif",
+  alt: "[傲]"
+}], [{
+  "url": "124.gif",
+  alt: "[饿]"
+}, {
+  "url": "125.gif",
+  alt: "[累]"
+}, {
+  "url": "126.gif",
+  alt: "[吓]"
+}, {
+  "url": "127.gif",
+  alt: "[汗]"
+}, {
+  "url": "128.gif",
+  alt: "[高兴]"
+}, {
+  "url": "129.gif",
+  alt: "[闲]"
+}, {
+  "url": "130.gif",
+  alt: "[努力]"
+}, {
+  "url": "131.gif",
+  alt: "[骂]"
+}, {
+  "url": "132.gif",
+  alt: "[疑问]"
+}, {
+  "url": "133.gif",
+  alt: "[秘密]"
+}, {
+  "url": "134.gif",
+  alt: "[乱]"
+}, {
+  "url": "135.gif",
+  alt: "[疯]"
+}, {
+  "url": "136.gif",
+  alt: "[哀]"
+}, {
+  "url": "137.gif",
+  alt: "[鬼]"
+}, {
+  "url": "138.gif",
+  alt: "[打击]"
+}, {
+  "url": "139.gif",
+  alt: "[bye]"
+}, {
+  "url": "140.gif",
+  alt: "[汗]"
+}, {
+  "url": "141.gif",
+  alt: "[抠]"
+}, {
+  "url": "142.gif",
+  alt: "[鼓掌]"
+}, {
+  "url": "143.gif",
+  alt: "[糟糕]"
+}, {
+  "url": "144.gif",
+  alt: "[恶搞]"
+}, {
+  "url": "145.gif",
+  alt: "[什么]"
+}, {
+  "url": "146.gif",
+  alt: "[什么]"
+}, {
+  "url": "147.gif",
+  alt: "[累]"
+}], [{
+  "url": "148.gif",
+  alt: "[看]"
+}, {
+  "url": "149.gif",
+  alt: "[难过]"
+}, {
+  "url": "150.gif",
+  alt: "[难过]"
+}, {
+  "url": "151.gif",
+  alt: "[坏]"
+}, {
+  "url": "152.gif",
+  alt: "[亲]"
+}, {
+  "url": "153.gif",
+  alt: "[吓]"
+}, {
+  "url": "154.gif",
+  alt: "[可怜]"
+}, {
+  "url": "155.gif",
+  alt: "[刀]"
+}, {
+  "url": "156.gif",
+  alt: "[水果]"
+}, {
+  "url": "157.gif",
+  alt: "[酒]"
+}, {
+  "url": "158.gif",
+  alt: "[篮球]"
+}, {
+  "url": "159.gif",
+  alt: "[乒乓]"
+}, {
+  "url": "160.gif",
+  alt: "[咖啡]"
+}, {
+  "url": "161.gif",
+  alt: "[美食]"
+}, {
+  "url": "162.gif",
+  alt: "[动物]"
+}, {
+  "url": "163.gif",
+  alt: "[鲜花]"
+}, {
+  "url": "164.gif",
+  alt: "[枯]"
+}, {
+  "url": "165.gif",
+  alt: "[唇]"
+}, {
+  "url": "166.gif",
+  alt: "[爱]"
+}, {
+  "url": "167.gif",
+  alt: "[分手]"
+}, {
+  "url": "168.gif",
+  alt: "[生日]"
+}, {
+  "url": "169.gif",
+  alt: "[电]"
+}, {
+  "url": "170.gif",
+  alt: "[炸弹]"
+}, {
+  "url": "171.gif",
+  alt: "[刀子]"
+}], [{
+  "url": "172.gif",
+  alt: "[足球]"
+}, {
+  "url": "173.gif",
+  alt: "[瓢虫]"
+}, {
+  "url": "174.gif",
+  alt: "[翔]"
+}, {
+  "url": "175.gif",
+  alt: "[月亮]"
+}, {
+  "url": "176.gif",
+  alt: "[太阳]"
+}, {
+  "url": "177.gif",
+  alt: "[礼物]"
+}, {
+  "url": "178.gif",
+  alt: "[抱抱]"
+}, {
+  "url": "179.gif",
+  alt: "[拇指]"
+}, {
+  "url": "180.gif",
+  alt: "[贬低]"
+}, {
+  "url": "181.gif",
+  alt: "[握手]"
+}, {
+  "url": "182.gif",
+  alt: "[剪刀手]"
+}, {
+  "url": "183.gif",
+  alt: "[抱拳]"
+}, {
+  "url": "184.gif",
+  alt: "[勾引]"
+}, {
+  "url": "185.gif",
+  alt: "[拳头]"
+}, {
+  "url": "186.gif",
+  alt: "[小拇指]"
+}, {
+  "url": "187.gif",
+  alt: "[拇指八]"
+}, {
+  "url": "188.gif",
+  alt: "[食指]"
+}, {
+  "url": "189.gif",
+  alt: "[ok]"
+}, {
+  "url": "190.gif",
+  alt: "[情侣]"
+}, {
+  "url": "191.gif",
+  alt: "[爱心]"
+}, {
+  "url": "192.gif",
+  alt: "[蹦哒]"
+}, {
+  "url": "193.gif",
+  alt: "[颤抖]"
+}, {
+  "url": "194.gif",
+  alt: "[怄气]"
+}, {
+  "url": "195.gif",
+  alt: "[跳舞]"
+}], [{
+  "url": "196.gif",
+  alt: "[发呆]"
+}, {
+  "url": "197.gif",
+  alt: "[背着]"
+}, {
+  "url": "198.gif",
+  alt: "[伸手]"
+}, {
+  "url": "199.gif",
+  alt: "[耍帅]"
+}, {
+  "url": "200.png",
+  alt: "[微笑]"
+}, {
+  "url": "201.png",
+  alt: "[生病]"
+}, {
+  "url": "202.png",
+  alt: "[哭泣]"
+}, {
+  "url": "203.png",
+  alt: "[吐舌]"
+}, {
+  "url": "204.png",
+  alt: "[迷糊]"
+}, {
+  "url": "205.png",
+  alt: "[瞪眼]"
+}, {
+  "url": "206.png",
+  alt: "[恐怖]"
+}, {
+  "url": "207.png",
+  alt: "[忧愁]"
+}, {
+  "url": "208.png",
+  alt: "[眨眉]"
+}, {
+  "url": "209.png",
+  alt: "[闭眼]"
+}, {
+  "url": "210.png",
+  alt: "[鄙视]"
+}, {
+  "url": "211.png",
+  alt: "[阴暗]"
+}, {
+  "url": "212.png",
+  alt: "[小鬼]"
+}, {
+  "url": "213.png",
+  alt: "[礼物]"
+}, {
+  "url": "214.png",
+  alt: "[拜佛]"
+}, {
+  "url": "215.png",
+  alt: "[力量]"
+}, {
+  "url": "216.png",
+  alt: "[金钱]"
+}, {
+  "url": "217.png",
+  alt: "[蛋糕]"
+}, {
+  "url": "218.png",
+  alt: "[彩带]"
+}, {
+  "url": "219.png",
+  alt: "[礼物]"
+}]];
+
+/**@dateTimeFliter 转换格林日期时间格式为常用日期格式
+ * @time[必填] 						Date  		格林日期格式
+ * @part[可选,默认:0]				Number      选择返回日期时间部分  列:0:返回所有 1:只返回日期  2:只返回时间
+ * @dateComplete[可选,默认:true] 	Boolean 	日期位数不足是否添0补齐:true:补齐,false:不补齐
+ * @timeComplete[可选,默认:true] 	Boolean 	时间位数不足是否添0补齐:true:补齐,false:不补齐
+ * @dateConnector[可选,默认:-] 		String 		年月日连接符  例: - : /
+ * @timeConnector[可选,默认::] 		String 		时间连接符   例: - : /
+ * @hour12[可选,默认:false]          Boolean     是否返回12小时制时间   例: true:返回12小时制时间   false:返回24小时制时间
+ * @return   '2019-11-25 15:05:54'  String    返回示例
+ * **/
+commen.dateTimeFliter = function (time) {
+  var part = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var dateComplete = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+  var timeComplete = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
+  var dateConnector = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '-';
+  var timeConnector = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : ':';
+  var hour12 = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : false;
+  var year = time.getFullYear();
+  var month = time.getMonth() + 1;
+  var day = time.getDate();
+  var hour = time.getHours();
+  var minute = time.getMinutes();
+  var second = time.getSeconds();
+  var dateStr = '';
+  var timeStr = '';
+  //转换日期
+  if (dateComplete) {
+    //添0补齐
+    if (month < 10) {
+      month = '0' + month;
+    }
+    if (day < 10) {
+      day = '0' + day;
+    }
+  }
+  dateStr = year + dateConnector + month + dateConnector + day;
+  //转换时间
+  //修改小时制
+  if (hour12) {
+    if (hour > 12) {
+      hour = hour - 12;
+      if (timeComplete) {
+        if (hour < 10) {
+          hour = '下午 ' + '0' + hour;
+        } else {
+          hour = '下午 ' + hour;
+        }
+      }
+    } else {
+      if (timeComplete) {
+        if (hour < 10) {
+          hour = '上午 ' + '0' + hour;
+        } else {
+          hour = '上午 ' + hour;
+        }
+      }
+    }
+  }
+  //判断分钟与秒
+  if (timeComplete) {
+    //添0补齐
+    if (minute < 10) {
+      minute = '0' + minute;
+    }
+    if (second < 10) {
+      second = '0' + second;
+    }
+  }
+  timeStr = hour + timeConnector + minute + timeConnector + second;
+  //合成输出值
+  if (part == 0) {
+    return dateStr + ' ' + timeStr;
+  } else if (part == 1) {
+    return dateStr;
+  } else if (part == 2) {
+    return timeStr;
+  }
+  return '传参有误';
+};
+var _default = commen;
+exports.default = _default;
 
 /***/ }),
 
@@ -1843,7 +2304,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"马上到国粹交流中心","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"马上到国粹交流中心","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -2735,7 +3196,21 @@ module.exports = _iterableToArray, module.exports.__esModule = true, module.expo
 
 /***/ }),
 
-/***/ 209:
+/***/ 21:
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+
+/***/ 218:
 /*!***********************************************************************************!*\
   !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-icons/components/uni-icons/icons.js ***!
   \***********************************************************************************/
@@ -3754,20 +4229,6 @@ var _default = {
   }]
 };
 exports.default = _default;
-
-/***/ }),
-
-/***/ 21:
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
@@ -9885,7 +10346,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"马上到国粹交流中心","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"马上到国粹交流中心","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -9906,14 +10367,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"马上到国粹交流中心","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"马上到国粹交流中心","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"马上到国粹交流中心","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"马上到国粹交流中心","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -10009,7 +10470,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"马上到国粹交流中心","VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_DARK_MODE":"false","VUE_APP_NAME":"马上到国粹交流中心","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -10438,108 +10899,6 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 294:
-/*!***********************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/popup.js ***!
-  \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  data: function data() {
-    return {};
-  },
-  created: function created() {
-    this.popup = this.getParent();
-  },
-  methods: {
-    /**
-     * 获取父元素实例
-     */
-    getParent: function getParent() {
-      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'uniPopup';
-      var parent = this.$parent;
-      var parentName = parent.$options.name;
-      while (parentName !== name) {
-        parent = parent.$parent;
-        if (!parent) return false;
-        parentName = parent.$options.name;
-      }
-      return parent;
-    }
-  }
-};
-exports.default = _default;
-
-/***/ }),
-
-/***/ 295:
-/*!****************************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/index.js ***!
-  \****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 296));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 297));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 298));
-var _default = {
-  en: _en.default,
-  'zh-Hans': _zhHans.default,
-  'zh-Hant': _zhHant.default
-};
-exports.default = _default;
-
-/***/ }),
-
-/***/ 296:
-/*!***************************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/en.json ***!
-  \***************************************************************************************/
-/*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-popup.cancel\":\"cancel\",\"uni-popup.ok\":\"ok\",\"uni-popup.placeholder\":\"pleace enter\",\"uni-popup.title\":\"Hint\",\"uni-popup.shareTitle\":\"Share to\"}");
-
-/***/ }),
-
-/***/ 297:
-/*!********************************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hans.json ***!
-  \********************************************************************************************/
-/*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\"确定\",\"uni-popup.placeholder\":\"请输入\",\"uni-popup.title\":\"提示\",\"uni-popup.shareTitle\":\"分享到\"}");
-
-/***/ }),
-
-/***/ 298:
-/*!********************************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hant.json ***!
-  \********************************************************************************************/
-/*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\"確定\",\"uni-popup.placeholder\":\"請輸入\",\"uni-popup.title\":\"提示\",\"uni-popup.shareTitle\":\"分享到\"}");
-
-/***/ }),
-
 /***/ 3:
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
@@ -10582,6 +10941,108 @@ module.exports = g;
 
 var runtime = __webpack_require__(/*! @babel/runtime/helpers/regeneratorRuntime */ 31)();
 module.exports = runtime;
+
+/***/ }),
+
+/***/ 303:
+/*!***********************************************************************************!*\
+  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/popup.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  data: function data() {
+    return {};
+  },
+  created: function created() {
+    this.popup = this.getParent();
+  },
+  methods: {
+    /**
+     * 获取父元素实例
+     */
+    getParent: function getParent() {
+      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'uniPopup';
+      var parent = this.$parent;
+      var parentName = parent.$options.name;
+      while (parentName !== name) {
+        parent = parent.$parent;
+        if (!parent) return false;
+        parentName = parent.$options.name;
+      }
+      return parent;
+    }
+  }
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 304:
+/*!****************************************************************************************!*\
+  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/index.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 305));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 306));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 307));
+var _default = {
+  en: _en.default,
+  'zh-Hans': _zhHans.default,
+  'zh-Hant': _zhHant.default
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 305:
+/*!***************************************************************************************!*\
+  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/en.json ***!
+  \***************************************************************************************/
+/*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-popup.cancel\":\"cancel\",\"uni-popup.ok\":\"ok\",\"uni-popup.placeholder\":\"pleace enter\",\"uni-popup.title\":\"Hint\",\"uni-popup.shareTitle\":\"Share to\"}");
+
+/***/ }),
+
+/***/ 306:
+/*!********************************************************************************************!*\
+  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hans.json ***!
+  \********************************************************************************************/
+/*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\"确定\",\"uni-popup.placeholder\":\"请输入\",\"uni-popup.title\":\"提示\",\"uni-popup.shareTitle\":\"分享到\"}");
+
+/***/ }),
+
+/***/ 307:
+/*!********************************************************************************************!*\
+  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hant.json ***!
+  \********************************************************************************************/
+/*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\"確定\",\"uni-popup.placeholder\":\"請輸入\",\"uni-popup.title\":\"提示\",\"uni-popup.shareTitle\":\"分享到\"}");
 
 /***/ }),
 
@@ -11309,140 +11770,6 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 383:
-/*!*******************************************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
-  \*******************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.createAnimation = createAnimation;
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
-var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
-var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-// const defaultOption = {
-// 	duration: 300,
-// 	timingFunction: 'linear',
-// 	delay: 0,
-// 	transformOrigin: '50% 50% 0'
-// }
-var MPAnimation = /*#__PURE__*/function () {
-  function MPAnimation(options, _this) {
-    (0, _classCallCheck2.default)(this, MPAnimation);
-    this.options = options;
-    this.animation = uni.createAnimation(options);
-    this.currentStepAnimates = {};
-    this.next = 0;
-    this.$ = _this;
-  }
-  (0, _createClass2.default)(MPAnimation, [{
-    key: "_nvuePushAnimates",
-    value: function _nvuePushAnimates(type, args) {
-      var aniObj = this.currentStepAnimates[this.next];
-      var styles = {};
-      if (!aniObj) {
-        styles = {
-          styles: {},
-          config: {}
-        };
-      } else {
-        styles = aniObj;
-      }
-      if (animateTypes1.includes(type)) {
-        if (!styles.styles.transform) {
-          styles.styles.transform = '';
-        }
-        var unit = '';
-        if (type === 'rotate') {
-          unit = 'deg';
-        }
-        styles.styles.transform += "".concat(type, "(").concat(args + unit, ") ");
-      } else {
-        styles.styles[type] = "".concat(args);
-      }
-      this.currentStepAnimates[this.next] = styles;
-    }
-  }, {
-    key: "_animateRun",
-    value: function _animateRun() {
-      var styles = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var ref = this.$.$refs['ani'].ref;
-      if (!ref) return;
-      return new Promise(function (resolve, reject) {
-        nvueAnimation.transition(ref, _objectSpread({
-          styles: styles
-        }, config), function (res) {
-          resolve();
-        });
-      });
-    }
-  }, {
-    key: "_nvueNextAnimate",
-    value: function _nvueNextAnimate(animates) {
-      var _this2 = this;
-      var step = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-      var fn = arguments.length > 2 ? arguments[2] : undefined;
-      var obj = animates[step];
-      if (obj) {
-        var styles = obj.styles,
-          config = obj.config;
-        this._animateRun(styles, config).then(function () {
-          step += 1;
-          _this2._nvueNextAnimate(animates, step, fn);
-        });
-      } else {
-        this.currentStepAnimates = {};
-        typeof fn === 'function' && fn();
-        this.isEnd = true;
-      }
-    }
-  }, {
-    key: "step",
-    value: function step() {
-      var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      this.animation.step(config);
-      return this;
-    }
-  }, {
-    key: "run",
-    value: function run(fn) {
-      this.$.animationData = this.animation.export();
-      this.$.timer = setTimeout(function () {
-        typeof fn === 'function' && fn();
-      }, this.$.durationTime);
-    }
-  }]);
-  return MPAnimation;
-}();
-var animateTypes1 = ['matrix', 'matrix3d', 'rotate', 'rotate3d', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scale3d', 'scaleX', 'scaleY', 'scaleZ', 'skew', 'skewX', 'skewY', 'translate', 'translate3d', 'translateX', 'translateY', 'translateZ'];
-var animateTypes2 = ['opacity', 'backgroundColor'];
-var animateTypes3 = ['width', 'height', 'left', 'right', 'top', 'bottom'];
-animateTypes1.concat(animateTypes2, animateTypes3).forEach(function (type) {
-  MPAnimation.prototype[type] = function () {
-    var _this$animation;
-    (_this$animation = this.animation)[type].apply(_this$animation, arguments);
-    return this;
-  };
-});
-function createAnimation(option, _this) {
-  if (!_this) return;
-  clearTimeout(_this.timer);
-  return new MPAnimation(option, _this);
-}
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
-
-/***/ }),
-
 /***/ 39:
 /*!***************************************************************************!*\
   !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/request/index.js ***!
@@ -12012,6 +12339,140 @@ exports.default = _default;
 
 /***/ }),
 
+/***/ 420:
+/*!*******************************************************************************************************!*\
+  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
+  \*******************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createAnimation = createAnimation;
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 23));
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 24));
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+// const defaultOption = {
+// 	duration: 300,
+// 	timingFunction: 'linear',
+// 	delay: 0,
+// 	transformOrigin: '50% 50% 0'
+// }
+var MPAnimation = /*#__PURE__*/function () {
+  function MPAnimation(options, _this) {
+    (0, _classCallCheck2.default)(this, MPAnimation);
+    this.options = options;
+    this.animation = uni.createAnimation(options);
+    this.currentStepAnimates = {};
+    this.next = 0;
+    this.$ = _this;
+  }
+  (0, _createClass2.default)(MPAnimation, [{
+    key: "_nvuePushAnimates",
+    value: function _nvuePushAnimates(type, args) {
+      var aniObj = this.currentStepAnimates[this.next];
+      var styles = {};
+      if (!aniObj) {
+        styles = {
+          styles: {},
+          config: {}
+        };
+      } else {
+        styles = aniObj;
+      }
+      if (animateTypes1.includes(type)) {
+        if (!styles.styles.transform) {
+          styles.styles.transform = '';
+        }
+        var unit = '';
+        if (type === 'rotate') {
+          unit = 'deg';
+        }
+        styles.styles.transform += "".concat(type, "(").concat(args + unit, ") ");
+      } else {
+        styles.styles[type] = "".concat(args);
+      }
+      this.currentStepAnimates[this.next] = styles;
+    }
+  }, {
+    key: "_animateRun",
+    value: function _animateRun() {
+      var styles = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var ref = this.$.$refs['ani'].ref;
+      if (!ref) return;
+      return new Promise(function (resolve, reject) {
+        nvueAnimation.transition(ref, _objectSpread({
+          styles: styles
+        }, config), function (res) {
+          resolve();
+        });
+      });
+    }
+  }, {
+    key: "_nvueNextAnimate",
+    value: function _nvueNextAnimate(animates) {
+      var _this2 = this;
+      var step = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+      var fn = arguments.length > 2 ? arguments[2] : undefined;
+      var obj = animates[step];
+      if (obj) {
+        var styles = obj.styles,
+          config = obj.config;
+        this._animateRun(styles, config).then(function () {
+          step += 1;
+          _this2._nvueNextAnimate(animates, step, fn);
+        });
+      } else {
+        this.currentStepAnimates = {};
+        typeof fn === 'function' && fn();
+        this.isEnd = true;
+      }
+    }
+  }, {
+    key: "step",
+    value: function step() {
+      var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      this.animation.step(config);
+      return this;
+    }
+  }, {
+    key: "run",
+    value: function run(fn) {
+      this.$.animationData = this.animation.export();
+      this.$.timer = setTimeout(function () {
+        typeof fn === 'function' && fn();
+      }, this.$.durationTime);
+    }
+  }]);
+  return MPAnimation;
+}();
+var animateTypes1 = ['matrix', 'matrix3d', 'rotate', 'rotate3d', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scale3d', 'scaleX', 'scaleY', 'scaleZ', 'skew', 'skewX', 'skewY', 'translate', 'translate3d', 'translateX', 'translateY', 'translateZ'];
+var animateTypes2 = ['opacity', 'backgroundColor'];
+var animateTypes3 = ['width', 'height', 'left', 'right', 'top', 'bottom'];
+animateTypes1.concat(animateTypes2, animateTypes3).forEach(function (type) {
+  MPAnimation.prototype[type] = function () {
+    var _this$animation;
+    (_this$animation = this.animation)[type].apply(_this$animation, arguments);
+    return this;
+  };
+});
+function createAnimation(option, _this) {
+  if (!_this) return;
+  clearTimeout(_this.timer);
+  return new MPAnimation(option, _this);
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+
+/***/ }),
+
 /***/ 43:
 /*!**********************************************************************************!*\
   !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/queryParams.js ***!
@@ -12568,467 +13029,6 @@ var _default = {
   rgbToHex: rgbToHex,
   colorToRgba: colorToRgba
 };
-exports.default = _default;
-
-/***/ }),
-
-/***/ 473:
-/*!************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/page_subscribe/lib/commen.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var commen = {};
-commen.emojiList = [[{
-  "url": "100.gif",
-  alt: "[微笑]"
-}, {
-  "url": "101.gif",
-  alt: "[伤心]"
-}, {
-  "url": "102.gif",
-  alt: "[美女]"
-}, {
-  "url": "103.gif",
-  alt: "[发呆]"
-}, {
-  "url": "104.gif",
-  alt: "[墨镜]"
-}, {
-  "url": "105.gif",
-  alt: "[哭]"
-}, {
-  "url": "106.gif",
-  alt: "[羞]"
-}, {
-  "url": "107.gif",
-  alt: "[哑]"
-}, {
-  "url": "108.gif",
-  alt: "[睡]"
-}, {
-  "url": "109.gif",
-  alt: "[哭]"
-}, {
-  "url": "110.gif",
-  alt: "[囧]"
-}, {
-  "url": "111.gif",
-  alt: "[怒]"
-}, {
-  "url": "112.gif",
-  alt: "[调皮]"
-}, {
-  "url": "113.gif",
-  alt: "[笑]"
-}, {
-  "url": "114.gif",
-  alt: "[惊讶]"
-}, {
-  "url": "115.gif",
-  alt: "[难过]"
-}, {
-  "url": "116.gif",
-  alt: "[酷]"
-}, {
-  "url": "117.gif",
-  alt: "[汗]"
-}, {
-  "url": "118.gif",
-  alt: "[抓狂]"
-}, {
-  "url": "119.gif",
-  alt: "[吐]"
-}, {
-  "url": "120.gif",
-  alt: "[笑]"
-}, {
-  "url": "121.gif",
-  alt: "[快乐]"
-}, {
-  "url": "122.gif",
-  alt: "[奇]"
-}, {
-  "url": "123.gif",
-  alt: "[傲]"
-}], [{
-  "url": "124.gif",
-  alt: "[饿]"
-}, {
-  "url": "125.gif",
-  alt: "[累]"
-}, {
-  "url": "126.gif",
-  alt: "[吓]"
-}, {
-  "url": "127.gif",
-  alt: "[汗]"
-}, {
-  "url": "128.gif",
-  alt: "[高兴]"
-}, {
-  "url": "129.gif",
-  alt: "[闲]"
-}, {
-  "url": "130.gif",
-  alt: "[努力]"
-}, {
-  "url": "131.gif",
-  alt: "[骂]"
-}, {
-  "url": "132.gif",
-  alt: "[疑问]"
-}, {
-  "url": "133.gif",
-  alt: "[秘密]"
-}, {
-  "url": "134.gif",
-  alt: "[乱]"
-}, {
-  "url": "135.gif",
-  alt: "[疯]"
-}, {
-  "url": "136.gif",
-  alt: "[哀]"
-}, {
-  "url": "137.gif",
-  alt: "[鬼]"
-}, {
-  "url": "138.gif",
-  alt: "[打击]"
-}, {
-  "url": "139.gif",
-  alt: "[bye]"
-}, {
-  "url": "140.gif",
-  alt: "[汗]"
-}, {
-  "url": "141.gif",
-  alt: "[抠]"
-}, {
-  "url": "142.gif",
-  alt: "[鼓掌]"
-}, {
-  "url": "143.gif",
-  alt: "[糟糕]"
-}, {
-  "url": "144.gif",
-  alt: "[恶搞]"
-}, {
-  "url": "145.gif",
-  alt: "[什么]"
-}, {
-  "url": "146.gif",
-  alt: "[什么]"
-}, {
-  "url": "147.gif",
-  alt: "[累]"
-}], [{
-  "url": "148.gif",
-  alt: "[看]"
-}, {
-  "url": "149.gif",
-  alt: "[难过]"
-}, {
-  "url": "150.gif",
-  alt: "[难过]"
-}, {
-  "url": "151.gif",
-  alt: "[坏]"
-}, {
-  "url": "152.gif",
-  alt: "[亲]"
-}, {
-  "url": "153.gif",
-  alt: "[吓]"
-}, {
-  "url": "154.gif",
-  alt: "[可怜]"
-}, {
-  "url": "155.gif",
-  alt: "[刀]"
-}, {
-  "url": "156.gif",
-  alt: "[水果]"
-}, {
-  "url": "157.gif",
-  alt: "[酒]"
-}, {
-  "url": "158.gif",
-  alt: "[篮球]"
-}, {
-  "url": "159.gif",
-  alt: "[乒乓]"
-}, {
-  "url": "160.gif",
-  alt: "[咖啡]"
-}, {
-  "url": "161.gif",
-  alt: "[美食]"
-}, {
-  "url": "162.gif",
-  alt: "[动物]"
-}, {
-  "url": "163.gif",
-  alt: "[鲜花]"
-}, {
-  "url": "164.gif",
-  alt: "[枯]"
-}, {
-  "url": "165.gif",
-  alt: "[唇]"
-}, {
-  "url": "166.gif",
-  alt: "[爱]"
-}, {
-  "url": "167.gif",
-  alt: "[分手]"
-}, {
-  "url": "168.gif",
-  alt: "[生日]"
-}, {
-  "url": "169.gif",
-  alt: "[电]"
-}, {
-  "url": "170.gif",
-  alt: "[炸弹]"
-}, {
-  "url": "171.gif",
-  alt: "[刀子]"
-}], [{
-  "url": "172.gif",
-  alt: "[足球]"
-}, {
-  "url": "173.gif",
-  alt: "[瓢虫]"
-}, {
-  "url": "174.gif",
-  alt: "[翔]"
-}, {
-  "url": "175.gif",
-  alt: "[月亮]"
-}, {
-  "url": "176.gif",
-  alt: "[太阳]"
-}, {
-  "url": "177.gif",
-  alt: "[礼物]"
-}, {
-  "url": "178.gif",
-  alt: "[抱抱]"
-}, {
-  "url": "179.gif",
-  alt: "[拇指]"
-}, {
-  "url": "180.gif",
-  alt: "[贬低]"
-}, {
-  "url": "181.gif",
-  alt: "[握手]"
-}, {
-  "url": "182.gif",
-  alt: "[剪刀手]"
-}, {
-  "url": "183.gif",
-  alt: "[抱拳]"
-}, {
-  "url": "184.gif",
-  alt: "[勾引]"
-}, {
-  "url": "185.gif",
-  alt: "[拳头]"
-}, {
-  "url": "186.gif",
-  alt: "[小拇指]"
-}, {
-  "url": "187.gif",
-  alt: "[拇指八]"
-}, {
-  "url": "188.gif",
-  alt: "[食指]"
-}, {
-  "url": "189.gif",
-  alt: "[ok]"
-}, {
-  "url": "190.gif",
-  alt: "[情侣]"
-}, {
-  "url": "191.gif",
-  alt: "[爱心]"
-}, {
-  "url": "192.gif",
-  alt: "[蹦哒]"
-}, {
-  "url": "193.gif",
-  alt: "[颤抖]"
-}, {
-  "url": "194.gif",
-  alt: "[怄气]"
-}, {
-  "url": "195.gif",
-  alt: "[跳舞]"
-}], [{
-  "url": "196.gif",
-  alt: "[发呆]"
-}, {
-  "url": "197.gif",
-  alt: "[背着]"
-}, {
-  "url": "198.gif",
-  alt: "[伸手]"
-}, {
-  "url": "199.gif",
-  alt: "[耍帅]"
-}, {
-  "url": "200.png",
-  alt: "[微笑]"
-}, {
-  "url": "201.png",
-  alt: "[生病]"
-}, {
-  "url": "202.png",
-  alt: "[哭泣]"
-}, {
-  "url": "203.png",
-  alt: "[吐舌]"
-}, {
-  "url": "204.png",
-  alt: "[迷糊]"
-}, {
-  "url": "205.png",
-  alt: "[瞪眼]"
-}, {
-  "url": "206.png",
-  alt: "[恐怖]"
-}, {
-  "url": "207.png",
-  alt: "[忧愁]"
-}, {
-  "url": "208.png",
-  alt: "[眨眉]"
-}, {
-  "url": "209.png",
-  alt: "[闭眼]"
-}, {
-  "url": "210.png",
-  alt: "[鄙视]"
-}, {
-  "url": "211.png",
-  alt: "[阴暗]"
-}, {
-  "url": "212.png",
-  alt: "[小鬼]"
-}, {
-  "url": "213.png",
-  alt: "[礼物]"
-}, {
-  "url": "214.png",
-  alt: "[拜佛]"
-}, {
-  "url": "215.png",
-  alt: "[力量]"
-}, {
-  "url": "216.png",
-  alt: "[金钱]"
-}, {
-  "url": "217.png",
-  alt: "[蛋糕]"
-}, {
-  "url": "218.png",
-  alt: "[彩带]"
-}, {
-  "url": "219.png",
-  alt: "[礼物]"
-}]];
-
-/**@dateTimeFliter 转换格林日期时间格式为常用日期格式
- * @time[必填] 						Date  		格林日期格式
- * @part[可选,默认:0]				Number      选择返回日期时间部分  列:0:返回所有 1:只返回日期  2:只返回时间
- * @dateComplete[可选,默认:true] 	Boolean 	日期位数不足是否添0补齐:true:补齐,false:不补齐
- * @timeComplete[可选,默认:true] 	Boolean 	时间位数不足是否添0补齐:true:补齐,false:不补齐
- * @dateConnector[可选,默认:-] 		String 		年月日连接符  例: - : /
- * @timeConnector[可选,默认::] 		String 		时间连接符   例: - : /
- * @hour12[可选,默认:false]          Boolean     是否返回12小时制时间   例: true:返回12小时制时间   false:返回24小时制时间
- * @return   '2019-11-25 15:05:54'  String    返回示例
- * **/
-commen.dateTimeFliter = function (time) {
-  var part = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  var dateComplete = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-  var timeComplete = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : true;
-  var dateConnector = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : '-';
-  var timeConnector = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : ':';
-  var hour12 = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : false;
-  var year = time.getFullYear();
-  var month = time.getMonth() + 1;
-  var day = time.getDate();
-  var hour = time.getHours();
-  var minute = time.getMinutes();
-  var second = time.getSeconds();
-  var dateStr = '';
-  var timeStr = '';
-  //转换日期
-  if (dateComplete) {
-    //添0补齐
-    if (month < 10) {
-      month = '0' + month;
-    }
-    if (day < 10) {
-      day = '0' + day;
-    }
-  }
-  dateStr = year + dateConnector + month + dateConnector + day;
-  //转换时间
-  //修改小时制
-  if (hour12) {
-    if (hour > 12) {
-      hour = hour - 12;
-      if (timeComplete) {
-        if (hour < 10) {
-          hour = '下午 ' + '0' + hour;
-        } else {
-          hour = '下午 ' + hour;
-        }
-      }
-    } else {
-      if (timeComplete) {
-        if (hour < 10) {
-          hour = '上午 ' + '0' + hour;
-        } else {
-          hour = '上午 ' + hour;
-        }
-      }
-    }
-  }
-  //判断分钟与秒
-  if (timeComplete) {
-    //添0补齐
-    if (minute < 10) {
-      minute = '0' + minute;
-    }
-    if (second < 10) {
-      second = '0' + second;
-    }
-  }
-  timeStr = hour + timeConnector + minute + timeConnector + second;
-  //合成输出值
-  if (part == 0) {
-    return dateStr + ' ' + timeStr;
-  } else if (part == 1) {
-    return dateStr;
-  } else if (part == 2) {
-    return timeStr;
-  }
-  return '传参有误';
-};
-var _default = commen;
 exports.default = _default;
 
 /***/ }),

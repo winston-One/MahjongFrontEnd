@@ -2,7 +2,7 @@
   <view class="submit-order">
     <view class="top">
       <view>所属门店</view>
-      <view class="top_store">马上到国粹交流中心-{{store}}</view>
+      <view class="top_store">国粹娱乐中心-{{store}}</view>
     </view>
     <view class="room">
       <image :src="imgUrl"></image>
@@ -38,12 +38,6 @@
           <u-icon name="arrow-right" color="#7fa1f7"></u-icon>
         </view>
       </view>
-<!--      <view class="flex-style">
-        <view>订单原价</view>
-        <view>
-          <view>{{originalPrice}}元</view>
-        </view>
-      </view> -->
       <view class="coupon-style">
         <view>卡券</view>
         <view class="coupon" @click="useCouponPop">
@@ -115,7 +109,7 @@
         popshowCoupon:false,
         room: '',
         roomServer: ['茶水','空调','有窗'],
-        imgUrl: 'http://43.143.88.250:22000/group1/M00/00/00/CgAEC2ObG8aAJX5pABJGXzfrx7w832.png',
+        imgUrl: '../../static/applogo/intro1.png',
         singlePrice: 10,
         roomId:'',
         ip:[],
@@ -178,7 +172,6 @@
     },
     methods: {
       async confirmReserve() {
-        
         // 下单并且支付
         uni.showLoading({
         	title: "加载中",
@@ -235,9 +228,11 @@
         request1.orderId = orderNo
         request1.voucherId = voucherId
         uni.hideLoading()
+        // 下单成功之后就调用支付API，并且后端处理支付回调逻辑
         if (res.code == 20000) {
         	let payRes = res.data
         	console.log('payRes-----', payRes)
+          // 调用uniapp的支付API，底层会调用微信的API
         	uni.requestPayment({
         		provider: 'wxpay', // 服务提供商，通过 uni.getProvider 获取。
         		timeStamp: payRes.timeStamp, // 时间戳从1970年1月1日至今的秒数，即当前的时间。
@@ -252,7 +247,6 @@
                 	url: "/pages/myOrder/myOrder"
                 })
               }
-        			console.log('success---------' + JSON.stringify(e));
         		},
         		async fail(err) {
         			//支付失败后调用接口取消订单

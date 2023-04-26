@@ -101,25 +101,25 @@ var components
 try {
   components = {
     uSwiper: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-swiper/u-swiper */ "node-modules/uview-ui/components/u-swiper/u-swiper").then(__webpack_require__.bind(null, /*! uview-ui/components/u-swiper/u-swiper.vue */ 190))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-swiper/u-swiper */ "node-modules/uview-ui/components/u-swiper/u-swiper").then(__webpack_require__.bind(null, /*! uview-ui/components/u-swiper/u-swiper.vue */ 199))
     },
     uIcon: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 197))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 206))
     },
     uniIcons: function () {
-      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 204))
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 213))
     },
     uButton: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-button/u-button */ "node-modules/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 212))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-button/u-button */ "node-modules/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 221))
     },
     uniSection: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 219))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-section/components/uni-section/uni-section */ "uni_modules/uni-section/components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-section/components/uni-section/uni-section.vue */ 228))
     },
     uSteps: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-steps/u-steps */ "node-modules/uview-ui/components/u-steps/u-steps").then(__webpack_require__.bind(null, /*! uview-ui/components/u-steps/u-steps.vue */ 226))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-steps/u-steps */ "node-modules/uview-ui/components/u-steps/u-steps").then(__webpack_require__.bind(null, /*! uview-ui/components/u-steps/u-steps.vue */ 235))
     },
     uPopup: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */ "node-modules/uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 233))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */ "node-modules/uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 242))
     },
   }
 } catch (e) {
@@ -297,14 +297,13 @@ var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/r
 //
 //
 //
-//
 var _default = {
   data: function data() {
     return {
-      wifiPsd: 'MSD888888',
-      wifi: 'mashangdao',
+      wifiPsd: 'mahjong@888',
+      wifi: 'mahjong',
       token: 'winston',
-      title: '马上到国粹交流中心',
+      title: '国粹娱乐中心',
       store: '安鸿店',
       storeIndex: 0,
       selectcustomStyle: {
@@ -333,14 +332,14 @@ var _default = {
         image: '/static/applogo/intro1.png',
         title: ''
       }, {
-        image: 'http://43.143.88.250:22000/group1/M00/00/00/CgAEC2Ob-IyAbabuAAHkySKItM4895.jpg',
+        image: '/static/applogo/intro2.png',
         title: ''
       }, {
         image: '/static/applogo/intro3.png',
         title: ''
       }],
       filterOptions: [],
-      location: '惠城区安鸿商务大夏11楼110A',
+      location: '海珠区仲恺路500号',
       isBusiness: 1,
       menuList: [{
         image: '../../static/mine/myCoupon.png',
@@ -361,7 +360,7 @@ var _default = {
         pageType: '0',
         cardType: 2
       }],
-      storeIntroduct: '马上到国粹交流中心提供自助棋牌室，清一色的包厢很宽敞，全天24小时营业。',
+      storeIntroduct: '国粹娱乐中心提供自助棋牌室，清一色的包厢很宽敞，全天24小时营业。',
       stepList: [{
         name: '预约下单'
       }, {
@@ -374,7 +373,6 @@ var _default = {
       storePopup: false,
       phone: '18688317496',
       couponColor: ['#a0b4f3', '#f3bce3', '#76bfcd', '#EE7621', '#00BFFF', '#f6cd97', '#4adbc3', '#FF4500'],
-      //卡券随机颜色 :style="'background-color:' + courseColor[index] +  ';'"
       wifiPopup: false
     };
   },
@@ -418,13 +416,13 @@ var _default = {
   },
   onShareAppMessage: function onShareAppMessage() {
     return {
-      title: '马上到国粹预约来了',
+      title: '国粹娱乐中心预约来了',
       path: '/page/index/index'
     };
   },
   onShareTimeline: function onShareTimeline() {
     return {
-      title: '马上到国粹预约来了',
+      title: '国粹娱乐中心预约来了',
       path: '/page/index/index',
       desc: '三缺一，就差你一个'
     };

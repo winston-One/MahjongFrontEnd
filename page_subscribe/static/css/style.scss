@@ -114,13 +114,13 @@ page{
 	}
 }
 .input-box{
-	//width: 98%;
 	height: 210rpx;
 	width: 100%;
 	min-height: 100upx;
 	padding: 0 1%;
 	background-color: #ffffff;
 	display: flex;
+  align-items: center;
 	position: fixed;
 	z-index: 20;
 	bottom:-2upx;
@@ -153,19 +153,19 @@ page{
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			background: linear-gradient(to right, #7fc9f7, #7fa1f7);
+			background: linear-gradient(to right, #74c588, #1aa034);
 			color: #fff;
 			border-radius: 15px;
 			font-size: 24upx;
 		}
 		.btn:active{
-			background: #bbcaff;
+			background: #0ece68;
 		}
 	}
 	.textbox{
 		width: 100%;
 		min-height: 70upx;
-	    margin: 15px 10px 10px 10px;
+	  margin: 18px 10px 10px 10px;
 		.voice-mode{
 			width: calc(100% - 2upx);
 			height: 80rpx;
@@ -276,10 +276,7 @@ page{
 		padding: 0 2%;
 		position: absolute;
 		height: 1230rpx;
-		// top: 135rpx;
-		// bottom: 100upx;
 		.loading{
-			//loading动画
 			display: flex;
 			justify-content: center;
 			@keyframes stretchdelay {
@@ -298,7 +295,6 @@ page{
 				align-items: center;
 				justify-content: space-between;
 				view {
-					//background-color: #f06c7a;
 					background-color: #7fa1f7;
 					height: 50upx;
 					width: 6upx;
@@ -347,10 +343,6 @@ page{
 				margin-bottom: 15rpx;
 			    padding: 40rpx 0 0 0;
 			}
-			// .time{
-			// 	text-align: center;
-			// 	margin-bottom: 15rpx;
-			// }
 			&:first-child{
 				margin-top: 20upx;
 			}

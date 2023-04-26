@@ -101,25 +101,25 @@ var components
 try {
   components = {
     uSubsection: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-subsection/u-subsection */ "node-modules/uview-ui/components/u-subsection/u-subsection").then(__webpack_require__.bind(null, /*! uview-ui/components/u-subsection/u-subsection.vue */ 240))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-subsection/u-subsection */ "node-modules/uview-ui/components/u-subsection/u-subsection").then(__webpack_require__.bind(null, /*! uview-ui/components/u-subsection/u-subsection.vue */ 249))
     },
     Coupon: function () {
-      return __webpack_require__.e(/*! import() | components/Coupon/Coupon */ "components/Coupon/Coupon").then(__webpack_require__.bind(null, /*! @/components/Coupon/Coupon.vue */ 247))
+      return __webpack_require__.e(/*! import() | components/Coupon/Coupon */ "components/Coupon/Coupon").then(__webpack_require__.bind(null, /*! @/components/Coupon/Coupon.vue */ 256))
     },
     uEmpty: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-empty/u-empty */ "node-modules/uview-ui/components/u-empty/u-empty").then(__webpack_require__.bind(null, /*! uview-ui/components/u-empty/u-empty.vue */ 254))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-empty/u-empty */ "node-modules/uview-ui/components/u-empty/u-empty").then(__webpack_require__.bind(null, /*! uview-ui/components/u-empty/u-empty.vue */ 263))
     },
     uIcon: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 197))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 206))
     },
     uButton: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-button/u-button */ "node-modules/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 212))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-button/u-button */ "node-modules/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 221))
     },
     uPopup: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */ "node-modules/uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 233))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */ "node-modules/uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 242))
     },
     MeituanVoucher: function () {
-      return __webpack_require__.e(/*! import() | components/MeituanVoucher/MeituanVoucher */ "components/MeituanVoucher/MeituanVoucher").then(__webpack_require__.bind(null, /*! @/components/MeituanVoucher/MeituanVoucher.vue */ 261))
+      return __webpack_require__.e(/*! import() | components/MeituanVoucher/MeituanVoucher */ "components/MeituanVoucher/MeituanVoucher").then(__webpack_require__.bind(null, /*! @/components/MeituanVoucher/MeituanVoucher.vue */ 270))
     },
   }
 } catch (e) {
@@ -305,6 +305,7 @@ var _default = {
     cancel: function cancel() {
       this.popshow = false;
     },
+    // 消券
     eliminate: function eliminate(receiptCode) {
       var _this2 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
@@ -387,6 +388,7 @@ var _default = {
     sectionChange: function sectionChange(index) {
       this.cardType = index;
     },
+    // 输入美团大众券码，进行验券
     exchangeCode: function exchangeCode() {
       var _this3 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4() {
@@ -462,6 +464,7 @@ var _default = {
         }, _callee4);
       }))();
     },
+    // 扫码验券，查券
     scanCode: function scanCode() {
       var _this4 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee6() {
@@ -471,9 +474,10 @@ var _default = {
             switch (_context6.prev = _context6.next) {
               case 0:
                 _this4.meituanMsg = '';
-                that = _this4;
+                that = _this4; // 调用uniapp扫描二维码的接口
                 uni.scanCode({
                   scanType: ['qrCode'],
+                  // 指定扫描的类型是二维码
                   success: function () {
                     var _success = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(res) {
                       var qrObj, data, meituan;
@@ -486,13 +490,13 @@ var _default = {
                               qrObj.userId = getApp().globalData.openid;
                               qrObj.receiptCode = res.result;
                               qrObj.count = 1;
+                              // 请求验券接口
                               _context5.next = 7;
                               return getApp().UniRequest("/DianPing/verificationByQRCode", "POST", qrObj, "", 1);
                             case 7:
                               data = _context5.sent;
-                              console.log(data);
                               if (!(data.code === 1008)) {
-                                _context5.next = 11;
+                                _context5.next = 10;
                                 break;
                               }
                               return _context5.abrupt("return", uni.showToast({
@@ -500,9 +504,9 @@ var _default = {
                                 duration: 1500,
                                 icon: 'none'
                               }));
-                            case 11:
+                            case 10:
                               if (!(data.code !== 20000)) {
-                                _context5.next = 13;
+                                _context5.next = 12;
                                 break;
                               }
                               return _context5.abrupt("return", uni.showToast({
@@ -510,7 +514,8 @@ var _default = {
                                 duration: 1500,
                                 icon: 'none'
                               }));
-                            case 13:
+                            case 12:
+                              // 验券或者查券成功之后将券的信息封装到实体meituanMsg中，在弹窗中展示
                               meituan = new Object();
                               meituan.receiptCode = data.data.receiptCode;
                               meituan.duration = data.data.dianPingVoucherOrder.duration;
@@ -520,8 +525,9 @@ var _default = {
                               meituan.price = data.data.dianPingVoucherOrder.price;
                               uni.setStorageSync('count', data.data.count);
                               that.meituanMsg = meituan;
+                              // 打开弹窗
                               that.popshow = true;
-                            case 23:
+                            case 22:
                             case "end":
                               return _context5.stop();
                           }
@@ -542,13 +548,16 @@ var _default = {
         }, _callee6);
       }))();
     },
+    // 购买卡券
     purchase: function purchase(couponMsg) {
+      // 如果未登录会自动跳转到登录接口
       if (this.token === '') {
         uni.navigateTo({
           url: "/page_login/login/login"
         });
         return;
       }
+      // 传输数组时候，需要使用encodeURICompone进行编码压缩
       uni.navigateTo({
         url: '/page_coupon/purchaseCoupon/purchaseCoupon?coupon=' + encodeURIComponent(JSON.stringify(couponMsg))
       });

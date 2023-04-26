@@ -45,9 +45,9 @@
       <uni-section title="门店介绍" type="line">
         <view class="content">{{storeIntroduct}}</view>
         <view class="introduct-image">
-          <image src="http://43.143.88.250:22000/group1/M00/00/00/CgAEC2Ob-GqACXkbAAFNxXu29Ag424.jpg"></image>
-          <image src="http://43.143.88.250:22000/group1/M00/00/00/CgAEC2Ob-H6AACoFAAHJMMXehYU233.jpg"></image>
-          <image src="http://43.143.88.250:22000/group1/M00/00/00/CgAEC2Ob-IyAbabuAAHkySKItM4895.jpg"></image>
+          <image src="/static/applogo/intro1.png"></image>
+          <image src="/static/applogo/intro2.png"></image>
+          <image src="/static/applogo/intro3.png"></image>
         </view>
       </uni-section>
     </view>
@@ -74,7 +74,6 @@
         </view>
       </uni-section>
     </view>
-    <!-- <image :src="captcha"></image> -->
     <view style="text-align: center;
           font-size: 8px;
           margin-top: 20rpx;"> 
@@ -115,10 +114,10 @@
 	export default {
 		data() {
 			return {
-        wifiPsd: 'MSD888888',
-        wifi: 'mashangdao',
+        wifiPsd: 'mahjong@888',
+        wifi: 'mahjong',
         token: 'winston',
-				title: '马上到国粹交流中心',
+				title: '国粹娱乐中心',
         store: '安鸿店',
         storeIndex: 0,
         selectcustomStyle:{
@@ -149,7 +148,7 @@
           	title: ''
           },
           {
-          	image: 'http://43.143.88.250:22000/group1/M00/00/00/CgAEC2Ob-IyAbabuAAHkySKItM4895.jpg',
+          	image: '/static/applogo/intro2.png',
           	title: ''
           },
           {
@@ -158,7 +157,7 @@
           },
         ],
         filterOptions: [],
-        location: '惠城区安鸿商务大夏11楼110A',
+        location: '海珠区仲恺路500号',
         isBusiness: 1,
         menuList: [
           {
@@ -183,7 +182,7 @@
             cardType: 2
           }
         ],
-        storeIntroduct: '马上到国粹交流中心提供自助棋牌室，清一色的包厢很宽敞，全天24小时营业。',
+        storeIntroduct: '国粹娱乐中心提供自助棋牌室，清一色的包厢很宽敞，全天24小时营业。',
         stepList: [
           {name: '预约下单'}, 
           {name: '出示凭证'}, 
@@ -192,7 +191,7 @@
         ],
         storePopup:false,
         phone: '18688317496',
-        couponColor: ['#a0b4f3', '#f3bce3', '#76bfcd', '#EE7621', '#00BFFF', '#f6cd97', '#4adbc3', '#FF4500'],//卡券随机颜色 :style="'background-color:' + courseColor[index] +  ';'"
+        couponColor: ['#a0b4f3', '#f3bce3', '#76bfcd', '#EE7621', '#00BFFF', '#f6cd97', '#4adbc3', '#FF4500'],
         wifiPopup: false,
 			}
 		},
@@ -217,13 +216,13 @@
 		},
     onShareAppMessage() {
       return {
-        title: '马上到国粹预约来了',
+        title: '国粹娱乐中心预约来了',
         path: '/page/index/index'
       }
     },
     onShareTimeline() {
     	return {
-    		title: '马上到国粹预约来了',
+    		title: '国粹娱乐中心预约来了',
     		path: '/page/index/index',
         desc: '三缺一，就差你一个'
     	};
@@ -263,7 +262,6 @@
       //     uni.navigateTo({
       //       url:"/page_login/login/login"
       //     })
-          
       //     return;
       //   }
       //   uni.navigateTo({
@@ -356,11 +354,10 @@ page{
   position: sticky;
   z-index: 9999;
   border-bottom: 2rpx solid #efefef;
-  //padding-top: 90rpx;
   top: 0;
   height: 520rpx;
   .top-swiper{
-    //height: 360rpx;
+    
   }
   .stores{
     background-color: #FFFFFF;

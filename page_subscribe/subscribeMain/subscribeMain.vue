@@ -17,7 +17,6 @@
     </view>
     <view style="height: 30px;"><!--安全区域--></view>
     <u-popup v-model="popshow" mode="bottom" width="600rpx" height="1100rpx" border-radius="30">
-    	<!-- <ReserveTime :room="selectedRoom" :dataList="DataList" @reserve="reserve" :freeList="freeList" :selectedDateIndex="selectedIndex" :selectedDate="localTime" :id="roomId"></ReserveTime> -->
       <view class="reserve-time-list">
         <view class="top">
           <view class="reserve-type-select">
@@ -91,6 +90,7 @@
         },
         localTime: '',
         roomId: '',
+        // 当前房间可以预约的24个时间段中，被点击了为1，否则为0
         ranges: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         selectedTime:[],
         room: '',
@@ -98,11 +98,14 @@
     },
     async onLoad() {
       this.store = getApp().globalData.store
+      // 通过自定义工具类获取近七天的日期
       this.DataList = parseData.getDate()
       this.localTime = this.DataList[0].year + '-' + this.DataList[0].data
       let body = new Object()
+      // 在全局变量中获取门店id
       body.storeId = getApp().globalData.storeId
       body.date = this.localTime
+      // 获取门店所有房间信息，包括是否空闲和预约信息
       let data = await getApp().UniRequest("/reservation/getAll", "GET", body, "",1)
       console.log("预约房间：" + data)
       if (data.code !== 20000) {
@@ -115,6 +118,7 @@
       this.reserveRoomList = data.data
     },
     methods: {
+      // 点击预约，打开弹窗，并且开始选择预约时间
       async reserveRoom(room) {
         this.ranges=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         this.roomId = room.roomId
@@ -123,17 +127,19 @@
         this.selectedRoom = room.roomName
         this.popshow = true
       },
+      // 切换日期
       async switchDate(id,year,date) {
         this.localTime = year+'-'+date
         this.selectedIndex = id
       },
+      // 切换日期时间，
       async switchDate1(id,year,date) {
         this.ranges=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-        //this.selectedTime=[];
         this.localTime = year+'-'+date
         this.selectedIndex = id
         this.getDateTime()
       },
+      // 获取该房间可以预约的24时间段，从当前时间开始算起，半个小时为一个时间段，当天不足24就算到次日中
       async getDateTime() {
         let body = new Object()
         body.roomId = this.roomId
@@ -153,6 +159,7 @@
         this.freeList = data.data
         uni.setStorageSync("freeRanges",JSON.stringify(this.freeList))
       },
+      // 预约，处理好最终预约时间,如果有未支付的订单是不能预约的，只能先去支付或者取消订单
       async reserve() {
         if (this.totalHour < 4) {
           return uni.showToast({
@@ -177,18 +184,18 @@
         var date = new Date(this.localTime)
         date.setDate(date.getDate()+1);
         var newdate = date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate();
+        // 如果所选的开始时间段是次日，就得需要解析日期
         if(this.freeList[start].isNextDay===1){
           orderBody.startDateTime = newdate +' '+ String(this.freeList[start].time).substring(0,5)
         }else {
           orderBody.startDateTime = this.localTime +' '+ String(this.freeList[start].time).substring(0,5)
         }
+        // 如果所选的结束时间段是次日，就得需要解析日期
         if(this.freeList[end].isNextDay===1){
           orderBody.endDateTime = newdate +' '+ String(this.freeList[end].time).substring(0,5)
         }else {
           orderBody.endDateTime = this.localTime +' '+ String(this.freeList[end].time).substring(0,5)
         }
-        // orderBody.start = String(this.freeList[start].time).substring(0,5)
-        // orderBody.end = String(this.freeList[end].time).substring(0,5)
         orderBody.date = this.localTime
         orderBody.totalHour = this.totalHour
         orderBody.price = Number(this.totalHour*this.room.pricePerHour)
@@ -196,25 +203,32 @@
           url: '/page_subscribe/submitOrder/submitOrder?orderResults=' + encodeURIComponent(JSON.stringify(orderBody))
         })
       },
+      // 选定预约的时间段，可以选择多个，最少选择8个
       async selectTime(index) {
+        // 如果当前的时间段还没选了，那么再点一次就是已选
         if (this.ranges[index]==0) {
           this.ranges[index]=1
+          // isHaveOne和isHaveOne1方法的意思看下方注释
           if (this.isHaveOne(index)&&this.isHaveOne1(index)) {
             this.ranges=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
             this.ranges[index]=1
           }
           this.selectContinuous(index)
+          // 每次点击选中时间段都需要刷新一下24个时间段数据，为了展示选中后的色体边框
           this.freeList = JSON.parse(uni.getStorageSync('freeRanges') || '[]')
-        }else{
+        }else{// 如果当前的时间段已经被选了，那么再点一次就是不选
           this.ranges[index]=0
           this.isBreakReserve(index)
           this.freeList = JSON.parse(uni.getStorageSync('freeRanges') || '[]')
         }
+        // 过滤掉时间段数组中非0的数据，保留下1的就是已经选中的时间段
         var newArrays = this.ranges.filter(function(item){
         	return item == 1;
         });
+        // 算出最终预约的小时数
         this.totalHour = Number(newArrays.length*0.5);
       },
+      // 如果当前点击的位置，在它之前没有一个被选中，那么从当前选的位置开始的后面全部都设置为未选中
       isBreakReserve(index){
         var isSelected = true
         this.ranges[index]=1
@@ -233,6 +247,7 @@
           }
         }
       },
+      // 判断当前要选的时间段的前面时间段是否已经没有点击过
       isHaveOne(index) {
         for (let i= 0 ;i<index;i++){
           if(this.ranges[i]==1) {
@@ -241,6 +256,7 @@
         }
         return true;
       },
+      // 判断当前要选的时间段的后面时间段是否已经点击过
       isHaveOne1(index) {
         for (let i= index+1 ;i<this.ranges.length;i++){
           if(this.ranges[i]==1) {
@@ -249,6 +265,7 @@
         }
         return false;
       },
+      // 如果当前点击的位置，在它之前有选中过一个，那么从那个开始到当前选的位置，全部都设置为选中
       selectContinuous(index) {
         for (let i= 0 ;i<index;i++){
           if(this.ranges[i]==1) {

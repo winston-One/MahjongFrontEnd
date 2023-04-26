@@ -12,7 +12,9 @@
 
 ## 2.项目介绍
 
-Hi雀神是一个前后端分离的麻将馆预约微信小程序，项目采用 SpringBoot+uniapp 开发，项目加入常见的企业级应用所涉及到的技术点，例如 Redis、MySQL，Caffeine等。
+前置知识：学过vue，springboot开发，Redis和MySQL
+
+Hi雀神是一个前后端分离的麻将馆预约微信小程序，项目采用 SpringBoot+uniapp 开发，项目加入常见的企业级应用所涉及到的技术点，例如 Redis、MySQL，Caffeine，quartz定时任务等。
 
 前期后端只需要小伙伴安装MySQL和Redis中间件就可以启动项目，以便小伙伴快速看到效果，迅速看到效果是继续学习编程的自信，后期会有更多技术引入，期待学完之后的反馈从而因地制宜的引入新技术。
 
@@ -44,33 +46,13 @@ Hi雀神是一个前后端分离的麻将馆预约微信小程序，项目采用
 
 ### 2.2 项目效果图
 
-```yaml
-url: jdbc:mysql://43.143.88.250:52514/queshen?useUnicode=true&useSSL=false&serverTimezone=GMT&characterEncoding=UTF-8&rewriteBatchedStatements=true
-    username: 141-user-525
-    password: u?5*2%e-5/r+
-    
-    host: 43.143.88.250
-    port: 52515
-    password: u?5*2%e-5/r+
-    
-    #小程序信息
-wechat:
-  appid: wx9643514640a291dc
-  secret: bae673cdd211796ae622ce91732de442
-  
-  
-wx:
-  pay:
-    appId: wx9643514640a291dc #微信公众号或者小程序等的appid
-    mchId: 1634252700 #微信支付商户号
-    mchKey: Mjmk1524fjuimnv74256sueiinju741f #微信支付商户密钥
-    #    subAppId: #服务商模式下的子商户公众账号ID
-    #    subMchId: #服务商模式下的子商户号
-    keyPath: classpath:apiclient_cert.p12
-    # p12证书的位置，可以指定绝对路径，也可以指定类路径（以classpath:开头）
-```
+![image-20230426234729885](README.assets/image-20230426234729885.png)
 
+![image-20230426234745116](README.assets/image-20230426234745116.png)
 
+![image-20230426234810636](README.assets/image-20230426234810636.png)
+
+![image-20230426235010286](README.assets/image-20230426235010286.png)
 
 ### 2.3 后期发展
 
@@ -147,6 +129,10 @@ uniapp官方文档：https://uniapp.dcloud.net.cn，在开发中查看一些API�
 
 ![image-20230425215019515](README.assets/image-20230425215019515.png)
 
+>避免不合法域名的网络请求错误
+
+![image-20230426154345428](README.assets/image-20230426154345428.png)
+
 ##### 注册小程序
 
 appid是你当前小程序的唯一标识，uniapp项目中的manifest.json需要配置好appid，
@@ -196,10 +182,10 @@ mongodb可视化界面使用MongoDBCompass
 #### 3.2.1 后端Running
 
 1. clone 项目到本地 `https://github.com/winston-One/MahjongMaster`
-2. 数据库脚本使用 sqlyog或者Navicat进行可视化查看，**需要手动导入数据库脚本**，只需要提前在本地 MySQL 中创建一个空的数据库 vhr，并修改项目中关于数据的配置（resources 目录下的 application.properties 文件中）即可
+2. 数据库脚本使用 sqlyog或者Navicat进行可视化查看，**需要手动导入数据库脚本**，该sql脚本中包含了初始数据和表结构，安转完mysql创建好数据库之后，就可以直接执行。只需要提前在本地 MySQL 中创建一个空的数据库queshen，并修改项目中关于数据库的配置（resources 目录下的 application-dev.yaml 文件中）即可
 3. 提前准备好 Redis，在 项目的 application.properties 文件中，将 Redis 配置改为自己的
 
-
+由于项目中使用了Redis和MySQL，所以这两个中间件是不可少的。后期拓展其他的技术栈的使用再慢慢进行安装跟进。
 
 #### 3.2.2 微信小程序Running
 
@@ -400,6 +386,8 @@ flex可以用于块级元素，也可用于行内元素
 
 安装MySQL8.x版本，安装Redis5.x，
 
+![image-20230426223218502](README.assets/image-20230426223218502.png)
+
 ### 6.2 微信小程序登录
 
 小程序的登录不能直接调用后端接口，需要先进行一系列的处理。
@@ -428,9 +416,27 @@ session_key 存储方式这里以 redis 为例进行讲解，调用 jscode2sessi
 
 3） 小程序端发起获取用户手机号操作，必须使用 button 并设置 open-type="getPhoneNumber" ，并从 button 的绑定事件中获取所需信息 
 
-### 6.3 
+### 6.3 美团验券
+
+可以对照官网学会对美团第三方接口的使用[美团 - 北极星开放平台 (dianping.com)][](https://open.dianping.com/)
+
+或者阅读项目中的代码，配合作者的注释，也可以添加本人微信进行沟通秒回解答。
+
+### 6.4 小程序下单支付
+
+[开通微信支付][](https://blog.csdn.net/weixin_45932157/article/details/109748886?spm=1001.2014.3001.5506)
+
+[微信小程序注册以及认证流程][(149条消息) 【Wechat】微信小程序注册以及认证流程_小程序注册流程_java_leaf@qq.com的博客-CSDN博客](https://blog.csdn.net/cc874944236/article/details/108900814?spm=1001.2014.3001.5506)
 
 
+
+### 6.5 评论系统
+
+待开发
+
+### 6.6 websocket即时通讯
+
+待开发
 
 ## 7. 其他资料
 

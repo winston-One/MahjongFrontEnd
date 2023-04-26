@@ -51,9 +51,9 @@
   	"pages": [{
   			"path": "BusinessMain/BusinessMain",
   			"style": {
-  				"navigationBarTitleText": "我的店铺",
   				"enablePullDownRefresh": false,
-  	      "navigationBarBackgroundColor": "#fff"
+          //"navigationStyle": "custom",
+          "navigationBarBackgroundColor": "#7fc9f7"
   			}
       }
     ]},{
@@ -195,7 +195,7 @@
   },
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "雀神",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},

@@ -9,12 +9,11 @@
             <text style="font-size: 40rpx; font-weight: 900;">
               {{nickName}}
             </text>
-            <!-- <text>ID:{{idAuth}}</text> -->
           </view>
       		<view class="right">
       			<view class="myHomePage" @click="gotoMyBusiness">
       				<view class="text">
-      					我的店铺
+      					我的门店
       				</view>
       				<u-icon size="30" name="arrow-right" color="#7fabf7"></u-icon>
       			</view>
@@ -205,7 +204,7 @@
     onShareAppMessage(res) {
       if (res.form === 'button') {
         return {
-          title: '一起预约马上到国粹',
+          title: '一起预约国粹娱乐中心',
           path: '/pages/index/index',
           fail: function() {
             this.showMessage("分享失败","error")
@@ -218,9 +217,14 @@
     },
     methods: {
       gotoMyBusiness() {
-        uni.navigateTo({
-          url:"/page_business/BusinessMain/BusinessMain"
+        uni.showToast({
+          icon:'none',
+          title: "您当前暂无自己的门店",
+          duration: 2000
         })
+        // uni.navigateTo({
+        //   url:"/page_business/BusinessMain/BusinessMain"
+        // })
       },
       avatarPreview(avatarUrl){
         uni.previewImage({
@@ -241,8 +245,6 @@
         uni.navigateTo({
         	url: item.url
         })
-        // navigator.userAgent
-        
       },
       menusClick(url) {
         if (url === '0') {

@@ -19,13 +19,15 @@
           <image src="../../static/applogo/app1.png"></image>
           <view>￥{{order.price}}</view>
         </view>
-        
       </view>
     </view>
     <view class="order_btn">
       <view class="btn1">
         <button open-type="contact">联</button>
         <view class="item-name">联系客服</view>
+      </view>
+      <view class="btn1">
+        <view class="item-name" @click="contactBusiness">联系门店</view>
       </view>
       <view @click="skipOrderDetails" class="btn2">
         查看订单
@@ -66,6 +68,11 @@
       skipOrderDetails() {
         uni.navigateTo({
           url: "/page_subscribe/orderDetals/orderDetals?orderDetals=" + encodeURIComponent(JSON.stringify(this.order))
+        })
+      },
+      contactBusiness() {
+        uni.navigateTo({
+          url:"/page_subscribe/Chat/Chat"
         })
       }
     }

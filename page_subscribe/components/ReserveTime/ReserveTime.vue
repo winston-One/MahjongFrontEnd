@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <view class="reserve-time-list">
     <view class="top">
       <view class="reserve-type-select">
@@ -189,3 +189,4 @@
   }
 }
 </style>
+ -->

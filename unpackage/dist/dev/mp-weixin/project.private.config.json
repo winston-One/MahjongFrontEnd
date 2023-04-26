@@ -1,6 +1,7 @@
 {
   "setting": {
-    "compileHotReLoad": true
+    "compileHotReLoad": true,
+    "urlCheck": false
   },
   "condition": {
     "miniprogram": {
@@ -92,6 +93,13 @@
         {
           "name": "",
           "pathName": "page_subscribe/Chat/Chat",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "page_business/BusinessMain/BusinessMain",
           "query": "",
           "launchMode": "default",
           "scene": null

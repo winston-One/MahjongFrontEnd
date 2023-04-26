@@ -2,7 +2,7 @@
 	<view :style="'height:' + height + 'rpx;position: relative;margin:0rpx;padding:0rpx;box-sizing: border-box;'">
 		<view class="content" >
 			<view class="unStyle" >
-				欢迎来到【马上到国粹交流中心】，接下来的快乐时光，有我们陪着您
+				欢迎来到【国粹娱乐中心】，接下来的快乐时光，有我们陪着您
 			</view>
 			<view class="logo">
 				<u-image width="300rpx" height="300rpx" :src="src" mode="widthFix" border-radius="80"></u-image>
@@ -23,7 +23,7 @@
 					<text style="color: #7fa1f7;" @click="toAgreement()">用户协议、隐私政策</text>
 				</view>
 			</view>
-			<p class="text">版权所有 © 2022 winston开发组</p>
+			<p class="text">版权所有 © 2022 winstonYv开发组</p>
 		</view>
 	</view>
 </template>
@@ -54,6 +54,7 @@
 					this.chooseData = false
 				}
 			},
+      // 判断是否点击了用户同意隐私协议
 			toAgreement() {
 				uni.navigateTo({
 					url: '../agreement/agreement'
@@ -73,6 +74,7 @@
 					})
 					return;
 				}
+        // 绑定电话号码之后才能算完整的登录成功
         uni.navigateTo({
           url: "/page_login/bindingPhone/bindingPhone"
         })
@@ -83,6 +85,7 @@
 						uni.setStorageSync("userInfo", res.userInfo);
 						body.nickname = res.userInfo.nickName
 						body.avatarUrl = res.userInfo.avatarUrl
+            // 小程序登录的昵称和头像直接使用微信API接口可以获得，openid就需要后端解析code凭证
             uni.setStorageSync("nickname", res.userInfo.nickName);
             uni.setStorageSync("avatarUrl", res.userInfo.avatarUrl);
 						wx.login().then(async (res) => {
@@ -95,8 +98,8 @@
               console.log(data);
 							let authority = data.data.Authority
 							uni.setStorageSync("Authority", authority);//86400
+              // 设置登录有效期时间为3天
 							let pastDueDate = Date.parse(new Date()) + 259200000;// 3天
-              //let tokenDueDate = Date.parse(new Date()) + 2592000000;// 3天
 							uni.setStorageSync('pastDueDate', pastDueDate)
               //uni.setStorageSync('tokenDueDate', tokenDueDate)
 							let header = new Object()
@@ -116,7 +119,9 @@
 								
 								let openid = data.data.openid
 								getApp().globalData.openid = openid
+                // 将用户id存储到小程序缓存中
 								uni.setStorageSync("openid", data.data.openid)
+                // 登录成功之后进入首页
 								uni.switchTab({
 									url: '/pages/Home/Home'
 								})

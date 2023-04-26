@@ -101,22 +101,22 @@ var components
 try {
   components = {
     MyLogin: function () {
-      return __webpack_require__.e(/*! import() | components/MyLogin/MyLogin */ "components/MyLogin/MyLogin").then(__webpack_require__.bind(null, /*! @/components/MyLogin/MyLogin.vue */ 268))
+      return __webpack_require__.e(/*! import() | components/MyLogin/MyLogin */ "components/MyLogin/MyLogin").then(__webpack_require__.bind(null, /*! @/components/MyLogin/MyLogin.vue */ 277))
     },
     uAvatar: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 275))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 284))
     },
     uIcon: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 197))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 206))
     },
     uPopup: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */ "node-modules/uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 233))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */ "node-modules/uview-ui/components/u-popup/u-popup").then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 242))
     },
     uniPopup: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-popup/components/uni-popup/uni-popup */ "uni_modules/uni-popup/components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup/uni-popup.vue */ 282))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-popup/components/uni-popup/uni-popup */ "uni_modules/uni-popup/components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup/uni-popup.vue */ 291))
     },
     uniPopupDialog: function () {
-      return Promise.all(/*! import() | uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.vue */ 289))
+      return Promise.all(/*! import() | uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-popup/components/uni-popup-dialog/uni-popup-dialog.vue */ 298))
     },
   }
 } catch (e) {
@@ -182,7 +182,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 30));
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 32));
-//
 //
 //
 //
@@ -394,7 +393,7 @@ var _default = {
   onShareAppMessage: function onShareAppMessage(res) {
     if (res.form === 'button') {
       return {
-        title: '一起预约马上到国粹',
+        title: '一起预约国粹娱乐中心',
         path: '/pages/index/index',
         fail: function fail() {
           this.showMessage("分享失败", "error");
@@ -407,9 +406,14 @@ var _default = {
   },
   methods: {
     gotoMyBusiness: function gotoMyBusiness() {
-      uni.navigateTo({
-        url: "/page_business/BusinessMain/BusinessMain"
+      uni.showToast({
+        icon: 'none',
+        title: "您当前暂无自己的门店",
+        duration: 2000
       });
+      // uni.navigateTo({
+      //   url:"/page_business/BusinessMain/BusinessMain"
+      // })
     },
     avatarPreview: function avatarPreview(avatarUrl) {
       uni.previewImage({
@@ -430,7 +434,6 @@ var _default = {
       uni.navigateTo({
         url: item.url
       });
-      // navigator.userAgent
     },
     menusClick: function menusClick(url) {
       if (url === '0') {

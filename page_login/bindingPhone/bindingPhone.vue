@@ -6,7 +6,7 @@
       <button class="btn" open-type="getPhoneNumber" @getphonenumber="getPhone" >绑定手机</button>
     </view>
 		<view class="textcss">
-			<p class="text">版权所有 © 2022 winston开发组</p>
+			<p class="text">版权所有 © 2022 winstonYv开发组</p>
 		</view>
 	</view>
 </template>

@@ -3,10 +3,10 @@
     <image src="../../static/mine/server.png" class="server"></image>
     <view>
       <view class="msg">
-        长按扫码关注公众号“winston服务平台”
+        长按扫码关注公众号“全栈大学堂”
       </view>
       <view class="msg">
-        在公众号底部点击“马上到国粹”按钮进入小程序
+        在公众号底部点击“国粹娱乐中心”按钮进入小程序
       </view>
       <view class="msg">
         即可进行预约订房，兑换美团卡券，购买平台的卡券

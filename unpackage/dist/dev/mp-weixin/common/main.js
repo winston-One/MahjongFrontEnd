@@ -107,20 +107,26 @@ var _mahjongConfig = _interopRequireDefault(__webpack_require__(/*! ./mahjongCon
 var _globalData;
 var _default = {
   globalData: (_globalData = {
-    // 头部的自定义的高度
-    statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
+    // 小程序用户唯一标识openid，是调用微信登录api获得的code凭证进行解析出来的
     openid: 'o2eui5ZuZQt2eEsO7lyq0psWFXYg',
+    // 为了方便测试，默认先赋值
+    // 存放当前应用所特有的个人信息，可以根据业务场景定制
     userInfo: {
       openid: 'o2eui5ZuZQt2eEsO7lyq0psWFXYg',
       avatarUrl: '',
       nickName: '',
       gender: ''
     },
+    // 头部的自定义的高度
+    statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
+    // 当前默认选中的店名
     store: '安鸿店',
     storeId: '97901',
+    // 请求头信息，一般存放token信息
     header: {
       Authority: ''
     },
+    // 下面的高度和宽度都是为了自适应手机大小
     navBarHeight: 0,
     // 导航栏高度
     menuBotton: 0,
@@ -132,7 +138,7 @@ var _default = {
     pageHeight: 0,
     //页面高度
     menuWidth: 0
-  }, (0, _defineProperty2.default)(_globalData, "statusBarHeight", 0), (0, _defineProperty2.default)(_globalData, "screenWidth", 0), (0, _defineProperty2.default)(_globalData, "isLogin", false), (0, _defineProperty2.default)(_globalData, "newPerson", false), (0, _defineProperty2.default)(_globalData, "firstIn", true), (0, _defineProperty2.default)(_globalData, "haveLoading", false), (0, _defineProperty2.default)(_globalData, "userInfo", ''), (0, _defineProperty2.default)(_globalData, "webSocketIsOpen", true), (0, _defineProperty2.default)(_globalData, "unreadCount", 0), (0, _defineProperty2.default)(_globalData, "socketTask", ''), _globalData),
+  }, (0, _defineProperty2.default)(_globalData, "statusBarHeight", 0), (0, _defineProperty2.default)(_globalData, "screenWidth", 0), (0, _defineProperty2.default)(_globalData, "isLogin", false), (0, _defineProperty2.default)(_globalData, "firstIn", true), (0, _defineProperty2.default)(_globalData, "haveLoading", false), (0, _defineProperty2.default)(_globalData, "webSocketIsOpen", true), (0, _defineProperty2.default)(_globalData, "unreadCount", 0), (0, _defineProperty2.default)(_globalData, "socketTask", ''), _globalData),
   onLaunch: function onLaunch() {
     var _this = this;
     return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
@@ -154,9 +160,10 @@ var _default = {
               _context.next = 15;
               break;
             case 8:
-              //console.log("输出啊------>")
+              // 如果缓存时间没有过期
               header = new Object();
               header.Authority = uni.getStorageSync('Authority');
+              // 缓存时间没过期，但是token过期，依然是要重新登录
               if (!header.Authority) {
                 _this.globalData.haveLoading = false;
                 uni.reLaunch({
@@ -252,7 +259,6 @@ var _default = {
                 } else {
                   request.header = new Object();
                 }
-                //request.header.University = config.university
                 if (_this2.globalData.openid) {
                   request.header.Openid = _this2.globalData.openid;
                 }
@@ -389,8 +395,6 @@ var _default = {
                   _userInfo2.avatarUrl = data.data.avatarUrl;
                   _userInfo2.nickName = data.data.nickname;
                   uni.setStorageSync("userInfo", _userInfo2);
-                  //console.log(data.data.subscribe, 22)
-                  //console.log(data.data.isHaiZhu, 222)
                   getApp().globalData.userInfo = _userInfo2;
                   openid = data.data.openid;
                   getApp().globalData.openid = openid;
@@ -441,7 +445,6 @@ var _default = {
       this.globalData.menuWidth = menuButtonInfo.width;
       this.statusBarHeight = systemInfo.statusBarHeight;
       this.screenWidth = systemInfo.screenWidth;
-      //console.log(111, this.screenWidth)
     },
     getPagesHeight: function getPagesHeight() {
       var that = this;

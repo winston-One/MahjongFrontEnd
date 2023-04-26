@@ -9,6 +9,7 @@
           color="#7fa1f7" size="28"/>
       </view>
     </view>
+    <!--当天的一条时间轴，分为可预约，不可预约，待开发-->
     <!-- <view class="reserve-result">
       <view class="time_calibration">
         <u-steps :list="numList" :current="1" active-color="#7fa1f7"></u-steps>

@@ -8,9 +8,6 @@
         		<u-dropdown-item title="订单" v-model="Ordervalue" 
               :options="orderOption" @change="orderChange">
         		</u-dropdown-item>
-<!--        		<u-dropdown-item title="排序" v-model="sortValue" 
-              :options="sortOption" @change="sortChange">
-        		</u-dropdown-item> -->
         		<u-dropdown-item v-model="storeValue" title="门店" 
               :options="storeOption" @change="storeChange">
             </u-dropdown-item>
@@ -77,22 +74,22 @@
         storeOption: [{
             value: 0,
             storeId: '',
-            label: '',//'马上到国粹交流中心(安鸿店)',
+            label: '',//'国粹娱乐中心(安鸿店)',
           },
           {
             value: 1,
             storeId: '',
-            label: '',//'马上到国粹交流中心(数码街店)',
+            label: '',//'国粹娱乐中心(数码街店)',
           },
           {
             value: 2,
             storeId: '',
-            label: '',//'马上到国粹交流中心(麦地升平苑店)',
+            label: '',//'国粹娱乐中心(麦地升平苑店)',
           },
           {
             value: 3,
             storeId: '',
-            label: '',//'马上到国粹交流中心(玉兰店)',
+            label: '',//'国粹娱乐中心(玉兰店)',
           }
         ],
         storeId: '',
@@ -153,7 +150,6 @@
         this.storeOption[i].label = data.data[i].storeName
         this.storeOption[i].storeId = data.data[i].storeId
       }
-      
     },
     methods: {
       async getOrderData() {

@@ -57,7 +57,6 @@
 
 <style lang="scss">
 .coupon{
-  //background: rgba(134, 161, 235, 0.2);
   border-radius: 20px;
   width: 100%;
   height: 420rpx;

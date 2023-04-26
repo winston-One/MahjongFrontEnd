@@ -135,7 +135,6 @@
     		} else {
     			request.header = new Object
     		}
-    		//request.header.University = config.university
     		if (this.globalData.openid) {
     			request.header.Openid = this.globalData.openid
     		}
