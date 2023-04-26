@@ -14,5 +14,3 @@ unpackage/dist/dev/
 
 # python
 *.pyc
-manifest.json
-mahjongConfig.js
