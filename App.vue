@@ -66,7 +66,6 @@
       	this.globalData.openid = uni.getStorageSync('openid');
       	this.globalData.userInfo = uni.getStorageSync('userInfo')
       }
-      console.log('登录缓存时间', pastDueDate)
       this.setNavBarInfo()
       this.getPagesHeight()
 		},
@@ -117,11 +116,11 @@
       	vm.globalData.socketTask = socketTask
       },
       // 全局的ajax调用，前端直接使用这个封装好的方法，配置好参数，就能直接调用后端接口
-    	async UniRequest(path, method, body, header, isDev) {
+    	async UniRequest(path, method, body, header, isDeploy) {
     		let data
     		let request = new Object
     		//禁止使用前缀
-    		if (isDev === 1) {
+    		if (isDeploy === 1) {
     			request.url = `http://localhost:9790` + path
     		} else {
     			request.url = `https://${config.domain}` + path
@@ -140,6 +139,7 @@
     		}
     		await uni.request(request).then(res => {
     			data = res
+          console.log('调用成功', res)
     		}).catch(err => {
     			console.log('调用失败', err)
     		})
@@ -165,70 +165,11 @@
       		let header = new Object()
       		header.Authority = authority
       		getApp().globalData.header = header
-      		//登录成功后执行回调函数
-      		if (getApp().loadPlanetCallBack) {
-      			//console.log("loadPlanet执行")
-      			getApp().loadPlanetCallBack()
-      		}
-      		if (getApp().tokenCallbacck) {
-      			//console.log("tokenCallbacck执行")
-      			getApp().tokenCallbacck()
-      		}
       		getApp().globalData.haveLoading = true
       		let userInfo = new Object()
       		userInfo.avatarUrl = data.data.avatarUrl
       		userInfo.nickName = data.data.nickname
-      		uni.setStorageSync("userInfo", userInfo)
-      		getApp().globalData.userInfo = userInfo
-      		let openid = data.data.openid
-      		getApp().globalData.openid = openid
-      		uni.setStorageSync("openid", data.data.openid)
-      		uni.setStorageSync("openid", openid)
-      	}
-      },
-      async quickLogin(userInfo) {
-      	let vm = this
-      	let code = await vm.wxLogin()
-      	let body = new Object()
-      	body.code = code;
-      	if (userInfo) {
-      		body.nickname = userInfo.nickName
-      		body.avatarUrl = userInfo.avatarUrl
-      	}
-      	let data = await getApp().UniRequest("/user/login", "POST", body, "",1)
-      	//快捷登录失败则跳转到登录页
-      	if (data.code == 20002) {
-      		getApp().globalData.haveLoading = false
-      		uni.reLaunch({
-      			url: "../../page_login/login/login",
-      			fail(error) {
-      				console.log('错误信息', error)
-      			}
-      		})
-      	} else {
-      		let authority = data.data.Authority;
-      
-      		uni.setStorageSync("Authority", authority);
-      		let pastDueDate = Date.parse(new Date()) + 259200000;
-      		uni.setStorageSync('pastDueDateNew', pastDueDate)
-          uni.setStorageSync('pastDueDate', pastDueDate)
-      		getApp().globalData.firstIn = false;
-      		let header = new Object()
-      		header.Authority = authority
-      		getApp().globalData.header = header
-      		//登录成功后执行回调函数
-      		if (getApp().loadPlanetCallBack) {
-      			//console.log("loadPlanet执行")
-      			getApp().loadPlanetCallBack()
-      		}
-      		if (getApp().tokenCallbacck) {
-      			//console.log("tokenCallbacck执行")
-      			getApp().tokenCallbacck()
-      		}
-      		getApp().globalData.haveLoading = true
-      		let userInfo = new Object()
-      		userInfo.avatarUrl = data.data.avatarUrl
-      		userInfo.nickName = data.data.nickname
+          // 存储登录个人信息,便于请求的时候携带
       		uni.setStorageSync("userInfo", userInfo)
       		getApp().globalData.userInfo = userInfo
       		let openid = data.data.openid
@@ -255,7 +196,6 @@
     		this.globalData.navBarHeight = (menuButtonInfo.top - systemInfo.statusBarHeight) * 2 + menuButtonInfo
     			.height + systemInfo.statusBarHeight;
     		this.globalData.navBarHeight = this.globalData.navBarHeight * 750 / wx.getSystemInfoSync().windowWidth;
-    		//console.log(this.globalData.navBarHeight)
     		this.globalData.menuBotton = menuButtonInfo.top - systemInfo.statusBarHeight;
     		this.globalData.menuRight = systemInfo.screenWidth - menuButtonInfo.right;
     		this.globalData.menuHeight = menuButtonInfo.height;
@@ -263,6 +203,7 @@
     		this.statusBarHeight = systemInfo.statusBarHeight;
     		this.screenWidth = systemInfo.screenWidth;
     	},
+      // 获取手机页面真实高度
     	getPagesHeight() {
     		let that = this;
     		uni.getSystemInfo({

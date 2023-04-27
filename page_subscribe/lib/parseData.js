@@ -25,6 +25,7 @@
  	}
  	return str.substring(0,10);
  }
+ // 从当前时间开始，获取以半个小时制的时间段
  function getTimeRange(){
   var step = 30
   var date = new Date()
@@ -68,6 +69,7 @@
   }
   return timeArr
  }
+ // 获取近七天的日期加星期几，日期按照2022-10-03的格式
  function getDate() {
    var base = new Date().getTime()
    var oneDay = 24 * 3600 * 1000;

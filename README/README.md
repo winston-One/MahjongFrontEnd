@@ -12,11 +12,19 @@
 
 ## 2.项目介绍
 
+这款项目适合零基础入门，也适合刚刚学做项目的小伙伴，让小伙伴们能够快速看懂代码，快速搭建一个基础环境，快速看到效果页面，带领小伙伴由浅入深，逐步推进，前期的快速读懂项目和跑通程序就是建立一种学习编程的自信心。
+
+后期会推出更多的技术栈的业务场景以及算法和多线程和锁进行解决实际业务场景。
+
 前置知识：学过vue，springboot开发，Redis和MySQL
 
 Hi雀神是一个前后端分离的麻将馆预约微信小程序，项目采用 SpringBoot+uniapp 开发，项目加入常见的企业级应用所涉及到的技术点，例如 Redis、MySQL，Caffeine，quartz定时任务等。
 
 前期后端只需要小伙伴安装MySQL和Redis中间件就可以启动项目，以便小伙伴快速看到效果，迅速看到效果是继续学习编程的自信，后期会有更多技术引入，期待学完之后的反馈从而因地制宜的引入新技术。
+
+这款项目也适合帮助小伙伴快速完成课程设计的开发，只需要更改图片信息和具体数据，或者更改应用的目标对象，例如棋馆预约小程序，台球馆预约小程序。
+
+到后期，作者开源出更多技术栈配合使用和设计模式引入以及多线程锁的使用，也将满足毕设的要求，小伙伴可以快速搭建毕设项目。
 
 ### 2.1 项目技术栈
 
@@ -177,40 +185,47 @@ Redis可视化界面使用Another Redis Desktop Manager
 
 mongodb可视化界面使用MongoDBCompass
 
+maven仓库导入外部jar包,美团的验券sdk是需要外部导入jar包的。
+
+```shell
+# maven下载拓展包，美团的验券sdk
+# -Dfile=后面的参数指定你的jar在你本地的位置，jar已经在后端的lib目录中
+#-Dmaven.repo.local=后面的参数指定本地maven仓库的位置，
+# 如果maven配置了系统环境变量，就可以直接cmd打开然后执行下列命令
+mvn install:install-file -Dfile=F:\Hi雀神\dianping-openapi-java-sdk-qa-1.0.0.jar -DgroupId=com.dianping -DartifactId=dianping-openapi-java-sdk-qa -Dversion=1.0.0 -Dpackaging=jar -Dmaven.repo.local=C:\Users\Acer\.m2\repository
+```
+
 ### 3.2 搭建环境
 
 #### 3.2.1 后端Running
 
 1. clone 项目到本地 `https://github.com/winston-One/MahjongMaster`
 2. 数据库脚本使用 sqlyog或者Navicat进行可视化查看，**需要手动导入数据库脚本**，该sql脚本中包含了初始数据和表结构，安转完mysql创建好数据库之后，就可以直接执行。只需要提前在本地 MySQL 中创建一个空的数据库queshen，并修改项目中关于数据库的配置（resources 目录下的 application-dev.yaml 文件中）即可
-3. 提前准备好 Redis，在 项目的 application.properties 文件中，将 Redis 配置改为自己的
+3. 提前安装好 Redis，在项目的 application-dev.yaml文件中，将 Redis 配置改为自己的.
+3. maven下载拓展包——美团验券工具jar包
 
 由于项目中使用了Redis和MySQL，所以这两个中间件是不可少的。后期拓展其他的技术栈的使用再慢慢进行安装跟进。
 
 #### 3.2.2 微信小程序Running
 
 ```shell
-# 安装依赖
+# 安装依赖，建议安装淘宝镜像，使用cnpm，不会报错，速度更快
 npm install
 # 在HBuilderX中打开项目，在微信开发者工具中运行项目
+HBuilderX中要安装好scss工具
 ```
 
-在` MahjongFrontEnd` 项目中已经配置了端口转发，将数据转发到 Spring Boot 上，因此在HBuilderX打开该项目，在微信开发者工具 运行，就可以访问微信小程序了，所有的请求通过http协议转发将数据传到MahjongMaster本地项目 中（注意此时要一直Running该 Sprin gBoot 项目）。
+在` MahjongFrontEnd` 项目中已经配置了端口转发，将数据转发到 Spring Boot 上，因此在HBuilderX打开该项目，点击HBuilderX里的运行，就可以在微信开发者工具看到运行效果界面，所有的请求通过http协议转发将数据传到MahjongMaster本地后端项目 中（注意此时要一直Running该 Sprin gBoot 项目）。
 
-微信小程序不需要[使用 Nginx 部署前后端分离项目，解决跨域问题](https://mp.weixin.qq.com/s/C7PIck3SIPPTcA3NX3ELoQ)）。
-
-```shell
-# maven下载拓展包，美团的验券sdk和微信支付sdk
-mvn install:install-file -Dfile=F:\Hi雀神\dianping-openapi-java-sdk-qa-1.0.0.jar -DgroupId=com.dianping -DartifactId=dianping-openapi-java-sdk-qa -Dversion=1.0.0 -Dpackaging=jar -Dmaven.repo.local=C:\Users\Acer\.m2\repository
-```
-
-
+微信小程序不需要[使用 Nginx 部署前后端分离项目，解决跨域问题](https://mp.weixin.qq.com/s/C7PIck3SIPPTcA3NX3ELoQ)）。但是发起网络请求可能域名不合法问题，可以在微信开发者工具中关闭校验合法域名选项，前面已经说到。
 
 ## 4. 文档
 
 
 
 ![image-20230409234320570](README.assets/image-20230409234320570.png)
+
+待完善，前期先保证大家启动是无误的。
 
 ## 5.微信小程序前端
 
@@ -235,6 +250,8 @@ mvn install:install-file -Dfile=F:\Hi雀神\dianping-openapi-java-sdk-qa-1.0.0.j
 ![image-20230425215342408](README.assets/image-20230425215342408.png)
 
 下载：https://ext.dcloud.net.cn/plugin
+
+uniapp的拓展组件已经放在READEME文件夹中，可以自行将所需要的组件复制到小程序项目的uni_modules文件夹中。
 
 #### 5. page文件夹
 
