@@ -82,38 +82,14 @@
       this.globalData.webSocketIsOpen = true
 		},
     methods: {
-      //连接websocket,实现即时通讯，主要是统计好当前在线人数
-      connectWebSocket() {
-      	let vm = this
-      	let socketTask = uni.connectSocket({
-      		url: 'ws://localhost:9790/IM/online/' + vm.globalData.userInfo.openid,
-      		complete: () => {}
-      	});
-      	socketTask.onOpen(callback => {
-      		console.log("AppWebSocket连接成功：" + callback.data)
+      async wxLogin() {
+      	return new Promise(function(reslove, reject) {
+      		wx.login({
+      			success(res) {
+      				reslove(res.code);
+      			}
+      		})
       	})
-      	socketTask.onError(callback => {
-      		console.log("AppWebSocket发送错误：" + callback.errMsg)
-      	})
-      	socketTask.onClose(callback => {
-      		console.log("App连接关闭")
-      		vm.globalData.unreadCount = 0
-      	})
-      	socketTask.onMessage(callback => {
-          // callback.data保证消息不会重复
-      		vm.globalData.unreadCount += new Number(callback.data)
-      		if (vm.globalData.unreadCount > 0) {
-            // 展示从左边数第四个tabbar显示红点，代表有消息未读
-      			uni.showTabBarRedDot({
-      				index: 4
-      			})
-      		} else {
-      			uni.hideTabBarRedDot({
-      				index: 4
-      			})
-      		}
-      	})
-      	vm.globalData.socketTask = socketTask
       },
       // 全局的ajax调用，前端直接使用这个封装好的方法，配置好参数，就能直接调用后端接口
     	async UniRequest(path, method, body, header, isDeploy) {
@@ -178,21 +154,41 @@
       		uni.setStorageSync("openid", openid)
       	}
       },
-      async wxLogin() {
-      	return new Promise(function(reslove, reject) {
-      		wx.login({
-      			success(res) {
-      				reslove(res.code);
-      			}
-      		})
+      //连接websocket,实现即时通讯，主要是统计好当前在线人数
+      connectWebSocket() {
+      	let vm = this
+      	let socketTask = uni.connectSocket({
+      		url: 'ws://localhost:9790/IM/online/' + vm.globalData.userInfo.openid,
+      		complete: () => {}
+      	});
+        socketTask.onError(callback => {
+        	console.log("AppWebSocket发送错误：" + callback.errMsg)
+        })
+      	socketTask.onOpen(callback => {
+      		console.log("AppWebSocket连接成功：" + callback.data)
       	})
+      	socketTask.onClose(callback => {
+      		console.log("App连接关闭")
+      		vm.globalData.unreadCount = 0
+      	})
+      	socketTask.onMessage(callback => {
+      		vm.globalData.unreadCount += new Number(callback.data)
+      		if (vm.globalData.unreadCount > 0) {
+            // 展示从左边数第四个tabbar显示红点，代表有消息未读
+      			uni.showTabBarRedDot({
+      				index: 4
+      			})
+      		} else {
+      			uni.hideTabBarRedDot({
+      				index: 4
+      			})
+      		}
+      	})
+      	vm.globalData.socketTask = socketTask
       },
     	setNavBarInfo() {
-    		// 获取系统信息
-    		const systemInfo = wx.getSystemInfoSync();
-    		// 胶囊按钮位置信息
-    		const menuButtonInfo = wx.getMenuButtonBoundingClientRect();
-    		// 导航栏高度 = 状态栏到胶囊的间距（胶囊距上距离-状态栏高度） * 2 + 胶囊高度 + 状态栏高度
+        const menuButtonInfo = wx.getMenuButtonBoundingClientRect();// 胶囊按钮位置信息
+    		const systemInfo = wx.getSystemInfoSync();// 获取系统信息
     		this.globalData.navBarHeight = (menuButtonInfo.top - systemInfo.statusBarHeight) * 2 + menuButtonInfo
     			.height + systemInfo.statusBarHeight;
     		this.globalData.navBarHeight = this.globalData.navBarHeight * 750 / wx.getSystemInfoSync().windowWidth;
