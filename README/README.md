@@ -6,7 +6,7 @@
 
 ![image-20230409224238978](README.assets/image-20230409224238978.png)
 
-扫码关注公众号，持续推送新的开源保姆级项目。
+扫码关注公众号，持续推送新的开源保姆级项目。回复开源项目，即可获取资料
 
 ![qrcode_for_gh_4d6fbba1a1ff_344](README.assets/qrcode_for_gh_4d6fbba1a1ff_344.jpg)
 
