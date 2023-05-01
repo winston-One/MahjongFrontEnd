@@ -133,7 +133,7 @@
               body.voucherId = that.voucherId
               body.orderId = orderNo
               body.openid = getApp().globalData.openid
-              let data = await getApp().UniRequest("/vouoreder/booking", "GET", body, "",1)
+              let data = await getApp().UniRequest("/voucherUser/booking", "GET", body, "",1)
               if(data.code === 2000) {
                 console.log('购买成功');
               }

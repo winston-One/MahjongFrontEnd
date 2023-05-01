@@ -160,7 +160,7 @@
       request.openId = getApp().globalData.openid
       request.roomName = this.room
       request.userTime = this.duration
-      let data1 = await getApp().UniRequest("/vouoreder/voucherjudge", "GET", request, "",1)
+      let data1 = await getApp().UniRequest("/voucherUser/judgeVoucher", "GET", request, "",1)
       if (data1.code !== 20000) {
         uni.showToast({
           title: '数据请求失败！',

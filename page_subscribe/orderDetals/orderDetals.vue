@@ -134,7 +134,7 @@
       this.voucherId = order.voucherId
       var body = new Object()
       body.voucherId = this.voucherId
-      let data = await getApp().UniRequest("/voucher/selectvoubyid", "GET", body, "",1)
+      let data = await getApp().UniRequest("/voucher/getOneVoucher", "GET", body, "",1)
       if (data.code !== 20000) {
         return uni.showToast({
           title: '数据获取失败！',

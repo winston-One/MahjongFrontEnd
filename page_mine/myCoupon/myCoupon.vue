@@ -60,7 +60,7 @@
       async getCardList() {
         let obj = new Object()
         obj.openId = getApp().globalData.openid
-        let res = await getApp().UniRequest("/vouoreder/queryvoucher", "GET", obj, "",1)
+        let res = await getApp().UniRequest("/voucherUser/getVoucher", "GET", obj, "",1)
         if (res.code !== 20000) {
           return uni.showToast({
             title: '数据请求失败！',

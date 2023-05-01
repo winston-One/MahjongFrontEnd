@@ -83,8 +83,6 @@
 
 <style lang="scss">
 	.voucher_info {
-		// text-align: -webkit-center;
-		//font-weight: 600;
 		padding: 0 20rpx 0 20rpx;
 		margin-top: 20rpx;
     .voucher_list{

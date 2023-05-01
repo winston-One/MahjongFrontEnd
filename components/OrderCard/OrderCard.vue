@@ -60,10 +60,7 @@
       return {
         
       };
-    },
-    onLoad() {
-      
-    },
+    }
     methods:{
       skipOrderDetails() {
         uni.navigateTo({
