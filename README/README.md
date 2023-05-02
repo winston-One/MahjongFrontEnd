@@ -62,27 +62,29 @@ Hi雀神是一个前后端分离的麻将馆预约微信小程序，项目采用
 
 ![image-20230426235010286](README.assets/image-20230426235010286.png)
 
-### 2.3 后期发展
+### 2.3 后期发展 🎯 
 
-**star量超过100的话，后期会整合rabbitMQ中间件实现店铺自动营业和休息，**
+**star量超过100的话，后期会整合rabbitMQ中间件实现店铺自动营业和休息，**❌ 
 
-使用mongodb记录一些大数据量的用户评论数据和订单数据
+使用mongodb记录一些大数据量的用户评论数据和订单数据❌
 
-使用websock实现即时通讯评论
+使用websock实现即时通讯评论✅ 
 
-我们将不再拘泥于一家麻将馆，可能会引入全国各地麻将馆，甚至是棋馆，用户想快速搜索出所需要店家，引入搜索引擎ElasticSearch
+我们将不再拘泥于一家麻将馆，可能会引入全国各地麻将馆，甚至是棋馆，用户想快速搜索出所需要店家，引入搜索引擎ElasticSearch❌
 
-整个quartz做定时任务，定时清理Redis中未支付的订单数据
+整个quartz做定时任务，定时清理Redis中未支付的订单数据✅ 
 
-后期还会整合springboot开发技巧，例如使用AOP自定义注解解决业务问题
+后期还会整合springboot开发技巧，例如使用AOP自定义注解解决业务问题✅ 
 
-后期还会进行接口安全性配置
+后期还会进行接口安全性配置❌
 
-整合实现接口幂等性
+身份认证过滤器 ❌
 
-整合使用设计模式优化小目录代码
+整合实现接口幂等性✅
 
-整合规则引擎drools，将业务规则从代码中分离出来，使用单独的`.drl`文件写if-else规则.
+整合使用设计模式优化小目录代码❌
+
+整合规则引擎drools，将业务规则从代码中分离出来，使用单独的`.drl`文件写if-else规则.❌
 
 ## 3.快速部署
 
@@ -453,7 +455,40 @@ session_key 存储方式这里以 redis 为例进行讲解，调用 jscode2sessi
 
 ### 6.6 websocket即时通讯
 
-待开发
+```xml
+<!--即时通讯webSocket-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+```
+
+**测试类需要这么配置，否则使用了websocket依赖之后，会导致无法使用springboot的单元测试**
+
+```java
+@RunWith(SpringRunner.class)
+// 配置websocket，否则报错Error creating bean with name 'serverEndpointExporter' defined in class path
+// 出现这个错的原因是在部署项目的时候,项目中含有websocket的@ServerEndpoint注解的时候,
+// 如果项目是springboot项目,去除内置tomcat的时候会把websocket的包也给删除掉,所以需要手动在测试类加上这个包，保证测试环境可以使用
+@SpringBootTest(classes = MainApplication.class,webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class test {
+    
+}
+```
+
+
+
+建立三个数据库表
+
+- 会话表：记录最新一条信息内容。
+- 用户会话表：一个发送者和一个接收者，有且仅有一条记录，主要用于展示通讯表，记录未读消息数，和会话表存在连接关系的。
+- 消息表：存放所有的消息
+
+基于websocket的即时通讯，客户端不管是发送消息还是接收消息，都是需要OnMessage注解标注的方法进行操作的，客户端在前端调用send方法发送消息——是先发送到服务端，由OnMessage标注的方法进行接收，处理（存入到数据库等等操作）之后，会在该方法中发送到指定的接收端，接收端只需要在前端监听好即可，发送的数据都是使用字符串类型，在处理过程中用json转换成对应实体类即可，传输过程中使用字符串序列化。
+
+具体的操作在代码注释中都有给出，前端代码还在优化中暂时未给出，有兴趣的小伙伴可以动手自己实现一下，具体使用的是uni.connectSocket方法，可以在https://uniapp.dcloud.net.cn/官网中搜索uni.connectSocket，查看如何具体使用。
+
+通过websocket，直接在App.vue中使用连接websocket，就可以统计当前小程序中有多少人在看，这对于web端一样适用，前端中对于发送消息，可以有发送失败和发送成功的回调，但是对应接收消息，是没有接收失败一说的，如果服务端在处理消息之后发送给客户端失败了——导致接收端没有收到消息，那么发送者就要显示发送失败，重新发送，虽然发送者是成功的发送到服务端，但是服务端的处理异常导致接收端无法接收，这一条消息也算是失败，这就相当于消息在服务端丢失了，总不能在你这端显示消息，对方却没显示吧，因为这样子就不叫聊天了。
 
 ## 7. 其他资料
 
