@@ -9,8 +9,7 @@
 node_modules/
 .node_modules/
 .eslintcache
-unpackage/dist/build/
-unpackage/dist/dev/
+unpackage/dist/**
 
 # python
 *.pyc
