@@ -60,7 +60,7 @@
       return {
         
       };
-    }
+    },
     methods:{
       skipOrderDetails() {
         uni.navigateTo({
