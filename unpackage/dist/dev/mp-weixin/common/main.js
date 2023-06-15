@@ -178,10 +178,9 @@ var _default = {
               _this.globalData.openid = uni.getStorageSync('openid');
               _this.globalData.userInfo = uni.getStorageSync('userInfo');
             case 15:
-              console.log('登录缓存时间', pastDueDate);
               _this.setNavBarInfo();
               _this.getPagesHeight();
-            case 18:
+            case 17:
             case "end":
               return _context.stop();
           }
@@ -202,50 +201,38 @@ var _default = {
     this.globalData.webSocketIsOpen = true;
   },
   methods: {
-    //连接websocket,实现即时通讯，主要是统计好当前在线人数
-    connectWebSocket: function connectWebSocket() {
-      var vm = this;
-      var socketTask = uni.connectSocket({
-        url: 'ws://localhost:9790/IM/online/' + vm.globalData.userInfo.openid,
-        complete: function complete() {}
-      });
-      socketTask.onOpen(function (callback) {
-        console.log("AppWebSocket连接成功：" + callback.data);
-      });
-      socketTask.onError(function (callback) {
-        console.log("AppWebSocket发送错误：" + callback.errMsg);
-      });
-      socketTask.onClose(function (callback) {
-        console.log("App连接关闭");
-        vm.globalData.unreadCount = 0;
-      });
-      socketTask.onMessage(function (callback) {
-        // callback.data保证消息不会重复
-        vm.globalData.unreadCount += new Number(callback.data);
-        if (vm.globalData.unreadCount > 0) {
-          // 展示从左边数第四个tabbar显示红点，代表有消息未读
-          uni.showTabBarRedDot({
-            index: 4
-          });
-        } else {
-          uni.hideTabBarRedDot({
-            index: 4
-          });
-        }
-      });
-      vm.globalData.socketTask = socketTask;
-    },
-    // 全局的ajax调用，前端直接使用这个封装好的方法，配置好参数，就能直接调用后端接口
-    UniRequest: function UniRequest(path, method, body, header, isDev) {
-      var _this2 = this;
+    wxLogin: function wxLogin() {
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
-        var data, request;
         return _regenerator.default.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                return _context2.abrupt("return", new Promise(function (reslove, reject) {
+                  wx.login({
+                    success: function success(res) {
+                      reslove(res.code);
+                    }
+                  });
+                }));
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    // 全局的ajax调用，前端直接使用这个封装好的方法，配置好参数，就能直接调用后端接口
+    UniRequest: function UniRequest(path, method, body, header, isDeploy) {
+      var _this2 = this;
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
+        var data, request;
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
                 request = new Object(); //禁止使用前缀
-                if (isDev === 1) {
+                if (isDeploy === 1) {
                   request.url = "http://localhost:9790" + path;
                 } else {
                   request.url = "https://".concat(_mahjongConfig.default.domain) + path;
@@ -262,45 +249,46 @@ var _default = {
                 if (_this2.globalData.openid) {
                   request.header.Openid = _this2.globalData.openid;
                 }
-                _context2.next = 8;
+                _context3.next = 8;
                 return uni.request(request).then(function (res) {
                   data = res;
+                  console.log('调用成功', res);
                 }).catch(function (err) {
                   console.log('调用失败', err);
                 });
               case 8:
-                return _context2.abrupt("return", data[1].data);
+                return _context3.abrupt("return", data[1].data);
               case 9:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }))();
     },
     login: function login(userInfo) {
       var _this3 = this;
-      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4() {
         var vm, code, body, data, authority, pastDueDate, header, _userInfo, openid;
-        return _regenerator.default.wrap(function _callee3$(_context3) {
+        return _regenerator.default.wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
                 vm = _this3;
-                _context3.next = 3;
+                _context4.next = 3;
                 return vm.wxLogin();
               case 3:
-                code = _context3.sent;
+                code = _context4.sent;
                 body = new Object();
                 body.code = code;
                 if (userInfo) {
                   body.nickName = userInfo.nickName;
                   body.avatarUrl = userInfo.avatarUrl;
                 }
-                _context3.next = 9;
+                _context4.next = 9;
                 return getApp().UniRequest("/user/quickLogin", "POST", body, "", 1);
               case 9:
-                data = _context3.sent;
+                data = _context4.sent;
                 if (data.code === 20000) {
                   console.log("快捷登录成功");
                   authority = data.data.Authority;
@@ -311,91 +299,13 @@ var _default = {
                   header = new Object();
                   header.Authority = authority;
                   getApp().globalData.header = header;
-                  //登录成功后执行回调函数
-                  if (getApp().loadPlanetCallBack) {
-                    //console.log("loadPlanet执行")
-                    getApp().loadPlanetCallBack();
-                  }
-                  if (getApp().tokenCallbacck) {
-                    //console.log("tokenCallbacck执行")
-                    getApp().tokenCallbacck();
-                  }
                   getApp().globalData.haveLoading = true;
                   _userInfo = new Object();
                   _userInfo.avatarUrl = data.data.avatarUrl;
                   _userInfo.nickName = data.data.nickname;
+                  // 存储登录个人信息,便于请求的时候携带
                   uni.setStorageSync("userInfo", _userInfo);
                   getApp().globalData.userInfo = _userInfo;
-                  openid = data.data.openid;
-                  getApp().globalData.openid = openid;
-                  uni.setStorageSync("openid", data.data.openid);
-                  uni.setStorageSync("openid", openid);
-                }
-              case 11:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }))();
-    },
-    quickLogin: function quickLogin(userInfo) {
-      var _this4 = this;
-      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4() {
-        var vm, code, body, data, authority, pastDueDate, header, _userInfo2, openid;
-        return _regenerator.default.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                vm = _this4;
-                _context4.next = 3;
-                return vm.wxLogin();
-              case 3:
-                code = _context4.sent;
-                body = new Object();
-                body.code = code;
-                if (userInfo) {
-                  body.nickname = userInfo.nickName;
-                  body.avatarUrl = userInfo.avatarUrl;
-                }
-                _context4.next = 9;
-                return getApp().UniRequest("/user/login", "POST", body, "", 1);
-              case 9:
-                data = _context4.sent;
-                //快捷登录失败则跳转到登录页
-                if (data.code == 20002) {
-                  getApp().globalData.haveLoading = false;
-                  uni.reLaunch({
-                    url: "../../page_login/login/login",
-                    fail: function fail(error) {
-                      console.log('错误信息', error);
-                    }
-                  });
-                } else {
-                  authority = data.data.Authority;
-                  uni.setStorageSync("Authority", authority);
-                  pastDueDate = Date.parse(new Date()) + 259200000;
-                  uni.setStorageSync('pastDueDateNew', pastDueDate);
-                  uni.setStorageSync('pastDueDate', pastDueDate);
-                  getApp().globalData.firstIn = false;
-                  header = new Object();
-                  header.Authority = authority;
-                  getApp().globalData.header = header;
-                  //登录成功后执行回调函数
-                  if (getApp().loadPlanetCallBack) {
-                    //console.log("loadPlanet执行")
-                    getApp().loadPlanetCallBack();
-                  }
-                  if (getApp().tokenCallbacck) {
-                    //console.log("tokenCallbacck执行")
-                    getApp().tokenCallbacck();
-                  }
-                  getApp().globalData.haveLoading = true;
-                  _userInfo2 = new Object();
-                  _userInfo2.avatarUrl = data.data.avatarUrl;
-                  _userInfo2.nickName = data.data.nickname;
-                  uni.setStorageSync("userInfo", _userInfo2);
-                  getApp().globalData.userInfo = _userInfo2;
                   openid = data.data.openid;
                   getApp().globalData.openid = openid;
                   uni.setStorageSync("openid", data.data.openid);
@@ -409,36 +319,43 @@ var _default = {
         }, _callee4);
       }))();
     },
-    wxLogin: function wxLogin() {
-      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5() {
-        return _regenerator.default.wrap(function _callee5$(_context5) {
-          while (1) {
-            switch (_context5.prev = _context5.next) {
-              case 0:
-                return _context5.abrupt("return", new Promise(function (reslove, reject) {
-                  wx.login({
-                    success: function success(res) {
-                      reslove(res.code);
-                    }
-                  });
-                }));
-              case 1:
-              case "end":
-                return _context5.stop();
-            }
-          }
-        }, _callee5);
-      }))();
+    //连接websocket,实现即时通讯，主要是统计好当前在线人数
+    connectWebSocket: function connectWebSocket() {
+      var vm = this;
+      var socketTask = uni.connectSocket({
+        url: 'ws://localhost:9790/IM/online/' + vm.globalData.userInfo.openid,
+        complete: function complete() {}
+      });
+      socketTask.onError(function (callback) {
+        console.log("AppWebSocket发送错误：" + callback.errMsg);
+      });
+      socketTask.onOpen(function (callback) {
+        console.log("AppWebSocket连接成功：" + callback.data);
+      });
+      socketTask.onClose(function (callback) {
+        console.log("App连接关闭");
+        vm.globalData.unreadCount = 0;
+      });
+      socketTask.onMessage(function (callback) {
+        vm.globalData.unreadCount += new Number(callback.data);
+        if (vm.globalData.unreadCount > 0) {
+          // 展示从左边数第四个tabbar显示红点，代表有消息未读
+          uni.showTabBarRedDot({
+            index: 4
+          });
+        } else {
+          uni.hideTabBarRedDot({
+            index: 4
+          });
+        }
+      });
+      vm.globalData.socketTask = socketTask;
     },
     setNavBarInfo: function setNavBarInfo() {
-      // 获取系统信息
-      var systemInfo = wx.getSystemInfoSync();
-      // 胶囊按钮位置信息
-      var menuButtonInfo = wx.getMenuButtonBoundingClientRect();
-      // 导航栏高度 = 状态栏到胶囊的间距（胶囊距上距离-状态栏高度） * 2 + 胶囊高度 + 状态栏高度
+      var menuButtonInfo = wx.getMenuButtonBoundingClientRect(); // 胶囊按钮位置信息
+      var systemInfo = wx.getSystemInfoSync(); // 获取系统信息
       this.globalData.navBarHeight = (menuButtonInfo.top - systemInfo.statusBarHeight) * 2 + menuButtonInfo.height + systemInfo.statusBarHeight;
       this.globalData.navBarHeight = this.globalData.navBarHeight * 750 / wx.getSystemInfoSync().windowWidth;
-      //console.log(this.globalData.navBarHeight)
       this.globalData.menuBotton = menuButtonInfo.top - systemInfo.statusBarHeight;
       this.globalData.menuRight = systemInfo.screenWidth - menuButtonInfo.right;
       this.globalData.menuHeight = menuButtonInfo.height;
@@ -446,6 +363,7 @@ var _default = {
       this.statusBarHeight = systemInfo.statusBarHeight;
       this.screenWidth = systemInfo.screenWidth;
     },
+    // 获取手机页面真实高度
     getPagesHeight: function getPagesHeight() {
       var that = this;
       uni.getSystemInfo({
