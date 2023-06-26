@@ -101,25 +101,25 @@ var components
 try {
   components = {
     MyLogin: function () {
-      return __webpack_require__.e(/*! import() | components/MyLogin/MyLogin */ "components/MyLogin/MyLogin").then(__webpack_require__.bind(null, /*! @/components/MyLogin/MyLogin.vue */ 273))
+      return __webpack_require__.e(/*! import() | components/MyLogin/MyLogin */ "components/MyLogin/MyLogin").then(__webpack_require__.bind(null, /*! @/components/MyLogin/MyLogin.vue */ 271))
     },
     uDropdown: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-dropdown/u-dropdown */ "node-modules/uview-ui/components/u-dropdown/u-dropdown").then(__webpack_require__.bind(null, /*! uview-ui/components/u-dropdown/u-dropdown.vue */ 306))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-dropdown/u-dropdown */ "node-modules/uview-ui/components/u-dropdown/u-dropdown").then(__webpack_require__.bind(null, /*! uview-ui/components/u-dropdown/u-dropdown.vue */ 304))
     },
     uDropdownItem: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-dropdown-item/u-dropdown-item */ "node-modules/uview-ui/components/u-dropdown-item/u-dropdown-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-dropdown-item/u-dropdown-item.vue */ 313))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-dropdown-item/u-dropdown-item */ "node-modules/uview-ui/components/u-dropdown-item/u-dropdown-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-dropdown-item/u-dropdown-item.vue */ 311))
     },
     uEmpty: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-empty/u-empty */ "node-modules/uview-ui/components/u-empty/u-empty").then(__webpack_require__.bind(null, /*! uview-ui/components/u-empty/u-empty.vue */ 259))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-empty/u-empty */ "node-modules/uview-ui/components/u-empty/u-empty").then(__webpack_require__.bind(null, /*! uview-ui/components/u-empty/u-empty.vue */ 257))
     },
     uButton: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-button/u-button */ "node-modules/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 217))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-button/u-button */ "node-modules/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 215))
     },
     uIcon: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 202))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 200))
     },
     OrderCard: function () {
-      return __webpack_require__.e(/*! import() | components/OrderCard/OrderCard */ "components/OrderCard/OrderCard").then(__webpack_require__.bind(null, /*! @/components/OrderCard/OrderCard.vue */ 320))
+      return __webpack_require__.e(/*! import() | components/OrderCard/OrderCard */ "components/OrderCard/OrderCard").then(__webpack_require__.bind(null, /*! @/components/OrderCard/OrderCard.vue */ 318))
     },
   }
 } catch (e) {
@@ -253,25 +253,15 @@ var _default = {
         label: '全部订单'
       }, {
         value: 1,
-        label: '使用中'
+        label: '待支付'
       }, {
         value: 2,
-        label: '已预约'
+        label: '已支付'
       }, {
         value: 3,
         label: '已完成'
       }],
       sortValue: 0,
-      sortOption: [{
-        value: 0,
-        label: '默认排序'
-      }, {
-        value: 1,
-        label: '下单时间'
-      }, {
-        value: 2,
-        label: '预约时间'
-      }],
       storeValue: 0,
       storeOption: [{
         value: 0,
@@ -426,17 +416,25 @@ var _default = {
                 _this3.pageNum = 1;
                 _this3.isloading = false;
                 _this3.orderLists = [];
+                // 全部订单
                 if (e === 0) {
                   _this3.orderStatus = e;
+                  console.log(_this3.orderStatus);
                 }
+                // 待支付
                 if (e === 1) {
                   _this3.orderStatus = e;
+                  console.log(_this3.orderStatus);
                 }
+                // 已支付
                 if (e === 2) {
                   _this3.orderStatus = e;
+                  console.log(_this3.orderStatus);
                 }
+                // 已完成
                 if (e === 3) {
                   _this3.orderStatus = e;
+                  console.log(_this3.orderStatus);
                 }
                 _this3.getOrderData();
               case 8:

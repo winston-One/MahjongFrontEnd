@@ -96,27 +96,7 @@ module.exports = _toPropertyKey, module.exports.__esModule = true, module.export
 
 /***/ }),
 
-/***/ 13:
-/*!*******************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
-  \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _typeof(obj) {
-  "@babel/helpers - typeof";
-
-  return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
-    return typeof obj;
-  } : function (obj) {
-    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(obj);
-}
-module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
-
-/***/ }),
-
-/***/ 131:
+/***/ 129:
 /*!***************************************************************!*\
   !*** F:/Hi雀神/MahjongFrontEnd/page_subscribe/lib/parseData.js ***!
   \***************************************************************/
@@ -213,7 +193,12 @@ function getDate() {
   var myddy1 = time.getDay();
   body1.week = weekday[myddy1];
   body1.year = time.getFullYear();
-  body1.data = [time.getMonth() + 1, time.getDate()].join('-');
+  time.setMonth(time.getMonth() + 1);
+  if (time.getMonth() < 10) {
+    var month = "0" + time.getMonth();
+    console.log(time.getMonth());
+  }
+  body1.data = [month, time.getDate()].join('-');
   date.push(body1);
   for (var i = 1; i < 7; i++) {
     var now = new Date(base += oneDay);
@@ -221,7 +206,12 @@ function getDate() {
     var body = new Object();
     body.week = weekday[myddy];
     body.year = now.getFullYear();
-    body.data = [now.getMonth() + 1, now.getDate()].join('-');
+    now.setMonth(now.getMonth() + 1);
+    if (now.getMonth() < 10) {
+      var month1 = "0" + time.getMonth();
+      console.log(time.getMonth());
+    }
+    body.data = [month1, now.getDate()].join('-');
     date.push(body);
     data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
   }
@@ -233,6 +223,26 @@ module.exports = {
   getTimeRange: getTimeRange,
   getDate: getDate
 };
+
+/***/ }),
+
+/***/ 13:
+/*!*******************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(obj);
+}
+module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
 
@@ -304,7 +314,7 @@ module.exports = _setPrototypeOf, module.exports.__esModule = true, module.expor
 
 /***/ }),
 
-/***/ 162:
+/***/ 160:
 /*!************************************************************!*\
   !*** F:/Hi雀神/MahjongFrontEnd/page_subscribe/lib/commen.js ***!
   \************************************************************/
@@ -3212,7 +3222,7 @@ module.exports = _nonIterableSpread, module.exports.__esModule = true, module.ex
 
 /***/ }),
 
-/***/ 214:
+/***/ 212:
 /*!***********************************************************************************!*\
   !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-icons/components/uni-icons/icons.js ***!
   \***********************************************************************************/
@@ -10901,7 +10911,7 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 299:
+/***/ 297:
 /*!***********************************************************************************!*\
   !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/popup.js ***!
   \***********************************************************************************/
@@ -10940,6 +10950,44 @@ var _default = {
   }
 };
 exports.default = _default;
+
+/***/ }),
+
+/***/ 298:
+/*!****************************************************************************************!*\
+  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/index.js ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 299));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 300));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 301));
+var _default = {
+  en: _en.default,
+  'zh-Hans': _zhHans.default,
+  'zh-Hant': _zhHant.default
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ 299:
+/*!***************************************************************************************!*\
+  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/en.json ***!
+  \***************************************************************************************/
+/*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"uni-popup.cancel\":\"cancel\",\"uni-popup.ok\":\"ok\",\"uni-popup.placeholder\":\"pleace enter\",\"uni-popup.title\":\"Hint\",\"uni-popup.shareTitle\":\"Share to\"}");
 
 /***/ }),
 
@@ -10989,44 +11037,6 @@ module.exports = runtime;
 /***/ }),
 
 /***/ 300:
-/*!****************************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/index.js ***!
-  \****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 301));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 302));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 303));
-var _default = {
-  en: _en.default,
-  'zh-Hans': _zhHans.default,
-  'zh-Hant': _zhHant.default
-};
-exports.default = _default;
-
-/***/ }),
-
-/***/ 301:
-/*!***************************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/en.json ***!
-  \***************************************************************************************/
-/*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
-/***/ (function(module) {
-
-module.exports = JSON.parse("{\"uni-popup.cancel\":\"cancel\",\"uni-popup.ok\":\"ok\",\"uni-popup.placeholder\":\"pleace enter\",\"uni-popup.title\":\"Hint\",\"uni-popup.shareTitle\":\"Share to\"}");
-
-/***/ }),
-
-/***/ 302:
 /*!********************************************************************************************!*\
   !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hans.json ***!
   \********************************************************************************************/
@@ -11037,7 +11047,7 @@ module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\
 
 /***/ }),
 
-/***/ 303:
+/***/ 301:
 /*!********************************************************************************************!*\
   !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hant.json ***!
   \********************************************************************************************/
@@ -11772,7 +11782,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 388:
+/***/ 386:
 /*!*******************************************************************************************************!*\
   !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
   \*******************************************************************************************************/

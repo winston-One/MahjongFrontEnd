@@ -45,11 +45,11 @@
           },
           {
             value: 1,
-            label: '使用中',
+            label: '待支付',
           },
           {
             value: 2,
-            label: '已预约',
+            label: '已支付',
           },
           {
             value: 3,
@@ -57,19 +57,6 @@
           },
         ],
         sortValue: 0,
-        sortOption:[{
-            value: 0,
-            label: '默认排序',
-          },
-          {
-            value: 1,
-            label: '下单时间',
-          },
-          {
-            value: 2,
-            label: '预约时间',
-          }
-        ],
         storeValue: 0,
         storeOption: [{
             value: 0,
@@ -162,7 +149,7 @@
         orderObj.orderStatus = this.orderStatus
         orderObj.pageNum = this.pageNum
         orderObj.storeId = this.storeId
-        let data = await getApp().UniRequest("/order/getAllOrderByUser", "POST",orderObj, "",1)
+        let data = await getApp().UniRequest("/order/getAllOrderByUser", "POST", orderObj, "",1)
         if (data.code !== 20000) {
           return uni.showToast({
             title: '数据请求失败！',
@@ -179,17 +166,25 @@
         this.pageNum = 1
         this.isloading = false
         this.orderLists = []
+        // 全部订单
         if (e === 0) {
           this.orderStatus = e
+          console.log(this.orderStatus)
         }
+        // 待支付
         if (e === 1) {
           this.orderStatus = e
+          console.log(this.orderStatus)
         }
+        // 已支付
         if (e === 2) {
           this.orderStatus = e
+          console.log(this.orderStatus)
         }
+        // 已完成
         if (e === 3) {
           this.orderStatus = e
+          console.log(this.orderStatus)
         }
         this.getOrderData()
       },

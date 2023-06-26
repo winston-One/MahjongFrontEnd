@@ -1,7 +1,7 @@
 <template>
   <view class="order-detail">
     <view class="order_status">
-      <view>{{order.orderStatus==1? '已完成':order.orderStatus==2? '使用中':'已预约'}}</view>
+      <view>{{order.orderStatus==1? '待支付':order.orderStatus==2? '已支付':order.orderStatus==3? '已完成':'未支付'}}</view>
     </view>
     <view class="order_info">
       <image :src="order.imgUrl"></image>

@@ -13,3 +13,4 @@ unpackage/
 
 # python
 *.pyc
+*.json

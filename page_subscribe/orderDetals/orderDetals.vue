@@ -121,11 +121,14 @@
       this.startTime = String(order.startTime).substring(0, 10) + ' ' + String(order.startTime).substring(10 + 1);
       this.endTime = String(order.endTime).substring(0, 10) + ' ' + String(order.endTime).substring(10 + 1);
       this.payTime = String(order.payTime).substring(0, 10) + ' ' + String(order.payTime).substring(10 + 1);
-      if(this.payTime == null) {
+      if(this.payTime == null || typeof(this.payTime)==="undefined") {
         this.payTime = '待支付'
       }
-      this.createTime = String(order.createTime).substring(0, 10) + ' ' + String(order.createTime).substring(10 + 1);
-
+      if(this.createTime == null || typeof(this.createTime)==="undefined") {
+        this.createTime = this.getNowDate()
+      } else {
+          this.createTime = String(order.createTime).substring(0, 10) + ' ' + String(order.createTime).substring(10 + 1);
+      }
       this.roomName = order.roomName
       this.price = order.price
       this.orderStatus = order.orderStatus
@@ -145,6 +148,17 @@
       this.coupon = data.data.title;
     },
     methods: {
+      getNowDate() {
+      	var myDate = new Date;
+      	var year = myDate.getFullYear(); //获取当前年
+      	var mon = myDate.getMonth() + 1; //获取当前月
+      	var date = myDate.getDate(); //获取当前日
+      	var hours = myDate.getHours(); //获取当前小时
+      	var minutes = myDate.getMinutes(); //获取当前分钟
+      	var seconds = myDate.getSeconds(); //获取当前秒
+      	var now = year + "-" + mon + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
+      	return now;
+      },
       readCoupon() {
         uni.navigateTo({
           url:"/page_mine/myCoupon/myCoupon"

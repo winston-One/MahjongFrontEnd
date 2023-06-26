@@ -117,21 +117,18 @@
         couponIndex: -1,
       };
     },
-    onShow() {
-      
-    },
     async onLoad(option) {
       let that = this
-      uni.request({ // 获取ip地址
-      	url: 'https://pv.sohu.com/cityjson?ie=utf-8',
-      	method: 'POST',
-      	success: (res) => {
-      		const reg = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/;
-      		let ip = reg.exec(res.data);
-          that.ip = ip;
-      	}
-      })
-      console.log(this.ip[0]);
+      // uni.request({ // 获取ip地址
+      // 	url: 'https://pv.sohu.com/cityjson?ie=utf-8',
+      // 	method: 'POST',
+      // 	success: (res) => {
+      // 		const reg = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/;
+      // 		let ip = reg.exec(res.data);
+      //     that.ip = ip;
+      // 	}
+      // })
+      // console.log(this.ip[0]);
       var order = JSON.parse(decodeURIComponent(option.orderResults))
       this.store = order.store
       this.imgUrl = order.room.photoAdd
@@ -180,17 +177,36 @@
         let body = new Object()
         body.roomId = this.roomId
         body.userId = getApp().globalData.openid
-        body.status = 2
+        body.status = 3
         body.storeId = getApp().globalData.storeId
         body.price = this.price
         body.startTime = Date.parse(this.startTime)
-        body.endTime = Date.parse(this.startTime)
+        body.endTime = Date.parse(this.endTime)
         let data = await getApp().UniRequest("/order/saveOneUserOrder", "POST", body, "",1)
+        uni.hideLoading()
         if (data.code !== 20000) {
           return uni.showToast({
-            title: '下单失败！',
+            title: data.errorMsg,
             duration: 1500,
             icon: 'none',
+          })
+        }else {
+          uni.showModal({
+          	title: '提示',
+          	content: '支付'+this.price+"元",
+            confirmColor: "#7fabf7",
+            confirmText: "支付",
+          	success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击确定');
+                uni.navigateTo({
+                  url: "/pages/myOrder/myOrder"
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消');
+                return
+              }
+            }
           })
         }
         var orderNo = data.data
@@ -209,55 +225,54 @@
         request.openid = getApp().globalData.openid
         request.realPrice = this.price
         request.orderNo = orderNo
-        request.ip = this.ip[0]
-        let res = await getApp().UniRequest("/business/pay", "POST", request, '', 1)
-        console.log('res-----', res)
-        let request1 = new Object()
-        request1.userId = getApp().globalData.openid
-        var isVoucher = 0
-        var voucherId = 'winston'
-        if(this.meituan!==null&&this.coupon==null) {
-          isVoucher=1
-          voucherId = this.meituan.id
-        }
-        if(this.coupon!==null&&this.meituan==null) {
-          isVoucher=2
-          voucherId = this.coupon.id
-        }
-        request1.isVoucher = isVoucher
-        request1.orderId = orderNo
-        request1.voucherId = voucherId
-        uni.hideLoading()
+        // let res = await getApp().UniRequest("/business/pay", "POST", request, '', 1)
+        // console.log('res-----', res)
+        // let request1 = new Object()
+        // request1.userId = getApp().globalData.openid
+        // var isVoucher = 0
+        // var voucherId = 'winston'
+        // if(this.meituan!==null&&this.coupon==null) {
+        //   isVoucher=1
+        //   voucherId = this.meituan.id
+        // }
+        // if(this.coupon!==null&&this.meituan==null) {
+        //   isVoucher=2
+        //   voucherId = this.coupon.id
+        // }
+        // request1.isVoucher = isVoucher
+        // request1.orderId = orderNo
+        // request1.voucherId = voucherId
+        // uni.hideLoading()
         // 下单成功之后就调用支付API，并且后端处理支付回调逻辑
-        if (res.code == 20000) {
-        	let payRes = res.data
-        	console.log('payRes-----', payRes)
+        // if (res.code == 20000) {
+        // 	let payRes = res.data
+        // 	console.log('payRes-----', payRes)
           // 调用uniapp的支付API，底层会调用微信的API
-        	uni.requestPayment({
-        		provider: 'wxpay', // 服务提供商，通过 uni.getProvider 获取。
-        		timeStamp: payRes.timeStamp, // 时间戳从1970年1月1日至今的秒数，即当前的时间。
-        		nonceStr: payRes.nonceStr, // 随机字符串，长度为32个字符以下。
-        		package: payRes.packageValue, // 统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=xx。
-        		signType: payRes.signType, // 签名算法，应与后台下单时的值一致
-        		paySign: payRes.paySign, // 签名，具体签名方案参见 微信小程序支付文档
-        		success: async function(e) {
-              let calldata = await getApp().UniRequest("/PointAfter/pointAfterDo", "POST", request1, '', 1);
-              if (calldata.code === 20000) {
-                uni.navigateTo({
-                	url: "/pages/myOrder/myOrder"
-                })
-              }
-        		},
-        		async fail(err) {
-        			//支付失败后调用接口取消订单
-        			let body = new Object()
-        			body.userId = getApp().globalData.openid
-              body.id = orderNo
-        			let cancelPayRes = await getApp().UniRequest("/order/deleteOrder","POST", body, "", 1)
-        			console.log('取消支付。。。')
-        		}
-        	});
-        }
+        	// uni.requestPayment({
+        	// 	provider: 'wxpay', // 服务提供商，通过 uni.getProvider 获取。
+        	// 	timeStamp: payRes.timeStamp, // 时间戳从1970年1月1日至今的秒数，即当前的时间。
+        	// 	nonceStr: payRes.nonceStr, // 随机字符串，长度为32个字符以下。
+        	// 	package: payRes.packageValue, // 统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=xx。
+        	// 	signType: payRes.signType, // 签名算法，应与后台下单时的值一致
+        	// 	paySign: payRes.paySign, // 签名，具体签名方案参见 微信小程序支付文档
+        		// success: async function(e) {
+          //     let calldata = await getApp().UniRequest("/PointAfter/pointAfterDo", "POST", request1, '', 1);
+          //     if (calldata.code === 20000) {
+          //       uni.navigateTo({
+          //       	url: "/pages/myOrder/myOrder"
+          //       })
+          //     }
+        		// },
+        		// async fail(err) {
+        		// 	//支付失败后调用接口取消订单
+        		// 	let body = new Object()
+        		// 	body.userId = getApp().globalData.openid
+          //     body.id = orderNo
+        		// 	let cancelPayRes = await getApp().UniRequest("/order/deleteOrder","POST", body, "", 1)
+        		// 	console.log('取消支付。。。')
+        		// }
+        	// });
+        // }
       },
       cancelMeituan() {
         this.meituan = null
@@ -308,7 +323,7 @@
           return
         }
         this.popshowCoupon = true
-      }
+      },
     }
   }
 </script>

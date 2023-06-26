@@ -81,7 +81,12 @@
    var myddy1 = time.getDay()
    body1.week = weekday[myddy1]
    body1.year = time.getFullYear()
-   body1.data = [time.getMonth() + 1, time.getDate()].join('-')
+   time.setMonth(time.getMonth() + 1)
+   if(time.getMonth()<10){
+    var month = "0"+time.getMonth()
+    console.log(time.getMonth())
+   }
+   body1.data = [month, time.getDate()].join('-')
    date.push(body1);
    for (var i = 1; i < 7; i++) {
        var now = new Date(base += oneDay);
@@ -89,7 +94,12 @@
        var body = new Object();
        body.week = weekday[myddy]
        body.year = now.getFullYear()
-       body.data = [now.getMonth() + 1, now.getDate()].join('-')
+       now.setMonth(now.getMonth() + 1)
+       if(now.getMonth()<10){
+        var month1 = "0"+time.getMonth()
+        console.log(time.getMonth())
+       }
+       body.data = [month1, now.getDate()].join('-')
        date.push(body);
        data.push(Math.round((Math.random() - 0.5) * 20 + data[i - 1]));
    }

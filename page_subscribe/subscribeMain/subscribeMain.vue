@@ -100,6 +100,10 @@
       this.store = getApp().globalData.store
       // 通过自定义工具类获取近七天的日期
       this.DataList = parseData.getDate()
+      console.log("时间")
+      for(var a=0;a< this.DataList.length;a++){
+        console.log(this.DataList[a].year+this.DataList[a].data)
+      }
       this.localTime = this.DataList[0].year + '-' + this.DataList[0].data
       let body = new Object()
       // 在全局变量中获取门店id
@@ -157,6 +161,7 @@
         }
         uni.hideLoading()
         this.freeList = data.data
+        console.log(this.freeList)
         uni.setStorageSync("freeRanges",JSON.stringify(this.freeList))
       },
       // 预约，处理好最终预约时间,如果有未支付的订单是不能预约的，只能先去支付或者取消订单
@@ -168,14 +173,14 @@
             icon: 'none',
           })
         }
-        let data = await getApp().UniRequest("/order/selectIsDoingOrder", "GET", '', "",1)
-        if (data.code === 20000) {
-          return uni.showToast({
-            title: '当前有尚未支付的订单',
-            duration: 1500,
-            icon: 'none',
-          })
-        }
+        // let data = await getApp().UniRequest("/order/selectIsDoingOrder", "GET", '', "",1)
+        // if (data.code === 20000) {
+        //   return uni.showToast({
+        //     title: '当前有尚未支付的订单',
+        //     duration: 1500,
+        //     icon: 'none',
+        //   })
+        // }
         const start = this.ranges.findIndex(item=> item == 1)
         const end = this.ranges.lastIndexOf(1)
         var orderBody = new Object()
