@@ -99,7 +99,7 @@
     async onLoad() {
       this.store = getApp().globalData.store
       // 通过自定义工具类获取近七天的日期
-      this.DataList = parseData.getDate()
+      this.DataList = parseData.getSeven()
       console.log("时间")
       for(var a=0;a< this.DataList.length;a++){
         console.log(this.DataList[a].year+this.DataList[a].data)
@@ -110,8 +110,7 @@
       body.storeId = getApp().globalData.storeId
       body.date = this.localTime
       // 获取门店所有房间信息，包括是否空闲和预约信息
-      let data = await getApp().UniRequest("/reservation/getAll", "GET", body, "",1)
-      console.log("预约房间：" + data)
+      let data = await getApp().UniRequest("/reservation/getAll", "GET", body, "", 1)
       if (data.code !== 20000) {
         return uni.showToast({
           title: '数据请求失败！',
@@ -189,6 +188,8 @@
         var date = new Date(this.localTime)
         date.setDate(date.getDate()+1);
         var newdate = date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate();
+        // 每月最后一天预定次日会导致该次日变为当月的1号 todo
+        
         // 如果所选的开始时间段是次日，就得需要解析日期
         if(this.freeList[start].isNextDay===1){
           orderBody.startDateTime = newdate +' '+ String(this.freeList[start].time).substring(0,5)

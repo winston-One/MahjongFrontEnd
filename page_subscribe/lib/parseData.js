@@ -106,8 +106,44 @@
    //var newdate = date.reverse()
    return date;
  }
-module.exports = {
+ function getSeven() {
+   let dates = [];  
+       let currentDate = new Date(); // 获取当前日期  
+     
+       // 添加今天的日期  
+       let year = currentDate.getFullYear();  
+       let month = (currentDate.getMonth() + 1).toString().padStart(2, '0');  
+       let day = currentDate.getDate().toString().padStart(2, '0');  
+       let formattedDate = `${month}-${day}`;  
+       let dayOfWeek = currentDate.toLocaleString('zh-CN', { weekday: 'long' });  
+       dates.push({  
+           data: formattedDate,  
+           week: dayOfWeek,  
+           year: year  
+       });  
+     
+       // 生成接下来的六天日期  
+       for (let i = 1; i < 7; i++) {  
+           currentDate.setDate(currentDate.getDate() + 1);  
+           year = currentDate.getFullYear();  
+           month = (currentDate.getMonth() + 1).toString().padStart(2, '0');  
+           day = currentDate.getDate().toString().padStart(2, '0');  
+           formattedDate = `${month}-${day}`;  
+           dayOfWeek = currentDate.toLocaleString('zh-CN', { weekday: 'long' });  
+     
+           dates.push({  
+               data: formattedDate,  
+               week: dayOfWeek,  
+               year: year  
+           });  
+       }  
+     
+       return dates;  
+ }
+ 
+ module.exports = {
 	dateTimeStr,
   getTimeRange,
   getDate,
+  getSeven,
 }

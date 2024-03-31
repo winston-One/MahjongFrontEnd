@@ -42,7 +42,7 @@
         <view>卡券</view>
         <view class="coupon" @click="useCouponPop">
           <view>
-            {{couponList.length === 0?'暂无可用卡券':coupon!==null?coupon.title:'选择卡券'}}
+            {{couponList === [] || couponList === null ?'暂无可用卡券':coupon!==null?coupon.title:'选择卡券'}}
           </view>
           <u-icon name="arrow-right" color="#7fa1f7"></u-icon>
         </view>
@@ -51,7 +51,7 @@
         <view>团购券</view>
         <view class="meituan" @click="useMeituanPop">
           <view>
-            {{meituanList.length === 0?'暂无可用团购券':meituan!==null?meituan.title+'小时畅玩券':'选择团购券'}}
+            {{meituanList === [] || meituanList === null ?'暂无可用团购券':meituan!==null?meituan.title+'小时畅玩券':'选择团购券'}}
           </view>
           <u-icon name="arrow-right" color="#7fa1f7"></u-icon>
         </view>
@@ -199,7 +199,7 @@
           	success: function (res) {
               if (res.confirm) {
                 console.log('用户点击确定');
-                uni.navigateTo({
+                uni.switchTab({
                   url: "/pages/myOrder/myOrder"
                 })
               } else if (res.cancel) {

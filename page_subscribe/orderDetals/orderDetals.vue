@@ -108,9 +108,6 @@
         coupon:'',
       };
     },
-    onShow() {
-      
-    },
     async onLoad(option) {
       var order = JSON.parse(decodeURIComponent(option.orderDetals))
       var date = new Date()

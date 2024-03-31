@@ -15,3 +15,8 @@ p
 .unpackage/dist/dev/mp-weixin/common/runtime.js,d\c\dc976aa833feb7db75ba3525c82ce847de894031
 m
 =unpackage/dist/dev/.sourcemap/mp-weixin/common/runtime.js.map,2\f\2fe4873c0a96fea4eb0c169b3785747d25bfb5d2
+Z
+*page_subscribe/submitOrder/submitOrder.vue,d\3\d30934b5465e185c1731ac8ad1ecf2b8030f0026
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302

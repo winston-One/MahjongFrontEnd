@@ -208,7 +208,7 @@
     				that.globalData.pageHeight = res.windowHeight * pxToRpxScale;
     			}
     		});
-    		console.log(this.globalData.pageHeight, '页面高度')
+    		// console.log(this.globalData.pageHeight, '页面高度')
     	}
     }
 	}

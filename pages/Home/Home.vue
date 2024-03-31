@@ -119,6 +119,7 @@
         token: 'winston',
 				title: '国粹娱乐中心',
         store: '安鸿店',
+        storeId: '97901',
         storeIndex: 0,
         selectcustomStyle:{
         	marginLeft:'160rpx',
@@ -273,6 +274,7 @@
       },
       confirmStore(item,index){
         this.store = item.storeName
+        this.storeId = item.storeId
         getApp().globalData.store = this.store
         getApp().globalData.storeId = this.storeId
         this.storeIndex = index
