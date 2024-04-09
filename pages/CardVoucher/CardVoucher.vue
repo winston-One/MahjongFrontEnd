@@ -69,8 +69,8 @@
     async onLoad() {
       // 如果将登录功能打开，就需要通过token，后续判断登录了才能消券
       //this.token = uni.getStorageSync('Authority')
-      let data = await getApp().UniRequest("/voucher/allvoucher", "POST", "", "",1)
-      if (data.code !== 20000) {
+      let data = await getApp().UniRequest("/voucher/allVoucher", "POST", "", "",1)
+      if (data.code !== 20000) {  
         return uni.showToast({
           title: '数据请求失败！',
           duration: 1500,
@@ -149,7 +149,7 @@
         body.userId = getApp().globalData.openid
         body.receiptCode = this.redeemCode
         body.count = 1
-        let data = await getApp().UniRequest("/DianPing/verification", "POST", body, "",1)
+        let data = await getApp().UniRequest("/DianPing/verification", "POST", body, "", 1)
         if (data.code === 1008) {
           return uni.showToast({
             title: '该券已销',

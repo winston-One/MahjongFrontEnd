@@ -98,7 +98,7 @@
         dataTime: '',
         startTime: '',
         endTime: '',
-        duration: 9.0,
+        duration: 0,
         coupon: null,
         meituan: null,
         meituanList: [],//{id:'12313',title:5,price:80},{id:'1313',title:6,price:80}],
@@ -182,7 +182,7 @@
         body.price = this.price
         body.startTime = Date.parse(this.startTime)
         body.endTime = Date.parse(this.endTime)
-        let data = await getApp().UniRequest("/order/saveOneUserOrder", "POST", body, "",1)
+        let data = await getApp().UniRequest("/order/saveOneUserOrder", "POST", body, "", 1)
         uni.hideLoading()
         if (data.code !== 20000) {
           return uni.showToast({
@@ -193,7 +193,7 @@
         }else {
           uni.showModal({
           	title: '提示',
-          	content: '支付'+this.price+"元",
+          	content: '支付' + this.price + "元",
             confirmColor: "#7fabf7",
             confirmText: "支付",
           	success: function (res) {
@@ -202,6 +202,8 @@
                 uni.switchTab({
                   url: "/pages/myOrder/myOrder"
                 })
+                // 模拟支付扣钱
+                
               } else if (res.cancel) {
                 console.log('用户点击取消');
                 return
@@ -220,11 +222,11 @@
         		}
         	})
         }
-        var that = this
-        let request = new Object()
-        request.openid = getApp().globalData.openid
-        request.realPrice = this.price
-        request.orderNo = orderNo
+        // var that = this
+        // let request = new Object()
+        // request.openid = getApp().globalData.openid
+        // request.realPrice = this.price
+        // request.orderNo = orderNo
         // let res = await getApp().UniRequest("/business/pay", "POST", request, '', 1)
         // console.log('res-----', res)
         // let request1 = new Object()
@@ -277,7 +279,7 @@
       cancelMeituan() {
         this.meituan = null
         this.meituanIndex = -1
-        if(this.coupon==null&&this.meituan==null) {
+        if(this.coupon == null && this.meituan == null) {
           this.price = this.originPrice
         }
         this.popshowMeittuan = false

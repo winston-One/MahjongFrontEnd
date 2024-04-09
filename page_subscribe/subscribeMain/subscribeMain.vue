@@ -123,7 +123,7 @@
     methods: {
       // 点击预约，打开弹窗，并且开始选择预约时间
       async reserveRoom(room) {
-        this.ranges=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        this.ranges = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         this.roomId = room.roomId
         this.room = room
         this.getDateTime()
@@ -150,7 +150,7 @@
         uni.showLoading({
           title: '加载中'
         })
-        let data = await getApp().UniRequest("/reservation/get", "GET", body, "",1)
+        let data = await getApp().UniRequest("/reservation/get", "GET", body, "", 1)
         if (data.code !== 20000) {
           return uni.showToast({
             title: '数据请求失败！',
@@ -161,7 +161,7 @@
         uni.hideLoading()
         this.freeList = data.data
         console.log(this.freeList)
-        uni.setStorageSync("freeRanges",JSON.stringify(this.freeList))
+        uni.setStorageSync("freeRanges", JSON.stringify(this.freeList))
       },
       // 预约，处理好最终预约时间,如果有未支付的订单是不能预约的，只能先去支付或者取消订单
       async reserve() {
@@ -180,14 +180,17 @@
         //     icon: 'none',
         //   })
         // }
-        const start = this.ranges.findIndex(item=> item == 1)
+        const start = this.ranges.findIndex(item => item == 1)
         const end = this.ranges.lastIndexOf(1)
         var orderBody = new Object()
         orderBody.store = this.store
         orderBody.room = this.room
+        
         var date = new Date(this.localTime)
+        // 获取次日的日期
         date.setDate(date.getDate()+1);
-        var newdate = date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate();
+        var newdate = date.getFullYear()+'-'+(date.getMonth()+1).toString().padStart(2, '0')
+            + '-' + date.getDate().toString().padStart(2, '0');
         // 每月最后一天预定次日会导致该次日变为当月的1号 todo
         
         // 如果所选的开始时间段是次日，就得需要解析日期
@@ -198,11 +201,11 @@
         }
         // 如果所选的结束时间段是次日，就得需要解析日期
         if(this.freeList[end].isNextDay===1){
-          orderBody.endDateTime = newdate +' '+ String(this.freeList[end].time).substring(0,5)
+          orderBody.endDateTime = newdate +' '+ String(this.freeList[end+1].time).substring(0,5)
         }else {
-          orderBody.endDateTime = this.localTime +' '+ String(this.freeList[end].time).substring(0,5)
+          orderBody.endDateTime = this.localTime +' '+ String(this.freeList[end+1].time).substring(0,5)
         }
-        orderBody.date = this.localTime
+        orderBody.date = this.localTime// 预定日期(年月日)
         orderBody.totalHour = this.totalHour
         orderBody.price = Number(this.totalHour*this.room.pricePerHour)
         uni.navigateTo({
@@ -215,7 +218,7 @@
         if (this.ranges[index]==0) {
           this.ranges[index]=1
           // isHaveOne和isHaveOne1方法的意思看下方注释
-          if (this.isHaveOne(index)&&this.isHaveOne1(index)) {
+          if (this.isHaveOne(index) && this.isHaveOne1(index)) {
             this.ranges=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
             this.ranges[index]=1
           }
@@ -244,19 +247,19 @@
           }
         }
         if(isSelected) {
-          this.ranges[index]=0
+          this.ranges[index] = 0
           return
         }
         for (let i= index+1 ;i<this.ranges.length;i++){
-          if(this.ranges[i]==1) {
+          if(this.ranges[i] == 1) {
             this.ranges[i] = 0
           }
         }
       },
       // 判断当前要选的时间段的前面时间段是否已经没有点击过
       isHaveOne(index) {
-        for (let i= 0 ;i<index;i++){
-          if(this.ranges[i]==1) {
+        for (let i= 0; i < index; i++){
+          if(this.ranges[i] == 1) {
             return false;
           }
         }
@@ -264,7 +267,7 @@
       },
       // 判断当前要选的时间段的后面时间段是否已经点击过
       isHaveOne1(index) {
-        for (let i= index+1 ;i<this.ranges.length;i++){
+        for (let i = index+1; i < this.ranges.length; i++){
           if(this.ranges[i]==1) {
             return true;
           }

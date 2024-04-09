@@ -149,7 +149,7 @@
         orderObj.orderStatus = this.orderStatus
         orderObj.pageNum = this.pageNum
         orderObj.storeId = this.storeId
-        let data = await getApp().UniRequest("/order/getAllOrderByUser", "POST", orderObj, "",1)
+        let data = await getApp().UniRequest("/order/getAllOrderByUser", "POST", orderObj, "", 1)
         if (data.code !== 20000) {
           return uni.showToast({
             title: '数据请求失败！',
@@ -159,7 +159,7 @@
         }
         uni.hideLoading()
         this.total = data.data.total
-        this.orderLists = [...this.orderLists,...data.data.records]
+        this.orderLists = [...this.orderLists, ...data.data.records]
         this.isloading = false
       },
       async orderChange(e) {
