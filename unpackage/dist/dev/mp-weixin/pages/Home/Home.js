@@ -2,7 +2,7 @@
 
 /***/ 63:
 /*!**********************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/main.js?{"page":"pages%2FHome%2FHome"} ***!
+  !*** F:/个人博客/MahjongFrontEnd/main.js?{"page":"pages%2FHome%2FHome"} ***!
   \**********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -23,7 +23,7 @@ createPage(_Home.default);
 
 /***/ 64:
 /*!***************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/pages/Home/Home.vue ***!
+  !*** F:/个人博客/MahjongFrontEnd/pages/Home/Home.vue ***!
   \***************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -64,7 +64,7 @@ component.options.__file = "pages/Home/Home.vue"
 
 /***/ 65:
 /*!**********************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/pages/Home/Home.vue?vue&type=template&id=2bc86734& ***!
+  !*** F:/个人博客/MahjongFrontEnd/pages/Home/Home.vue?vue&type=template&id=2bc86734& ***!
   \**********************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -86,7 +86,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ 66:
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!F:/Hi雀神/MahjongFrontEnd/pages/Home/Home.vue?vue&type=template&id=2bc86734& ***!
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!F:/个人博客/MahjongFrontEnd/pages/Home/Home.vue?vue&type=template&id=2bc86734& ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -154,7 +154,7 @@ render._withStripped = true
 
 /***/ 67:
 /*!****************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/pages/Home/Home.vue?vue&type=script&lang=js& ***!
+  !*** F:/个人博客/MahjongFrontEnd/pages/Home/Home.vue?vue&type=script&lang=js& ***!
   \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -170,7 +170,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ 68:
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!F:/Hi雀神/MahjongFrontEnd/pages/Home/Home.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!F:/个人博客/MahjongFrontEnd/pages/Home/Home.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -296,7 +296,6 @@ var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/r
 //
 //
 //
-//
 var _default = {
   data: function data() {
     return {
@@ -305,6 +304,7 @@ var _default = {
       token: 'winston',
       title: '国粹娱乐中心',
       store: '安鸿店',
+      storeId: '97901',
       storeIndex: 0,
       selectcustomStyle: {
         marginLeft: '160rpx',
@@ -406,7 +406,8 @@ var _default = {
               }));
             case 5:
               _this.filterOptions = data.data;
-            case 6:
+              _this.location = _this.filterOptions[0].address;
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -473,6 +474,7 @@ var _default = {
     },
     confirmStore: function confirmStore(item, index) {
       this.store = item.storeName;
+      this.storeId = item.storeId;
       getApp().globalData.store = this.store;
       getApp().globalData.storeId = this.storeId;
       this.storeIndex = index;
@@ -549,7 +551,7 @@ exports.default = _default;
 
 /***/ 69:
 /*!*************************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/pages/Home/Home.vue?vue&type=style&index=0&lang=scss& ***!
+  !*** F:/个人博客/MahjongFrontEnd/pages/Home/Home.vue?vue&type=style&index=0&lang=scss& ***!
   \*************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -565,7 +567,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ 70:
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!F:/Hi雀神/MahjongFrontEnd/pages/Home/Home.vue?vue&type=style&index=0&lang=scss& ***!
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!F:/个人博客/MahjongFrontEnd/pages/Home/Home.vue?vue&type=style&index=0&lang=scss& ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {

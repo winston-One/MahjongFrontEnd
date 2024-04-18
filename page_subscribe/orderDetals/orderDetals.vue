@@ -2,7 +2,7 @@
   <view class="submit-order">
       <view class="top">
         <view>所属门店</view>
-        <view class="top_store">国粹娱乐中心-{{store}}</view>
+        <view class="top_store">娱乐中心-{{store}}</view>
       </view>
       <view class="room">
         <image :src="imgUrl"></image>
@@ -108,20 +108,25 @@
         coupon:'',
       };
     },
+    onShow() {
+      
+    },
     async onLoad(option) {
       var order = JSON.parse(decodeURIComponent(option.orderDetals))
       var date = new Date()
-      this.dataTime = date.getFullYear()+'-'+date.getMonth()+'-'+date.getDate()
+      this.dataTime = this.getNowDate()
       this.store = order.storeName
       this.imgUrl = order.imgUrl
       this.orderNo = order.orderId
       this.startTime = String(order.startTime).substring(0, 10) + ' ' + String(order.startTime).substring(10 + 1);
       this.endTime = String(order.endTime).substring(0, 10) + ' ' + String(order.endTime).substring(10 + 1);
+	  // this.createTime = String(order.createTime).substring(0, 10) + ' ' + String(order.createTime).substring(10 + 1);
       this.payTime = String(order.payTime).substring(0, 10) + ' ' + String(order.payTime).substring(10 + 1);
       if(this.payTime == null || typeof(this.payTime)==="undefined") {
         this.payTime = '待支付'
       }
-      if(this.createTime == null || typeof(this.createTime)==="undefined") {
+	  console.log("createtime",order.createTime);
+      if(order.createTime === null || order.createTime === undefined) {
         this.createTime = this.getNowDate()
       } else {
           this.createTime = String(order.createTime).substring(0, 10) + ' ' + String(order.createTime).substring(10 + 1);
@@ -134,22 +139,29 @@
       this.voucherId = order.voucherId
       var body = new Object()
       body.voucherId = this.voucherId
+	  if(this.voucherId === undefined || this.voucherId === null) {
+		   body.voucherId = ""
+	  }
+	  console.log("voucherId", body.voucherId);
       let data = await getApp().UniRequest("/voucher/getOneVoucher", "GET", body, "",1)
       if (data.code !== 20000) {
+		  console.log(565656);
         return uni.showToast({
           title: '数据获取失败！',
           duration: 1500,
           icon: 'none',
         })
       }
-      this.coupon = data.data.title;
+	if (data.data !== null && data.data !== undefined) {
+		this.coupon = data.data.title;
+	  }
     },
     methods: {
       getNowDate() {
       	var myDate = new Date;
       	var year = myDate.getFullYear(); //获取当前年
-      	var mon = myDate.getMonth() + 1; //获取当前月
-      	var date = myDate.getDate(); //获取当前日
+      	var mon = (myDate.getMonth() + 1).toString().padStart(2, '0'); //获取当前月
+      	var date =  myDate.getDate().toString().padStart(2, '0'); //获取当前日
       	var hours = myDate.getHours(); //获取当前小时
       	var minutes = myDate.getMinutes(); //获取当前分钟
       	var seconds = myDate.getSeconds(); //获取当前秒
@@ -157,6 +169,13 @@
       	return now;
       },
       readCoupon() {
+		if(this.isVoucher!==2){
+			return uni.showToast({
+				title: '该订单未使用优惠券',
+				duration: 1500,
+				icon: 'none',
+			})
+		}
         uni.navigateTo({
           url:"/page_mine/myCoupon/myCoupon"
         })

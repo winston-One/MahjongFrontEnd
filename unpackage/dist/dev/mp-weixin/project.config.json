@@ -19,27 +19,10 @@
     "condition": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.30.3",
+  "libVersion": "3.4.1",
   "appid": "wx9643514640a291dc",
   "projectname": "国粹娱乐中心",
-  "condition": {
-    "search": {
-      "current": -1,
-      "list": []
-    },
-    "conversation": {
-      "current": -1,
-      "list": []
-    },
-    "game": {
-      "current": -1,
-      "list": []
-    },
-    "miniprogram": {
-      "current": -1,
-      "list": []
-    }
-  },
+  "condition": {},
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2

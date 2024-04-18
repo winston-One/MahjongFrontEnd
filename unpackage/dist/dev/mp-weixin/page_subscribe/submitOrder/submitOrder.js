@@ -2,7 +2,7 @@
 
 /***/ 140:
 /*!*********************************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/main.js?{"page":"page_subscribe%2FsubmitOrder%2FsubmitOrder"} ***!
+  !*** F:/个人博客/MahjongFrontEnd/main.js?{"page":"page_subscribe%2FsubmitOrder%2FsubmitOrder"} ***!
   \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -23,7 +23,7 @@ createPage(_submitOrder.default);
 
 /***/ 141:
 /*!**************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/page_subscribe/submitOrder/submitOrder.vue ***!
+  !*** F:/个人博客/MahjongFrontEnd/page_subscribe/submitOrder/submitOrder.vue ***!
   \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -64,7 +64,7 @@ component.options.__file = "page_subscribe/submitOrder/submitOrder.vue"
 
 /***/ 142:
 /*!*********************************************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/page_subscribe/submitOrder/submitOrder.vue?vue&type=template&id=f8c62194& ***!
+  !*** F:/个人博客/MahjongFrontEnd/page_subscribe/submitOrder/submitOrder.vue?vue&type=template&id=f8c62194& ***!
   \*********************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -86,7 +86,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ 143:
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!F:/Hi雀神/MahjongFrontEnd/page_subscribe/submitOrder/submitOrder.vue?vue&type=template&id=f8c62194& ***!
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!F:/个人博客/MahjongFrontEnd/page_subscribe/submitOrder/submitOrder.vue?vue&type=template&id=f8c62194& ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -128,17 +128,6 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var g0 = _vm.couponList.length
-  var g1 = _vm.meituanList.length
-  _vm.$mp.data = Object.assign(
-    {},
-    {
-      $root: {
-        g0: g0,
-        g1: g1,
-      },
-    }
-  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -150,7 +139,7 @@ render._withStripped = true
 
 /***/ 144:
 /*!***************************************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/page_subscribe/submitOrder/submitOrder.vue?vue&type=script&lang=js& ***!
+  !*** F:/个人博客/MahjongFrontEnd/page_subscribe/submitOrder/submitOrder.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -166,7 +155,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ 145:
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!F:/Hi雀神/MahjongFrontEnd/page_subscribe/submitOrder/submitOrder.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!F:/个人博客/MahjongFrontEnd/page_subscribe/submitOrder/submitOrder.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -280,7 +269,7 @@ var _default = {
       dataTime: '',
       startTime: '',
       endTime: '',
-      duration: 9.0,
+      duration: 0,
       coupon: null,
       meituan: null,
       meituanList: [],
@@ -374,7 +363,7 @@ var _default = {
     confirmReserve: function confirmReserve() {
       var _this2 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
-        var body, data, orderNo, that, request;
+        var body, data, orderNo;
         return _regenerator.default.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -415,9 +404,10 @@ var _default = {
                   success: function success(res) {
                     if (res.confirm) {
                       console.log('用户点击确定');
-                      uni.navigateTo({
+                      uni.switchTab({
                         url: "/pages/myOrder/myOrder"
                       });
+                      // 模拟支付扣钱
                     } else if (res.cancel) {
                       console.log('用户点击取消');
                       return;
@@ -436,11 +426,11 @@ var _default = {
                     }
                   });
                 }
-                that = _this2;
-                request = new Object();
-                request.openid = getApp().globalData.openid;
-                request.realPrice = _this2.price;
-                request.orderNo = orderNo;
+                // var that = this
+                // let request = new Object()
+                // request.openid = getApp().globalData.openid
+                // request.realPrice = this.price
+                // request.orderNo = orderNo
                 // let res = await getApp().UniRequest("/business/pay", "POST", request, '', 1)
                 // console.log('res-----', res)
                 // let request1 = new Object()
@@ -489,7 +479,7 @@ var _default = {
                 // }
                 // });
                 // }
-              case 25:
+              case 20:
               case "end":
                 return _context2.stop();
             }
@@ -556,7 +546,7 @@ exports.default = _default;
 
 /***/ 146:
 /*!************************************************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/page_subscribe/submitOrder/submitOrder.vue?vue&type=style&index=0&lang=scss& ***!
+  !*** F:/个人博客/MahjongFrontEnd/page_subscribe/submitOrder/submitOrder.vue?vue&type=style&index=0&lang=scss& ***!
   \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -572,7 +562,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ 147:
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!F:/Hi雀神/MahjongFrontEnd/page_subscribe/submitOrder/submitOrder.vue?vue&type=style&index=0&lang=scss& ***!
+  !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!F:/个人博客/MahjongFrontEnd/page_subscribe/submitOrder/submitOrder.vue?vue&type=style&index=0&lang=scss& ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {

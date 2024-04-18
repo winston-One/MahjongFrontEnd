@@ -21,7 +21,7 @@
       	</view>
       	<view class="order_status">
           <view class="order_num">
-            <view><text>我的券包</text><text>{{quanNum}}</text></view>
+          <view><text>我的余额</text><text>{{quanNum}}</text></view>
             <view><text>我的订单</text><text>{{orderNum}}</text></view>
           </view>
       		<view class="order_menu">
@@ -69,14 +69,14 @@
             position: absolute;
             bottom: 0;
             left:260rpx"> 
-        本系统由Winston开发团队提供技术支持
+        本系统
       </view>
       <u-popup v-model="popshow" mode="center" width="600rpx" height="770rpx" border-radius="20">
       	<view class="jieshao">
       		长按扫码添加商家，获取最新优惠活动情况、包厢环境，或咨询相关问题~
       	</view>
       	<view>
-      		<image style="width: 600rpx;height: 780rpx;" src="../../static/mine/contactBussiness.png"
+      		<image style="width: 600rpx;height: 780rpx;" src="../../static/mine/maomao.jpg"
       			show-menu-by-longpress="true"></image>
       	</view>
       </u-popup>
@@ -166,12 +166,18 @@
       };
     },
     onLaunch() {
-      //this.token = uni.getStorageSync('Authority')
+      this.token = uni.getStorageSync('authority')
       this.nickName = uni.getStorageSync('nickname')
       this.avatarUrl = uni.getStorageSync('avatarUrl')
     },
     async onLoad() {
-      //this.token = uni.getStorageSync('Authority')
+      this.token = uni.getStorageSync('authority')
+	  if (this.token === '') {
+	  	uni.navigateTo({
+	  		url: "/page_login/login/login"
+	  	})
+	  	return;
+	  }
       let body = new Object()
       body.openId = getApp().globalData.openid
       body.orderStatus = 0
@@ -179,6 +185,7 @@
       body.pageNum = 1
       let res = await getApp().UniRequest("/order/getAllOrderByUser", "POST", body, "",1)
       if (res.code !== 20000) {
+		  console.log(679679);
          uni.showToast({
           title: '数据请求失败！',
           duration: 1500,
@@ -192,6 +199,7 @@
       let data = await getApp().UniRequest("/voucherUser/countVoucher", "GET", obj, "",1)
       console.log(data.data);
       if (data.code !== 20000) {
+		  console.log(123123);
          uni.showToast({
           title: '数据请求失败！',
           duration: 1500,
@@ -199,7 +207,6 @@
         })
       }
       this.quanNum = data.data
-     
     },
     onShareAppMessage(res) {
       if (res.form === 'button') {
@@ -273,7 +280,7 @@
           })
         }
         uni.setStorageSync("userInfo", '');
-        uni.setStorageSync("Authority", '');
+        uni.setStorageSync("authority", '');
         uni.setStorageSync('pastDueDateNew', '')
         getApp().globalData.openid = '';
         getApp().globalData.isLogin = false;

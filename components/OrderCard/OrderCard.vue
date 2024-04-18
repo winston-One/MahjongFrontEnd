@@ -27,6 +27,7 @@
         <view class="item-name">联系客服</view>
       </view>
       <view class="btn1">
+		  
         <view class="item-name" @click="contactBusiness">联系门店</view>
       </view>
       <view @click="skipOrderDetails" class="btn2">
@@ -53,7 +54,7 @@
         isVoucher: Number,
         voucherId: String,
         payTime:String,
-        createTime:String,
+        createTime: String,
       }
     },
     data() {
@@ -68,9 +69,9 @@
         })
       },
       contactBusiness() {
-        uni.navigateTo({
-          url:"/page_subscribe/Chat/Chat"
-        })
+        // uni.navigateTo({
+        //   url:"/page_subscribe/Chat/Chat"
+        // })
       }
     }
   }

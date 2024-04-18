@@ -15,7 +15,7 @@
       // 头部的自定义的高度
       statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
       // 当前默认选中的店名
-      store: '安鸿店',
+      store: '长沙店',
       storeId: '97901',
       // 请求头信息，一般存放token信息
       header: {
@@ -40,7 +40,7 @@
       // websocket连接成功之后，将websocket对象封装在这里
 			socketTask: '',
     },
-		async onLaunch() {
+	async onLaunch() {
       let vm = this;
       let pastDueDate = uni.getStorageSync('pastDueDate');
       let currentTime = Date.parse(new Date());
@@ -61,13 +61,13 @@
       			}
       		})
       	}
-      	this.globalData.haveLoading = true
-      	this.globalData.header = header
-      	this.globalData.openid = uni.getStorageSync('openid');
-      	this.globalData.userInfo = uni.getStorageSync('userInfo')
-      }
-      this.setNavBarInfo()
-      this.getPagesHeight()
+			this.globalData.haveLoading = true
+			this.globalData.header = header
+			this.globalData.openid = uni.getStorageSync('openid');
+			this.globalData.userInfo = uni.getStorageSync('userInfo')
+		  }
+		  this.setNavBarInfo()
+		  this.getPagesHeight()
 		},
 		onShow: function() {
 			this.setNavBarInfo()

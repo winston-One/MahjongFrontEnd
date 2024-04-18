@@ -98,7 +98,7 @@ module.exports = _toPropertyKey, module.exports.__esModule = true, module.export
 
 /***/ 129:
 /*!***************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/page_subscribe/lib/parseData.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/page_subscribe/lib/parseData.js ***!
   \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -218,10 +218,47 @@ function getDate() {
   //var newdate = date.reverse()
   return date;
 }
+function getSeven() {
+  var dates = [];
+  var currentDate = new Date(); // 获取当前日期  
+
+  // 添加今天的日期  
+  var year = currentDate.getFullYear();
+  var month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+  var day = currentDate.getDate().toString().padStart(2, '0');
+  var formattedDate = "".concat(month, "-").concat(day);
+  var dayOfWeek = currentDate.toLocaleString('zh-CN', {
+    weekday: 'long'
+  });
+  dates.push({
+    data: formattedDate,
+    week: dayOfWeek,
+    year: year
+  });
+
+  // 生成接下来的六天日期  
+  for (var i = 1; i < 7; i++) {
+    currentDate.setDate(currentDate.getDate() + 1);
+    year = currentDate.getFullYear();
+    month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    day = currentDate.getDate().toString().padStart(2, '0');
+    formattedDate = "".concat(month, "-").concat(day);
+    dayOfWeek = currentDate.toLocaleString('zh-CN', {
+      weekday: 'long'
+    });
+    dates.push({
+      data: formattedDate,
+      week: dayOfWeek,
+      year: year
+    });
+  }
+  return dates;
+}
 module.exports = {
   dateTimeStr: dateTimeStr,
   getTimeRange: getTimeRange,
-  getDate: getDate
+  getDate: getDate,
+  getSeven: getSeven
 };
 
 /***/ }),
@@ -316,7 +353,7 @@ module.exports = _setPrototypeOf, module.exports.__esModule = true, module.expor
 
 /***/ 160:
 /*!************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/page_subscribe/lib/commen.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/page_subscribe/lib/commen.js ***!
   \************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -3224,7 +3261,7 @@ module.exports = _nonIterableSpread, module.exports.__esModule = true, module.ex
 
 /***/ 212:
 /*!***********************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-icons/components/uni-icons/icons.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/uni_modules/uni-icons/components/uni-icons/icons.js ***!
   \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -10902,7 +10939,7 @@ internalMixin(Vue);
 
 /***/ 26:
 /*!******************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/pages.json ***!
+  !*** F:/个人博客/MahjongFrontEnd/pages.json ***!
   \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -10913,7 +10950,7 @@ internalMixin(Vue);
 
 /***/ 297:
 /*!***********************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/popup.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/popup.js ***!
   \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -10955,7 +10992,7 @@ exports.default = _default;
 
 /***/ 298:
 /*!****************************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/index.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/index.js ***!
   \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -10982,7 +11019,7 @@ exports.default = _default;
 
 /***/ 299:
 /*!***************************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/en.json ***!
+  !*** F:/个人博客/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/en.json ***!
   \***************************************************************************************/
 /*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
 /***/ (function(module) {
@@ -11038,7 +11075,7 @@ module.exports = runtime;
 
 /***/ 300:
 /*!********************************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hans.json ***!
+  !*** F:/个人博客/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hans.json ***!
   \********************************************************************************************/
 /*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
 /***/ (function(module) {
@@ -11049,7 +11086,7 @@ module.exports = JSON.parse("{\"uni-popup.cancel\":\"取消\",\"uni-popup.ok\":\
 
 /***/ 301:
 /*!********************************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hant.json ***!
+  !*** F:/个人博客/MahjongFrontEnd/uni_modules/uni-popup/components/uni-popup/i18n/zh-Hant.json ***!
   \********************************************************************************************/
 /*! exports provided: uni-popup.cancel, uni-popup.ok, uni-popup.placeholder, uni-popup.title, uni-popup.shareTitle, default */
 /***/ (function(module) {
@@ -11423,7 +11460,7 @@ module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exp
 
 /***/ 33:
 /*!************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/mahjongConfig.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/mahjongConfig.js ***!
   \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -11436,7 +11473,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  domain: 'https://winston.com' // 域名（后端部署之后，将服务器ip映射一个域名）
+  domain: 'https://queshen.club' // 域名（后端部署之后，将服务器ip映射一个域名）
 };
 exports.default = _default;
 
@@ -11573,7 +11610,7 @@ function normalizeComponent (
 
 /***/ 37:
 /*!**************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/index.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/index.js ***!
   \**************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -11708,7 +11745,7 @@ exports.default = _default;
 
 /***/ 38:
 /*!*************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/mixin/mixin.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/mixin/mixin.js ***!
   \*************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -11784,7 +11821,7 @@ exports.default = _default;
 
 /***/ 386:
 /*!*******************************************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/uni_modules/uni-transition/components/uni-transition/createAnimation.js ***!
   \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -11918,7 +11955,7 @@ function createAnimation(option, _this) {
 
 /***/ 39:
 /*!***************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/request/index.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/request/index.js ***!
   \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -12146,7 +12183,7 @@ module.exports = _interopRequireDefault, module.exports.__esModule = true, modul
 
 /***/ 40:
 /*!********************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/deepMerge.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/deepMerge.js ***!
   \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -12196,7 +12233,7 @@ exports.default = _default;
 
 /***/ 41:
 /*!********************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/deepClone.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/deepClone.js ***!
   \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -12238,7 +12275,7 @@ exports.default = _default;
 
 /***/ 42:
 /*!***************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/test.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/test.js ***!
   \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -12487,7 +12524,7 @@ exports.default = _default;
 
 /***/ 43:
 /*!**********************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/queryParams.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/queryParams.js ***!
   \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -12569,7 +12606,7 @@ exports.default = _default;
 
 /***/ 44:
 /*!****************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/route.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/route.js ***!
   \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -12751,7 +12788,7 @@ exports.default = _default;
 
 /***/ 45:
 /*!*********************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/timeFormat.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/timeFormat.js ***!
   \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -12828,7 +12865,7 @@ exports.default = _default;
 
 /***/ 46:
 /*!*******************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/timeFrom.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/timeFrom.js ***!
   \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -12893,7 +12930,7 @@ exports.default = _default;
 
 /***/ 47:
 /*!************************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/colorGradient.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/colorGradient.js ***!
   \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -13047,7 +13084,7 @@ exports.default = _default;
 
 /***/ 48:
 /*!***************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/guid.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/guid.js ***!
   \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -13108,7 +13145,7 @@ exports.default = _default;
 
 /***/ 49:
 /*!****************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/color.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/color.js ***!
   \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -13175,7 +13212,7 @@ module.exports = _slicedToArray, module.exports.__esModule = true, module.export
 
 /***/ 50:
 /*!********************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/type2icon.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/type2icon.js ***!
   \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -13229,7 +13266,7 @@ exports.default = _default;
 
 /***/ 51:
 /*!**********************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/randomArray.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/randomArray.js ***!
   \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -13256,7 +13293,7 @@ exports.default = _default;
 
 /***/ 52:
 /*!******************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/addUnit.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/addUnit.js ***!
   \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -13283,7 +13320,7 @@ function addUnit() {
 
 /***/ 53:
 /*!*****************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/random.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/random.js ***!
   \*****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -13310,7 +13347,7 @@ exports.default = _default;
 
 /***/ 54:
 /*!***************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/trim.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/trim.js ***!
   \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -13343,7 +13380,7 @@ exports.default = _default;
 
 /***/ 55:
 /*!****************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/toast.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/toast.js ***!
   \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -13371,7 +13408,7 @@ exports.default = _default;
 
 /***/ 56:
 /*!********************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/getParent.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/getParent.js ***!
   \********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -13441,7 +13478,7 @@ function getParent(name, keys) {
 
 /***/ 57:
 /*!******************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/$parent.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/$parent.js ***!
   \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -13477,7 +13514,7 @@ function $parent() {
 
 /***/ 58:
 /*!**************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/sys.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/sys.js ***!
   \**************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -13503,7 +13540,7 @@ function sys() {
 
 /***/ 59:
 /*!*******************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/debounce.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/debounce.js ***!
   \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -13565,7 +13602,7 @@ module.exports = _arrayWithHoles, module.exports.__esModule = true, module.expor
 
 /***/ 60:
 /*!*******************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/function/throttle.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/function/throttle.js ***!
   \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -13617,7 +13654,7 @@ exports.default = _default;
 
 /***/ 61:
 /*!***************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/config/config.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/config/config.js ***!
   \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -13643,7 +13680,7 @@ exports.default = _default;
 
 /***/ 62:
 /*!***************************************************************************!*\
-  !*** F:/Hi雀神/MahjongFrontEnd/node_modules/uview-ui/libs/config/zIndex.js ***!
+  !*** F:/个人博客/MahjongFrontEnd/node_modules/uview-ui/libs/config/zIndex.js ***!
   \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
