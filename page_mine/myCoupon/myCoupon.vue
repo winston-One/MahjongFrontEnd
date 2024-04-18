@@ -42,20 +42,20 @@
           	name: '卡券'
           }
         ],
-        cardType: 0,
+        cardType: 1,
         meituanLists: [],
       };
     },
     async onLoad() {
       //this.cardLists=[{id:'8848',title:'5小时畅玩卡',availableRange:'所有',term:90,price:98.00,vouStatus:1}]
       this.getCardList()
-      this.getMeituanList()
+      // this.getMeituanList()
     },
     methods: {
       sectionChange(index) {
         this.cardType = index
         this.getCardList()
-        this.getMeituanList()
+        // this.getMeituanList() // 暂时没有美团的券
       },
       async getCardList() {
         let obj = new Object()
