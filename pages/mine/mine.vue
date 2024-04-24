@@ -196,7 +196,7 @@
       
       let obj = new Object()
       obj.openId = getApp().globalData.openid
-      let data = await getApp().UniRequest("/voucherUser/countVoucher", "GET", obj, "",1)
+      let data = await getApp().UniRequest("/voucherUser/money", "GET", obj, "",1)
       console.log(data.data);
       if (data.code !== 20000) {
 		  console.log(123123);

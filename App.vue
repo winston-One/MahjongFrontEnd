@@ -50,16 +50,16 @@
       } else {
         // 如果缓存时间没有过期
       	let header = new Object()
-      	header.Authority = uni.getStorageSync('Authority')
+      	header.Authority = uni.getStorageSync('authority')
         // 缓存时间没过期，但是token过期，依然是要重新登录
-      	if (!header.Authority) {
-      		this.globalData.haveLoading = false
-      		uni.reLaunch({
-      			url: "page_login/login/login",
-      			fail(error) {
-      				console.log('错误信息', error)
-      			}
-      		})
+      	// if (!header.Authority) {
+      	// 	this.globalData.haveLoading = false
+      	// 	uni.reLaunch({
+      	// 		url: "page_login/login/login",
+      	// 		fail(error) {
+      	// 			console.log('错误信息', error)
+      	// 		}
+      	// 	})
       	}
 			this.globalData.haveLoading = true
 			this.globalData.header = header
