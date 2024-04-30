@@ -200,18 +200,18 @@ var _default = {
   },
   onLoad: function onLoad(option) {
     var that = this;
-    uni.request({
-      // 获取ip地址
-      url: 'https://pv.sohu.com/cityjson?ie=utf-8',
-      method: 'POST',
-      success: function success(res) {
-        var reg = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/;
-        var ip = reg.exec(res.data);
-        that.ip = ip;
-      }
-    });
-    console.log(this.ip[0]);
+    // uni.request({ // 获取ip地址
+    // 	url: 'https://pv.sohu.com/cityjson?ie=utf-8',
+    // 	method: 'POST',
+    // 	success: (res) => {
+    // 		const reg = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/;
+    // 		let ip = reg.exec(res.data);
+    //     that.ip = ip;
+    // 	}
+    // })
+    // console.log(this.ip[0]);
     var data = JSON.parse(decodeURIComponent(option.coupon));
+    console.log("卡券订单", data);
     this.voucherId = data.voucherId;
     this.voucherName = data.title;
     this.availableRange = data.availableRange;
@@ -241,11 +241,11 @@ var _default = {
     },
     purchaseReserve: function purchaseReserve() {
       var _this = this;
-      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
-        var orderNo, that, request, res, payRes;
-        return _regenerator.default.wrap(function _callee3$(_context3) {
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+        var orderNo, body, data, that;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
                 // 下单并且支付
                 uni.showLoading({
@@ -263,89 +263,93 @@ var _default = {
                   });
                 }
                 orderNo = _this.createordernum();
-                that = _this;
-                request = new Object();
-                request.openid = getApp().globalData.openid;
-                request.realPrice = _this.price;
-                request.orderNo = orderNo;
-                request.ip = _this.ip[0];
-                _context3.next = 11;
-                return getApp().UniRequest("/business/pay", "POST", request, '', 1);
-              case 11:
-                res = _context3.sent;
-                console.log('res-----', res);
+                body = new Object();
+                body.orderId = orderNo;
+                body.openid = getApp().globalData.openid;
+                body.voucherId = _this.voucherId;
+                _context2.next = 9;
+                return getApp().UniRequest("/voucherUser/booking", "GET", body, "", 1);
+              case 9:
+                data = _context2.sent;
+                console.log('res-----', data);
                 uni.hideLoading();
-                if (res.code == 20000) {
-                  payRes = res.data;
-                  console.log('payRes-----', payRes);
-                  uni.requestPayment({
-                    provider: 'wxpay',
-                    // 服务提供商，通过 uni.getProvider 获取。
-                    timeStamp: payRes.timeStamp,
-                    // 时间戳从1970年1月1日至今的秒数，即当前的时间。
-                    nonceStr: payRes.nonceStr,
-                    // 随机字符串，长度为32个字符以下。
-                    package: payRes.packageValue,
-                    // 统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=xx。
-                    signType: payRes.signType,
-                    // 签名算法，应与后台下单时的值一致
-                    paySign: payRes.paySign,
-                    // 签名，具体签名方案参见 微信小程序支付文档
-                    success: function () {
-                      var _success = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(e) {
-                        var body, data;
-                        return _regenerator.default.wrap(function _callee$(_context) {
-                          while (1) {
-                            switch (_context.prev = _context.next) {
-                              case 0:
-                                body = new Object();
-                                body.voucherId = that.voucherId;
-                                body.orderId = orderNo;
-                                body.openid = getApp().globalData.openid;
-                                _context.next = 6;
-                                return getApp().UniRequest("/voucherUser/booking", "GET", body, "", 1);
-                              case 6:
-                                data = _context.sent;
-                                if (data.code === 2000) {
-                                  console.log('购买成功');
-                                }
-                                console.log('success---------' + JSON.stringify(e));
-                              case 9:
-                              case "end":
-                                return _context.stop();
-                            }
-                          }
-                        }, _callee);
-                      }));
-                      function success(_x) {
-                        return _success.apply(this, arguments);
-                      }
-                      return success;
-                    }(),
-                    fail: function fail(err) {
-                      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
-                        return _regenerator.default.wrap(function _callee2$(_context2) {
-                          while (1) {
-                            switch (_context2.prev = _context2.next) {
-                              case 0:
-                                //支付失败后调用接口取消订单
-                                console.log('取消支付');
-                              case 1:
-                              case "end":
-                                return _context2.stop();
-                            }
-                          }
-                        }, _callee2);
-                      }))();
-                    }
-                  });
+                if (!(data.code !== 20000)) {
+                  _context2.next = 16;
+                  break;
                 }
-              case 15:
+                return _context2.abrupt("return", uni.showToast({
+                  title: '数据异常',
+                  duration: 1500,
+                  icon: 'none'
+                }));
+              case 16:
+                that = _this;
+                uni.showModal({
+                  title: '提示',
+                  content: '支付' + that.price + "元",
+                  confirmColor: "#7fabf7",
+                  confirmText: "支付",
+                  success: function () {
+                    var _success = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(res) {
+                      var request, _res;
+                      return _regenerator.default.wrap(function _callee$(_context) {
+                        while (1) {
+                          switch (_context.prev = _context.next) {
+                            case 0:
+                              if (!res.confirm) {
+                                _context.next = 14;
+                                break;
+                              }
+                              console.log('用户点击确定');
+                              request = new Object();
+                              request.openid = getApp().globalData.openid;
+                              request.realPrice = that.price;
+                              request.orderNo = orderNo;
+                              _context.next = 8;
+                              return getApp().UniRequest("/business/payCoupon", "POST", request, '', 1);
+                            case 8:
+                              _res = _context.sent;
+                              if (!(_res.code !== 20000)) {
+                                _context.next = 11;
+                                break;
+                              }
+                              return _context.abrupt("return", uni.showToast({
+                                title: "支付处理错误",
+                                duration: 1500,
+                                icon: 'none'
+                              }));
+                            case 11:
+                              uni.navigateTo({
+                                url: '/page_mine/myCoupon/myCoupon'
+                              });
+                              _context.next = 17;
+                              break;
+                            case 14:
+                              if (!res.cancel) {
+                                _context.next = 17;
+                                break;
+                              }
+                              console.log('用户点击取消');
+                              return _context.abrupt("return");
+                            case 17:
+                            case "end":
+                              return _context.stop();
+                          }
+                        }
+                      }, _callee);
+                    }));
+                    function success(_x) {
+                      return _success.apply(this, arguments);
+                    }
+                    return success;
+                  }()
+                });
+              case 18:
               case "end":
-                return _context3.stop();
+                return _context2.stop();
             }
           }
-        }, _callee3);
+        }, _callee2);
       }))();
     }
   }

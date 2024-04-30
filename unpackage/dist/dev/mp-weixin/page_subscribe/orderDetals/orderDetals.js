@@ -276,6 +276,7 @@ var _default = {
       coupon: ''
     };
   },
+  onShow: function onShow() {},
   onLoad: function onLoad(option) {
     var _this = this;
     return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
@@ -286,17 +287,19 @@ var _default = {
             case 0:
               order = JSON.parse(decodeURIComponent(option.orderDetals));
               date = new Date();
-              _this.dataTime = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate();
+              _this.dataTime = _this.getNowDate();
               _this.store = order.storeName;
               _this.imgUrl = order.imgUrl;
               _this.orderNo = order.orderId;
               _this.startTime = String(order.startTime).substring(0, 10) + ' ' + String(order.startTime).substring(10 + 1);
               _this.endTime = String(order.endTime).substring(0, 10) + ' ' + String(order.endTime).substring(10 + 1);
+              // this.createTime = String(order.createTime).substring(0, 10) + ' ' + String(order.createTime).substring(10 + 1);
               _this.payTime = String(order.payTime).substring(0, 10) + ' ' + String(order.payTime).substring(10 + 1);
               if (_this.payTime == null || typeof _this.payTime === "undefined") {
                 _this.payTime = '待支付';
               }
-              if (_this.createTime == null || typeof _this.createTime === "undefined") {
+              console.log("createtime", order.createTime);
+              if (order.createTime === null || order.createTime === undefined) {
                 _this.createTime = _this.getNowDate();
               } else {
                 _this.createTime = String(order.createTime).substring(0, 10) + ' ' + String(order.createTime).substring(10 + 1);
@@ -309,22 +312,29 @@ var _default = {
               _this.voucherId = order.voucherId;
               body = new Object();
               body.voucherId = _this.voucherId;
-              _context.next = 21;
+              if (_this.voucherId === undefined || _this.voucherId === null) {
+                body.voucherId = "";
+              }
+              console.log("voucherId", body.voucherId);
+              _context.next = 24;
               return getApp().UniRequest("/voucher/getOneVoucher", "GET", body, "", 1);
-            case 21:
+            case 24:
               data = _context.sent;
               if (!(data.code !== 20000)) {
-                _context.next = 24;
+                _context.next = 28;
                 break;
               }
+              console.log(565656);
               return _context.abrupt("return", uni.showToast({
                 title: '数据获取失败！',
                 duration: 1500,
                 icon: 'none'
               }));
-            case 24:
-              _this.coupon = data.data.title;
-            case 25:
+            case 28:
+              if (data.data !== null && data.data !== undefined) {
+                _this.coupon = data.data.title;
+              }
+            case 29:
             case "end":
               return _context.stop();
           }
@@ -336,8 +346,8 @@ var _default = {
     getNowDate: function getNowDate() {
       var myDate = new Date();
       var year = myDate.getFullYear(); //获取当前年
-      var mon = myDate.getMonth() + 1; //获取当前月
-      var date = myDate.getDate(); //获取当前日
+      var mon = (myDate.getMonth() + 1).toString().padStart(2, '0'); //获取当前月
+      var date = myDate.getDate().toString().padStart(2, '0'); //获取当前日
       var hours = myDate.getHours(); //获取当前小时
       var minutes = myDate.getMinutes(); //获取当前分钟
       var seconds = myDate.getSeconds(); //获取当前秒
@@ -345,6 +355,13 @@ var _default = {
       return now;
     },
     readCoupon: function readCoupon() {
+      if (this.isVoucher !== 2) {
+        return uni.showToast({
+          title: '该订单未使用优惠券',
+          duration: 1500,
+          icon: 'none'
+        });
+      }
       uni.navigateTo({
         url: "/page_mine/myCoupon/myCoupon"
       });

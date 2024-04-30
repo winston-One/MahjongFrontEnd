@@ -222,29 +222,30 @@ var _default = {
   onLoad: function onLoad() {
     var _this = this;
     return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-      var a, body, data;
+      var dataList, a, body, data;
       return _regenerator.default.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _this.store = getApp().globalData.store;
               // 通过自定义工具类获取近七天的日期
-              _this.DataList = _parseData.default.getSeven();
-              console.log("时间");
-              for (a = 0; a < _this.DataList.length; a++) {
-                console.log(_this.DataList[a].year + _this.DataList[a].data);
+              _this.DataList = _parseData.default.getSevenDay();
+              dataList = _parseData.default.getSevenDay(); // console.log("时间")
+              for (a = 0; a < dataList.length; a++) {
+                console.log(dataList[a].year + dataList[a].data);
               }
               _this.localTime = _this.DataList[0].year + '-' + _this.DataList[0].data;
-              body = new Object(); // 在全局变量中获取门店id
+              body = new Object(); // 在全局变量中获取门店id 
               body.storeId = getApp().globalData.storeId;
               body.date = _this.localTime;
+              console.log("预约房间：" + body.storeId);
               // 获取门店所有房间信息，包括是否空闲和预约信息
-              _context.next = 10;
+              _context.next = 11;
               return getApp().UniRequest("/reservation/getAll", "GET", body, "", 1);
-            case 10:
+            case 11:
               data = _context.sent;
               if (!(data.code !== 20000)) {
-                _context.next = 13;
+                _context.next = 14;
                 break;
               }
               return _context.abrupt("return", uni.showToast({
@@ -252,9 +253,9 @@ var _default = {
                 duration: 1500,
                 icon: 'none'
               }));
-            case 13:
-              _this.reserveRoomList = data.data;
             case 14:
+              _this.reserveRoomList = data.data;
+            case 15:
             case "end":
               return _context.stop();
           }
@@ -364,7 +365,6 @@ var _default = {
         }, _callee5);
       }))();
     },
-    // 预约，处理好最终预约时间,如果有未支付的订单是不能预约的，只能先去支付或者取消订单
     reserve: function reserve() {
       var _this6 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee6() {
@@ -398,10 +398,9 @@ var _default = {
                 orderBody = new Object();
                 orderBody.store = _this6.store;
                 orderBody.room = _this6.room;
-                date = new Date(_this6.localTime); // 获取次日的日期
+                date = new Date(_this6.localTime);
                 date.setDate(date.getDate() + 1);
-                newdate = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0'); // 每月最后一天预定次日会导致该次日变为当月的1号 todo
-                // 如果所选的开始时间段是次日，就得需要解析日期
+                newdate = date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0'); // 如果所选的开始时间段是次日，就得需要解析日期
                 if (_this6.freeList[start].isNextDay === 1) {
                   orderBody.startDateTime = newdate + ' ' + String(_this6.freeList[start].time).substring(0, 5);
                 } else {
@@ -413,7 +412,8 @@ var _default = {
                 } else {
                   orderBody.endDateTime = _this6.localTime + ' ' + String(_this6.freeList[end + 1].time).substring(0, 5);
                 }
-                orderBody.date = _this6.localTime; // 预定日期(年月日)
+                // 次日时间有问题.
+                orderBody.date = _this6.localTime;
                 orderBody.totalHour = _this6.totalHour;
                 orderBody.price = Number(_this6.totalHour * _this6.room.pricePerHour);
                 uni.navigateTo({

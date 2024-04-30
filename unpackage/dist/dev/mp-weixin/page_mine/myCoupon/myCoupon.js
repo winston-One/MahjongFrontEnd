@@ -225,7 +225,7 @@ var _default = {
       }, {
         name: '卡券'
       }],
-      cardType: 0,
+      cardType: 1,
       meituanLists: []
     };
   },
@@ -238,8 +238,8 @@ var _default = {
             case 0:
               //this.cardLists=[{id:'8848',title:'5小时畅玩卡',availableRange:'所有',term:90,price:98.00,vouStatus:1}]
               _this.getCardList();
-              _this.getMeituanList();
-            case 2:
+              // this.getMeituanList()
+            case 1:
             case "end":
               return _context.stop();
           }
@@ -251,7 +251,7 @@ var _default = {
     sectionChange: function sectionChange(index) {
       this.cardType = index;
       this.getCardList();
-      this.getMeituanList();
+      // this.getMeituanList() // 暂时没有美团的券
     },
     getCardList: function getCardList() {
       var _this2 = this;

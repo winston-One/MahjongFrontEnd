@@ -269,7 +269,7 @@ var _default = {
       dataTime: '',
       startTime: '',
       endTime: '',
-      duration: 0,
+      duration: 9.0,
       coupon: null,
       meituan: null,
       meituanList: [],
@@ -327,7 +327,9 @@ var _default = {
               return getApp().UniRequest("/DianPing/selectCanDoDPOrderInRedis", "GET", body, "", 1);
             case 18:
               data = _context.sent;
+              console.log(678678678);
               if (data.code !== 20000) {
+                console.log(123123123);
                 uni.showToast({
                   title: '数据请求失败！',
                   duration: 1500,
@@ -339,11 +341,12 @@ var _default = {
               request.openId = getApp().globalData.openid;
               request.roomName = _this.room;
               request.userTime = _this.duration;
-              _context.next = 27;
+              _context.next = 28;
               return getApp().UniRequest("/voucherUser/judgeVoucher", "GET", request, "", 1);
-            case 27:
+            case 28:
               data1 = _context.sent;
               if (data1.code !== 20000) {
+                console.log(345345);
                 uni.showToast({
                   title: '数据请求失败！',
                   duration: 1500,
@@ -351,7 +354,7 @@ var _default = {
                 });
               }
               _this.couponList = data1.data;
-            case 30:
+            case 31:
             case "end":
               return _context.stop();
           }
@@ -362,11 +365,11 @@ var _default = {
   methods: {
     confirmReserve: function confirmReserve() {
       var _this2 = this;
-      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
-        var body, data, orderNo;
-        return _regenerator.default.wrap(function _callee2$(_context2) {
+      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3() {
+        var body, data, that, orderNo;
+        return _regenerator.default.wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
                 // 下单并且支付
                 uni.showLoading({
@@ -381,110 +384,89 @@ var _default = {
                 body.price = _this2.price;
                 body.startTime = Date.parse(_this2.startTime);
                 body.endTime = Date.parse(_this2.endTime);
-                _context2.next = 11;
+                _context3.next = 11;
                 return getApp().UniRequest("/order/saveOneUserOrder", "POST", body, "", 1);
               case 11:
-                data = _context2.sent;
+                data = _context3.sent;
                 uni.hideLoading();
                 if (!(data.code !== 20000)) {
-                  _context2.next = 17;
+                  _context3.next = 17;
                   break;
                 }
-                return _context2.abrupt("return", uni.showToast({
+                return _context3.abrupt("return", uni.showToast({
                   title: data.errorMsg,
                   duration: 1500,
                   icon: 'none'
                 }));
               case 17:
+                that = _this2;
+                orderNo = data.data;
                 uni.showModal({
                   title: '提示',
                   content: '支付' + _this2.price + "元",
                   confirmColor: "#7fabf7",
                   confirmText: "支付",
-                  success: function success(res) {
-                    if (res.confirm) {
-                      console.log('用户点击确定');
-                      uni.switchTab({
-                        url: "/pages/myOrder/myOrder"
-                      });
-                      // 模拟支付扣钱
-                    } else if (res.cancel) {
-                      console.log('用户点击取消');
-                      return;
+                  success: function () {
+                    var _success = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(res) {
+                      var request, _res;
+                      return _regenerator.default.wrap(function _callee2$(_context2) {
+                        while (1) {
+                          switch (_context2.prev = _context2.next) {
+                            case 0:
+                              if (!res.confirm) {
+                                _context2.next = 14;
+                                break;
+                              }
+                              console.log('用户点击确定');
+                              request = new Object();
+                              request.openid = getApp().globalData.openid;
+                              request.realPrice = _this2.price;
+                              request.orderNo = orderNo;
+                              _context2.next = 8;
+                              return getApp().UniRequest("/business/pay", "POST", request, '', 1);
+                            case 8:
+                              _res = _context2.sent;
+                              if (!(_res.code !== 20000)) {
+                                _context2.next = 11;
+                                break;
+                              }
+                              return _context2.abrupt("return", uni.showToast({
+                                title: "支付处理错误",
+                                duration: 1500,
+                                icon: 'none'
+                              }));
+                            case 11:
+                              uni.switchTab({
+                                url: '/pages/myOrder/myOrder'
+                              });
+                              _context2.next = 17;
+                              break;
+                            case 14:
+                              if (!res.cancel) {
+                                _context2.next = 17;
+                                break;
+                              }
+                              console.log('用户点击取消');
+                              return _context2.abrupt("return");
+                            case 17:
+                            case "end":
+                              return _context2.stop();
+                          }
+                        }
+                      }, _callee2);
+                    }));
+                    function success(_x) {
+                      return _success.apply(this, arguments);
                     }
-                  }
+                    return success;
+                  }()
                 });
-              case 18:
-                orderNo = data.data;
-                if (_this2.price <= 0) {
-                  uni.showModal({
-                    title: '提示',
-                    content: '无法支付，请联系客服',
-                    showCancel: false,
-                    success: function success(res) {
-                      uni.navigateBack();
-                    }
-                  });
-                }
-                // var that = this
-                // let request = new Object()
-                // request.openid = getApp().globalData.openid
-                // request.realPrice = this.price
-                // request.orderNo = orderNo
-                // let res = await getApp().UniRequest("/business/pay", "POST", request, '', 1)
-                // console.log('res-----', res)
-                // let request1 = new Object()
-                // request1.userId = getApp().globalData.openid
-                // var isVoucher = 0
-                // var voucherId = 'winston'
-                // if(this.meituan!==null&&this.coupon==null) {
-                //   isVoucher=1
-                //   voucherId = this.meituan.id
-                // }
-                // if(this.coupon!==null&&this.meituan==null) {
-                //   isVoucher=2
-                //   voucherId = this.coupon.id
-                // }
-                // request1.isVoucher = isVoucher
-                // request1.orderId = orderNo
-                // request1.voucherId = voucherId
-                // uni.hideLoading()
-                // 下单成功之后就调用支付API，并且后端处理支付回调逻辑
-                // if (res.code == 20000) {
-                // 	let payRes = res.data
-                // 	console.log('payRes-----', payRes)
-                // 调用uniapp的支付API，底层会调用微信的API
-                // uni.requestPayment({
-                // 	provider: 'wxpay', // 服务提供商，通过 uni.getProvider 获取。
-                // 	timeStamp: payRes.timeStamp, // 时间戳从1970年1月1日至今的秒数，即当前的时间。
-                // 	nonceStr: payRes.nonceStr, // 随机字符串，长度为32个字符以下。
-                // 	package: payRes.packageValue, // 统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=xx。
-                // 	signType: payRes.signType, // 签名算法，应与后台下单时的值一致
-                // 	paySign: payRes.paySign, // 签名，具体签名方案参见 微信小程序支付文档
-                // success: async function(e) {
-                //     let calldata = await getApp().UniRequest("/PointAfter/pointAfterDo", "POST", request1, '', 1);
-                //     if (calldata.code === 20000) {
-                //       uni.navigateTo({
-                //       	url: "/pages/myOrder/myOrder"
-                //       })
-                //     }
-                // },
-                // async fail(err) {
-                // 	//支付失败后调用接口取消订单
-                // 	let body = new Object()
-                // 	body.userId = getApp().globalData.openid
-                //     body.id = orderNo
-                // 	let cancelPayRes = await getApp().UniRequest("/order/deleteOrder","POST", body, "", 1)
-                // 	console.log('取消支付。。。')
-                // }
-                // });
-                // }
               case 20:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2);
+        }, _callee3);
       }))();
     },
     cancelMeituan: function cancelMeituan() {

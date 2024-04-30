@@ -206,7 +206,7 @@ var _default = {
     return {
       chooseData: false,
       height: 0,
-      src: '/static/applogo/app1.png',
+      src: '/static/applogo/intro1.png',
       loginButton: {
         marginBottom: '30rpx'
       },
@@ -283,8 +283,9 @@ var _default = {
                               case 4:
                                 data = _context.sent;
                                 console.log(data);
-                                authority = data.data.Authority;
-                                uni.setStorageSync("Authority", authority); //86400
+                                authority = data.data.authority;
+                                uni.setStorageSync("authority", authority); //86400
+                                console.log('authority', authority);
                                 // 设置登录有效期时间为3天
                                 pastDueDate = Date.parse(new Date()) + 259200000; // 3天
                                 uni.setStorageSync('pastDueDate', pastDueDate);
@@ -312,7 +313,7 @@ var _default = {
                                     url: '/pages/Home/Home'
                                   });
                                 }
-                              case 16:
+                              case 17:
                               case "end":
                                 return _context.stop();
                             }

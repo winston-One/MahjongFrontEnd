@@ -240,12 +240,10 @@ var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/r
 //
 //
 //
-//
-//
 var _default = {
   data: function data() {
     return {
-      token: 'winston',
+      token: '',
       Ordervalue: 1,
       isloadingOrder: 1,
       orderOption: [{
@@ -296,8 +294,11 @@ var _default = {
       isloading: false
     };
   },
+  onShow: function onShow() {
+    this.token = uni.getStorageSync('authority');
+  },
   onLaunch: function onLaunch() {
-    //this.token = uni.getStorageSync('Authority')
+    this.token = uni.getStorageSync('authority');
   },
   // 上拉触底事件
   onReachBottom: function onReachBottom() {
@@ -326,22 +327,23 @@ var _default = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              _this.token = uni.getStorageSync('authority');
               if (!(_this.token === '')) {
-                _context.next = 2;
+                _context.next = 3;
                 break;
               }
               return _context.abrupt("return");
-            case 2:
+            case 3:
               _this.storeId = getApp().globalData.storeId;
               _this.isloadingOrder = 1;
               _this.getOrderData();
               _this.isloadingOrder = 0;
-              _context.next = 8;
+              _context.next = 9;
               return getApp().UniRequest("/store/selectAllStore", "POST", "", "", 1);
-            case 8:
+            case 9:
               data = _context.sent;
               if (!(data.code !== 20000)) {
-                _context.next = 11;
+                _context.next = 12;
                 break;
               }
               return _context.abrupt("return", uni.showToast({
@@ -349,12 +351,12 @@ var _default = {
                 duration: 1500,
                 icon: 'none'
               }));
-            case 11:
+            case 12:
               for (i = 0; i < data.data.length; i++) {
                 _this.storeOption[i].label = data.data[i].storeName;
                 _this.storeOption[i].storeId = data.data[i].storeId;
               }
-            case 12:
+            case 13:
             case "end":
               return _context.stop();
           }
@@ -397,8 +399,9 @@ var _default = {
                 uni.hideLoading();
                 _this2.total = data.data.total;
                 _this2.orderLists = [].concat((0, _toConsumableArray2.default)(_this2.orderLists), (0, _toConsumableArray2.default)(data.data.records));
+                console.log("123123", _this2.orderLists[0]);
                 _this2.isloading = false;
-              case 16:
+              case 17:
               case "end":
                 return _context2.stop();
             }

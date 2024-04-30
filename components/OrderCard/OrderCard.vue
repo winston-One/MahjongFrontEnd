@@ -12,7 +12,7 @@
         <view class="order_duration">
           <view>{{order.duration}}</view>
           <view class="voupon">
-            {{order.isVoucher==1? '美团券':order.isVoucher==2? '卡券':'无使用券'}}
+						{{order.isVoucher==1? '使用卡券':'无使用券'}}
           </view>
         </view>
         <view class="order_price">
@@ -34,6 +34,15 @@
         查看订单
       </view>
     </view>
+    <u-popup v-model="popshow" mode="center" width="600rpx" height="770rpx" border-radius="20">
+      <view class="jieshao">
+        长按扫码添加商家，获取最新优惠活动情况、包厢环境，或咨询相关问题~
+      </view>
+      <view>
+        <image style="width: 600rpx;height: 780rpx;" src="../../static/mine/maomao.jpg" show-menu-by-longpress="true">
+        </image>
+      </view>
+    </u-popup>
   </view>
 </template>
 
@@ -59,7 +68,7 @@
     },
     data() {
       return {
-        
+        popshow: false;
       };
     },
     methods:{
@@ -69,9 +78,7 @@
         })
       },
       contactBusiness() {
-        // uni.navigateTo({
-        //   url:"/page_subscribe/Chat/Chat"
-        // })
+        this.popshow = true
       }
     }
   }

@@ -336,30 +336,49 @@ var _default = {
       popshow: false
     };
   },
-  onLaunch: function onLaunch() {
-    //this.token = uni.getStorageSync('Authority')
-    this.nickName = uni.getStorageSync('nickname');
-    this.avatarUrl = uni.getStorageSync('avatarUrl');
-  },
   onLoad: function onLoad() {
     var _this = this;
     return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-      var body, res, obj, data;
+      var params, result, body, res, obj, data;
       return _regenerator.default.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              //this.token = uni.getStorageSync('Authority')
+              _this.nickName = 'WinstonYv'; //uni.getStorageSync('nickname')
+              _this.avatarUrl = uni.getStorageSync('avatarUrl');
+              _this.avatarUrl = 'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132';
+              params = new Object();
+              params.openId = getApp().globalData.openid;
+              _context.next = 7;
+              return getApp().UniRequest("/manager/getUserInfo", "POST", params, "", 1);
+            case 7:
+              result = _context.sent;
+              if (result.code === 20000) {
+                console.log(888, result);
+                // this.avatarUrl = result.data.avatarUrl
+                // this.nickName = result.data.nickName
+              }
+              // this.token = uni.getStorageSync('authority')
+              if (!(_this.token === '')) {
+                _context.next = 12;
+                break;
+              }
+              uni.navigateTo({
+                url: "/page_login/login/login"
+              });
+              return _context.abrupt("return");
+            case 12:
               body = new Object();
               body.openId = getApp().globalData.openid;
               body.orderStatus = 0;
               body.storeId = getApp().globalData.storeId;
               body.pageNum = 1;
-              _context.next = 7;
+              _context.next = 19;
               return getApp().UniRequest("/order/getAllOrderByUser", "POST", body, "", 1);
-            case 7:
+            case 19:
               res = _context.sent;
               if (res.code !== 20000) {
+                console.log(679679);
                 uni.showToast({
                   title: '数据请求失败！',
                   duration: 1500,
@@ -369,12 +388,13 @@ var _default = {
               _this.orderNum = res.data.total;
               obj = new Object();
               obj.openId = getApp().globalData.openid;
-              _context.next = 14;
-              return getApp().UniRequest("/voucherUser/countVoucher", "GET", obj, "", 1);
-            case 14:
+              _context.next = 26;
+              return getApp().UniRequest("/voucherUser/money", "GET", obj, "", 1);
+            case 26:
               data = _context.sent;
               console.log(data.data);
               if (data.code !== 20000) {
+                console.log(123123);
                 uni.showToast({
                   title: '数据请求失败！',
                   duration: 1500,
@@ -382,7 +402,7 @@ var _default = {
                 });
               }
               _this.quanNum = data.data;
-            case 18:
+            case 30:
             case "end":
               return _context.stop();
           }
@@ -417,7 +437,7 @@ var _default = {
     },
     avatarPreview: function avatarPreview(avatarUrl) {
       uni.previewImage({
-        current: 0,
+        current: avatarUrl,
         urls: [avatarUrl]
       });
     },
@@ -475,7 +495,7 @@ var _default = {
                 }));
               case 8:
                 uni.setStorageSync("userInfo", '');
-                uni.setStorageSync("Authority", '');
+                uni.setStorageSync("authority", '');
                 uni.setStorageSync('pastDueDateNew', '');
                 getApp().globalData.openid = '';
                 getApp().globalData.isLogin = false;

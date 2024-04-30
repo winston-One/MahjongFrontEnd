@@ -62,7 +62,8 @@
 		},
 		onShow() {
 			this.token = uni.getStorageSync('authority')
-			this.cardType = 0//uni.getStorageSync('couponType')
+      ///////////////////////////
+			this.cardType = uni.getStorageSync('couponType')
 		},
 		async onLoad() {
 			// 如果将登录功能打开，就需要通过token，后续判断登录了才能消券

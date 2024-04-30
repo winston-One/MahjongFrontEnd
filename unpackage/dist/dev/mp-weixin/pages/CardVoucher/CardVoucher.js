@@ -241,12 +241,10 @@ var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/r
 //
 //
 //
-//
-//
 var _default = {
   data: function data() {
     return {
-      token: 'winston',
+      token: '',
       popshow: false,
       meituanMsg: '',
       cardTypeList: [{
@@ -265,10 +263,11 @@ var _default = {
     };
   },
   onLaunch: function onLaunch() {
-    //this.token = uni.getStorageSync('Authority')
+    this.token = uni.getStorageSync('authority');
   },
   onShow: function onShow() {
-    this.cardType = uni.getStorageSync('couponType');
+    this.token = uni.getStorageSync('authority');
+    this.cardType = 0; //uni.getStorageSync('couponType')
   },
   onLoad: function onLoad() {
     var _this = this;
@@ -278,12 +277,14 @@ var _default = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              // 如果将登录功能打开，就需要通过token，后续判断登录了才能消券
+              _this.token = uni.getStorageSync('authority');
+              _context.next = 3;
               return getApp().UniRequest("/voucher/allVoucher", "POST", "", "", 1);
-            case 2:
+            case 3:
               data = _context.sent;
               if (!(data.code !== 20000)) {
-                _context.next = 5;
+                _context.next = 6;
                 break;
               }
               return _context.abrupt("return", uni.showToast({
@@ -291,9 +292,9 @@ var _default = {
                 duration: 1500,
                 icon: 'none'
               }));
-            case 5:
-              _this.cardLists = data.data;
             case 6:
+              _this.cardLists = data.data;
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -314,16 +315,25 @@ var _default = {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
+                if (!(_this2.token === '')) {
+                  _context3.next = 3;
+                  break;
+                }
+                uni.navigateTo({
+                  url: "/page_login/login/login"
+                });
+                return _context3.abrupt("return");
+              case 3:
                 obj = new Object();
                 obj.userId = getApp().globalData.openid;
                 obj.receiptCode = receiptCode;
                 obj.count = uni.getStorageSync('count');
-                _context3.next = 6;
+                _context3.next = 9;
                 return getApp().UniRequest("/DianPing/verificationWrittenOff", "POST", obj, "", 1);
-              case 6:
+              case 9:
                 data = _context3.sent;
                 if (!(data.code === 1006)) {
-                  _context3.next = 9;
+                  _context3.next = 12;
                   break;
                 }
                 return _context3.abrupt("return", uni.showToast({
@@ -331,9 +341,9 @@ var _default = {
                   duration: 1500,
                   icon: 'none'
                 }));
-              case 9:
+              case 12:
                 if (!(data.code === 1013)) {
-                  _context3.next = 11;
+                  _context3.next = 14;
                   break;
                 }
                 return _context3.abrupt("return", uni.showToast({
@@ -341,9 +351,9 @@ var _default = {
                   duration: 1500,
                   icon: 'none'
                 }));
-              case 11:
+              case 14:
                 if (!(data.code !== 20000)) {
-                  _context3.next = 13;
+                  _context3.next = 16;
                   break;
                 }
                 return _context3.abrupt("return", uni.showToast({
@@ -351,7 +361,7 @@ var _default = {
                   duration: 1500,
                   icon: 'none'
                 }));
-              case 13:
+              case 16:
                 uni.showModal({
                   title: '消券成功',
                   content: '您的团购券已销，快去预定房间吧~',
@@ -377,7 +387,7 @@ var _default = {
                   }
                 });
                 _this2.popshow = false;
-              case 15:
+              case 18:
               case "end":
                 return _context3.stop();
             }
@@ -473,6 +483,15 @@ var _default = {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
+                if (!(_this4.token === '')) {
+                  _context6.next = 3;
+                  break;
+                }
+                uni.navigateTo({
+                  url: "/page_login/login/login"
+                });
+                return _context6.abrupt("return");
+              case 3:
                 _this4.meituanMsg = '';
                 that = _this4; // 调用uniapp扫描二维码的接口
                 uni.scanCode({
@@ -540,7 +559,7 @@ var _default = {
                     return success;
                   }()
                 });
-              case 3:
+              case 6:
               case "end":
                 return _context6.stop();
             }

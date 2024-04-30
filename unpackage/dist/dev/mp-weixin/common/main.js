@@ -120,7 +120,7 @@ var _default = {
     // 头部的自定义的高度
     statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
     // 当前默认选中的店名
-    store: '安鸿店',
+    store: '长沙店',
     storeId: '97901',
     // 请求头信息，一般存放token信息
     header: {
@@ -157,30 +157,30 @@ var _default = {
               _context.next = 6;
               return _this.login();
             case 6:
-              _context.next = 15;
+              _context.next = 14;
               break;
             case 8:
               // 如果缓存时间没有过期
               header = new Object();
-              header.Authority = uni.getStorageSync('Authority');
+              header.Authority = uni.getStorageSync('authority');
               // 缓存时间没过期，但是token过期，依然是要重新登录
-              if (!header.Authority) {
-                _this.globalData.haveLoading = false;
-                uni.reLaunch({
-                  url: "page_login/login/login",
-                  fail: function fail(error) {
-                    console.log('错误信息', error);
-                  }
-                });
-              }
+              // if (!header.Authority) {
+              // 	this.globalData.haveLoading = false
+              // 	uni.reLaunch({
+              // 		url: "page_login/login/login",
+              // 		fail(error) {
+              // 			console.log('错误信息', error)
+              // 		}
+              // 	})
+              // }
               _this.globalData.haveLoading = true;
               _this.globalData.header = header;
               _this.globalData.openid = uni.getStorageSync('openid');
               _this.globalData.userInfo = uni.getStorageSync('userInfo');
-            case 15:
+            case 14:
               _this.setNavBarInfo();
               _this.getPagesHeight();
-            case 17:
+            case 16:
             case "end":
               return _context.stop();
           }

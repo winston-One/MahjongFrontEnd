@@ -158,6 +158,7 @@ exports.default = void 0;
 //
 //
 //
+//
 var _default = {
   name: "OrderCard",
   props: {
@@ -187,9 +188,9 @@ var _default = {
       });
     },
     contactBusiness: function contactBusiness() {
-      uni.navigateTo({
-        url: "/page_subscribe/Chat/Chat"
-      });
+      // uni.navigateTo({
+      //   url:"/page_subscribe/Chat/Chat"
+      // })
     }
   }
 };

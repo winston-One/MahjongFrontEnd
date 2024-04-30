@@ -22,7 +22,7 @@
       <text>价格：￥{{couponMsg.price}}</text>
       <view>
         <uni-icons :type="couponMsg.orderStatus==1?'smallcircle':'circle-filled'"/>
-        <text>{{couponMsg.orderStatus==2?'待使用':couponMsg.orderStatus==3?'已使用':'已过期'}}</text>
+        <text>{{couponMsg.orderStatus==1?'待使用':couponMsg.orderStatus==3?'已使用':'已过期'}}</text>
       </view>
     </view>
   </view>

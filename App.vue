@@ -60,11 +60,11 @@
       	// 			console.log('错误信息', error)
       	// 		}
       	// 	})
-      	}
-			this.globalData.haveLoading = true
-			this.globalData.header = header
-			this.globalData.openid = uni.getStorageSync('openid');
-			this.globalData.userInfo = uni.getStorageSync('userInfo')
+      	// }
+        this.globalData.haveLoading = true
+        this.globalData.header = header
+        this.globalData.openid = uni.getStorageSync('openid')
+        this.globalData.userInfo = uni.getStorageSync('userInfo')
 		  }
 		  this.setNavBarInfo()
 		  this.getPagesHeight()

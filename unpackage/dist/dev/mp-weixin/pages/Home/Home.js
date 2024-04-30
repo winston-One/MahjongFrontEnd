@@ -301,9 +301,10 @@ var _default = {
     return {
       wifiPsd: 'mahjong@888',
       wifi: 'mahjong',
-      token: 'winston',
-      title: '国粹娱乐中心',
-      store: '安鸿店',
+      token: '',
+      //'winston',
+      title: '娱乐中心',
+      store: '长沙店',
       storeId: '97901',
       storeIndex: 0,
       selectcustomStyle: {
@@ -339,7 +340,7 @@ var _default = {
         title: ''
       }],
       filterOptions: [],
-      location: '海珠区仲恺路500号',
+      location: '长沙医学院',
       isBusiness: 1,
       menuList: [{
         image: '../../static/mine/myCoupon.png',
@@ -377,11 +378,10 @@ var _default = {
     };
   },
   onLaunch: function onLaunch() {
-    //this.token = uni.getStorageSync('Authority')
+    this.token = uni.getStorageSync('authority');
   },
   onShow: function onShow() {
-    //this.token = uni.getStorageSync('Authority')
-    //console.log('缓存里的：'+uni.getStorageSync('Authority'));
+    this.token = uni.getStorageSync('authority');
   },
   onLoad: function onLoad() {
     var _this = this;
@@ -391,12 +391,14 @@ var _default = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              _this.token = uni.getStorageSync('authority');
+              console.log('this.token', _this.token);
+              _context.next = 4;
               return getApp().UniRequest("/store/selectAllStore", "POST", "", "", 1);
-            case 2:
+            case 4:
               data = _context.sent;
               if (!(data.code !== 20000)) {
-                _context.next = 5;
+                _context.next = 7;
                 break;
               }
               return _context.abrupt("return", uni.showToast({
@@ -404,10 +406,13 @@ var _default = {
                 duration: 1500,
                 icon: 'none'
               }));
-            case 5:
+            case 7:
               _this.filterOptions = data.data;
               _this.location = _this.filterOptions[0].address;
-            case 7:
+              _this.store = _this.filterOptions[0].storeName;
+              _this.storeId = _this.filterOptions[0].storeId;
+              _this.phone = _this.filterOptions[0].phone;
+            case 12:
             case "end":
               return _context.stop();
           }
@@ -417,19 +422,20 @@ var _default = {
   },
   onShareAppMessage: function onShareAppMessage() {
     return {
-      title: '国粹娱乐中心预约来了',
+      title: '娱乐中心预约来了',
       path: '/page/index/index'
     };
   },
   onShareTimeline: function onShareTimeline() {
     return {
-      title: '国粹娱乐中心预约来了',
+      title: '娱乐中心预约来了',
       path: '/page/index/index',
       desc: '三缺一，就差你一个'
     };
   },
   methods: {
     skipSubscribe: function skipSubscribe() {
+      this.token = uni.getStorageSync('authority');
       if (this.token === '') {
         uni.navigateTo({
           url: "/page_login/login/login"
@@ -458,17 +464,17 @@ var _default = {
         url: item.url
       });
     },
-    // toContinueOrder() {
-    //   if (this.token === '') {
-    //     uni.navigateTo({
-    //       url:"/page_login/login/login"
-    //     })
-    //     return;
-    //   }
-    //   uni.navigateTo({
-    //     url: '/page_subscribe/continueOrder/continueOrder'
-    //   })
-    // },
+    toContinueOrder: function toContinueOrder() {
+      if (this.token === '') {
+        uni.navigateTo({
+          url: "/page_login/login/login"
+        });
+        return;
+      }
+      uni.navigateTo({
+        url: '/page_subscribe/continueOrder/continueOrder'
+      });
+    },
     selectStore: function selectStore() {
       this.storePopup = true;
     },
